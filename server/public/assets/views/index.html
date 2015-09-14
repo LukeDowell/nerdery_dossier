@@ -11,12 +11,48 @@
 <body>
 
     <header>
-        <h1>Header Content</h1>
+        <h1>Anything but Gabby's Salvation</h1>
     </header>
-
-    <div>
-        <main ng-view></main>
+    <div ng-controller="HomeController" layout="column" style="height:500px;">
+        <section layout="row" flex>
+            <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+                <md-toolbar class="md-theme-indigo">
+                    <h1 class="md-toolbar-tools">Nerdery Logo</h1>
+                    <!--start nav buttons-->
+                    <md-button class="md-primary" hide-gt-md>
+                        VIEW PEOPLE
+                    </md-button>
+                    <md-button class="md-primary" hide-gt-md>
+                        YOUR SETTINGS
+                    </md-button>
+                    <md-button class="md-primary" hide-gt-md>
+                        ADD NEW PERSON
+                    </md-button>
+                    <!--end nav buttons-->
+                </md-toolbar>
+                <md-content layout-padding>
+                    <md-button ng-click="close()" class="md-primary" hide-gt-md>
+                        Close Sidenav Left
+                    </md-button>
+                    <p hide-md show-gt-md>
+                        View big. Very locked open. Wow.
+                    </p>
+                </md-content>
+            </md-sidenav>
+            <div>
+                <md-button ng-click="toggleLeft()"
+                           class="md-primary" hide-gt-md>
+                    MENU
+                </md-button>
+            </div>
+            <md-content flex layout-padding>
+                <div>
+                    <main ng-view></main>
+                </div>
+            </md-content>
+        </section>
     </div>
+
 
     <footer>
         <p>Footer Content</p>
