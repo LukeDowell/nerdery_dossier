@@ -1,4 +1,8 @@
-.peeps {
+.personCards {
     width: 250px;
     display: inline-block;
+}
+
+md-toolbar img {
+    margin: 0 auto 0 auto;
 }
