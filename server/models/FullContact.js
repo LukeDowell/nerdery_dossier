@@ -16,10 +16,8 @@ FullContactSchema = new Schema({
         "familyName": {"type":"string"},
         "givenName": {"type":"string"},
         "fullName": {"type":"string"},
-        "middleNames": [{
-            "type":"string"}],
-        "websites": [{
-            "url": {"type":"string"} }],
+        "middleNames": [{ "type":"string" }],
+        "websites": [{ "url": {"type":"string"} }],
         "chats": [{
             "handle": {"type":"string"},
             "client": {"type":"string"}}]
