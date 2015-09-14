@@ -1,67 +1,128 @@
-<div ng-controller="AddProfileController">
-    <form novalidate class="simple-form">
+<!--<div ng-controller="AddProfileController">-->
+    <!--<form novalidate class="simple-form">-->
 
-        <fieldset name="contactInfo">Contact Information
-        Full Name: <input type="text" ng-model="profile.givenName" /><br />
-        Email Address: <input type="email" ng-model="profile.emailAddress" required /><br />
-        Middle Names: <input type="text" ng-model="profile.middleNames"/><br />
-        Family Name: <input type="text" ng-model="profile.familyName"/><br />
-        Websites: <input type="text" ng-model='profile.websites'/><br />
-        </fieldset>
-        <fieldset name="Bio">Bio
-        <!--Need to figure out photo upload-->
-        Photo:
+        <!--<fieldset name="contactInfo">Contact Information-->
+        <!--Full Name: <input type="text" ng-model="profile.givenName" /><br />-->
+        <!--Email Address: <input type="email" ng-model="profile.emailAddress" required /><br />-->
+        <!--Middle Names: <input type="text" ng-model="profile.middleNames"/><br />-->
+        <!--Family Name: <input type="text" ng-model="profile.familyName"/><br />-->
+        <!--Websites: <input type="text" ng-model='profile.websites'/><br />-->
+        <!--</fieldset>-->
+        <!--<fieldset name="Bio">Bio-->
+        <!--&lt;!&ndash;Need to figure out photo upload&ndash;&gt;-->
+        <!--Photo:-->
 
-        interests: [String],
-        summary: String,
-        demographics: String,
-        age: {type: Number},
-        birthday: String,
-        gender: String
-        <!--Need to figure out photo upload-->
+        <!--interests: [String],-->
+        <!--summary: String,-->
+        <!--demographics: String,-->
+        <!--age: {type: Number},-->
+        <!--birthday: String,-->
+        <!--gender: String-->
+        <!--&lt;!&ndash;Need to figure out photo upload&ndash;&gt;-->
 
-        Name: <input type="text" ng-model="user.name" /><br />
-        E-mail: <input type="email" ng-model="user.email" /><br />
-        Gender: <input type="radio" ng-model="user.gender" value="male" />male
-        <input type="radio" ng-model="user.gender" value="female" />female<br />
-
-
-        </fieldset>
-
-        <fieldset name="organizations">Organizations
-        organizations: [{
-        title: {type: String},
-        name: {type: String},
-        startDate: {type: String},
-        endDate:  {type: String},
-        isPrimary: {type: Boolean},
-        current: {type: Boolean}
-        }],
-
-        </fieldset>
-        <fieldset name="meetings">Meeting Times
-        meetings : [{
-        date : String,
-        time : String,
-        notes : String
-        }],
-
-        </fieldset>
-
-        <fieldset name="medicalSummary">Medical Summa
-            Medical Summary: <input type="text" ng-model="user.medicalSummary" />
-
-        </fieldset>
+        <!--Name: <input type="text" ng-model="user.name" /><br />-->
+        <!--E-mail: <input type="email" ng-model="user.email" /><br />-->
+        <!--Gender: <input type="radio" ng-model="user.gender" value="male" />male-->
+        <!--<input type="radio" ng-model="user.gender" value="female" />female<br />-->
 
 
+        <!--</fieldset>-->
+
+        <!--<fieldset name="organizations">Organizations-->
+        <!--organizations: [{-->
+        <!--title: {type: String},-->
+        <!--name: {type: String},-->
+        <!--startDate: {type: String},-->
+        <!--endDate:  {type: String},-->
+        <!--isPrimary: {type: Boolean},-->
+        <!--current: {type: Boolean}-->
+        <!--}],-->
+
+        <!--</fieldset>-->
+        <!--<fieldset name="meetings">Meeting Times-->
+        <!--meetings : [{-->
+        <!--date : String,-->
+        <!--time : String,-->
+        <!--notes : String-->
+        <!--}],-->
+
+        <!--</fieldset>-->
+
+        <!--<fieldset name="medicalSummary">Medical Summa-->
+            <!--Medical Summary: <input type="text" ng-model="user.medicalSummary" />-->
+
+        <!--</fieldset>-->
 
 
 
-        <input type="button" ng-click="reset()" value="Reset" />
-        <input type="submit" ng-click="update(user)" value="Save" />
-    </form>
-    <!--<pre>user = {{user | json}}</pre>-->
-    <!--<pre>master = {{master | json}}</pre>-->
+
+
+        <!--<input type="button" ng-click="reset()" value="Reset" />-->
+        <!--<input type="submit" ng-click="update(user)" value="Save" />-->
+    <!--</form>-->
+    <!--&lt;!&ndash;<pre>user = {{user | json}}</pre>&ndash;&gt;-->
+    <!--&lt;!&ndash;<pre>master = {{master | json}}</pre>&ndash;&gt;-->
+<!--</div>-->
+
+<div ng-controller="AddProfileController" layout="column">
+    <md-content md-theme="docs-dark" layout-padding layout="row" layout-sm="column">
+        <md-input-container>
+            <label>Title</label>
+            <input ng-model="user.title">
+        </md-input-container>
+        <md-input-container>
+            <label>Email</label>
+            <input ng-model="user.email" type="email">
+        </md-input-container>
+    </md-content>
+    <md-content layout-padding>
+        <form name="userForm">
+            <div layout layout-sm="column">
+                <md-input-container style="width:70%">
+                    <label>Company (Disabled)</label>
+                    <input ng-model="user.company" disabled>
+                </md-input-container>
+                <md-datepicker ng-model="user.submissionDate" md-placeholder="Enter date"></md-datepicker>
+            </div>
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                    <label>First name</label>
+                    <input ng-model="user.firstName">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Last Name</label>
+                    <input ng-model="theMax">
+                </md-input-container>
+            </div>
+            <md-input-container flex>
+                <label>Address</label>
+                <input ng-model="user.address">
+            </md-input-container>
+            <md-input-container md-no-float>
+                <input ng-model="user.address2" placeholder="Address 2">
+            </md-input-container>
+            <div layout layout-sm="column">
+                <md-input-container flex>
+                    <label>City</label>
+                    <input ng-model="user.city">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>State</label>
+                    <input ng-model="user.state">
+                </md-input-container>
+                <md-input-container flex>
+                    <label>Postal Code</label>
+                    <input ng-model="user.postalCode">
+                </md-input-container>
+            </div>
+            <md-input-container flex>
+                <label>Biography</label>
+                <textarea ng-model="user.biography" columns="1" md-maxlength="150"></textarea>
+            </md-input-container>
+        </form>
+    </md-content>
 </div>
+Title
 
-
+Developer
+Email
