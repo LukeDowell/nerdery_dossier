@@ -5,7 +5,6 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var ProfileSchema = new Schema({
-    googleID: String,
     bio : {
         photo: [String],
         interests: [String],
