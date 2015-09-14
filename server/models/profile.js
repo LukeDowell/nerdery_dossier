@@ -7,17 +7,21 @@ var mongoose = require('mongoose'),
 var ProfileSchema = new Schema({
     googleID: String,
     bio : {
-        interests : [String],
-        summary : String,
-        demographics : String
+        photo: [String],
+        interests: [String],
+        summary: String,
+        demographics: String,
+        age: {type: Number},
+        birthday: String,
+        gender: String
     },
     contactInfo: {
-        "emailAddress" : {type: String, required : true},
-        "familyName": {type: String},
-        "givenName": {type:String},
-        "fullName": {type: String},
-        "middleNames": [{type: String}],
-        "websites": [ {url: {type: String}} ],
+        emailAddress : {type: String, required : true},
+        givenName: {type: String},
+        middleNames: [{type: String}],
+        familyName: {type: String},
+        fullName: {type: String},
+        websites: [{url: {type: String}}]
     },
     organizations: [{
         title: {type: String},
@@ -31,8 +35,8 @@ var ProfileSchema = new Schema({
         date : String,
         time : String,
         notes : String
-    }]
+    }],
+    medicalSummary: String
 });
-
 
 module.exports = mongoose.model('profile', ProfileSchema);
