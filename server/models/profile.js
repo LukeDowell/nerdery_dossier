@@ -17,9 +17,7 @@ var ProfileSchema = new Schema({
     contactInfo: {
         emailAddress : {type: String, required : true},
         givenName: {type: String},
-        middleNames: [{type: String}],
         familyName: {type: String},
-        fullName: {type: String},
         websites: [{url: {type: String}}]
     },
     organizations: [{

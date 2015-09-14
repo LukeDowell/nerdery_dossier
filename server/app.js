@@ -9,6 +9,7 @@ var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var routes = require('./routes/routes');
 var session = require('express-session');
+var User = require('./models/user');
 
 /////////////////
 // SETUP MONGO //
@@ -31,9 +32,19 @@ passport.use(new GoogleStrategy({
         callbackURL: config.CALLBACK
     },
     function(accessToken, refreshToken, profile, done) {
-
+        User.findOrCreate(accessToken, refreshToken, profile, done);
     }
 ));
+
+passport.serializeUser(function(user, callback) {
+   callback(null, user._id);
+});
+
+passport.deserializeUser(function(id, callback) {
+    User.findById(id, function(err, user) {
+        callback(err, user);
+    });
+});
 
 ///////////////
 // SETUP APP //
