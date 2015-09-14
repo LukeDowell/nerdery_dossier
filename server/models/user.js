@@ -2,24 +2,22 @@
  * Created by mikelseverson on 9/14/15.
  */
 var mongoose = require('mongoose'),
-    profile = require('./profile'),
+    Profile = require('./profile'),
     Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
     googleID: String,
+    profileID: String,
     authentication: {
         accessToken: String,
         refreshToken: String
     },
-    profile: profile
+    profile: {type: Schema.Types.ObjectId, ref: 'Profile'}
 });
 
-
-var User = mongoose.model('user', UserSchema);
-
-UserSchema.statics.findOrCreate = function(access, refresh, profile, done) {
+UserSchema.statics.findOrCreate = function(access, refresh, googleData, done) {
     this.findOne({
-            googleID: profile.id
+            googleID: googleData.id
         },
         function(err, result) {
             if(err) {
@@ -31,31 +29,41 @@ UserSchema.statics.findOrCreate = function(access, refresh, profile, done) {
                 done(err, result);
             } else {
                 //No user exists
-                //Create the user
-                result = new User({
-                    googleID: profile.id,
-                    authentication: {
-                        accessToken: access,
-                        refreshToken: refresh
-                    },
-                    profile: {
-                        contactInfo: {
-                            givenName: profile.name.givenName,
-                            familyName: profile.name.familyName,
-                            emailAddress: profile.emails[0].value
-                        }
+                //Build the user profile
+                var userProfile = new Profile({
+                    contactInfo: {
+                        emailAddress: googleData.emails[0].value,
+                        givenName: googleData.name.givenName,
+                        familyName: googleData.name.familyName
                     }
                 });
-                //Save the user
-                result.save(function(err) {
+                //Save the profile
+                userProfile.save(function(err) {
                     if(err) {
                         console.log(err);
                     }
-                    return done(err, result);
+                    //Create the user
+                    result = new User({
+                        googleID: googleData.id,
+                        profileID: userProfile._id,
+                        authentication: {
+                            accessToken: access,
+                            refreshToken: refresh
+                        }
+                    });
+                    //Save the user
+                    result.save(function(err) {
+                        if(err) {
+                            console.log(err);
+                        }
+                        //Done
+                        return done(err, result);
+                    });
                 });
             }
         }
     );
 };
 
+var User = mongoose.model('User', UserSchema);
 module.exports = User;

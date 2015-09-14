@@ -5,13 +5,6 @@ var router = require('express').Router();
 var passport = require('passport');
 
 /**
- * The login page
- */
-router.get('/', function(req, res) {
-
-});
-
-/**
  * Our 'login' url
  */
 router.get('/google',
@@ -34,7 +27,7 @@ router.get('/callback',
         failureRedirect: '/auth/failed'
     }),
     function (req, res) {
-        res.redirect('/home');
+        res.redirect('/auth/success');
     }
 );
 
@@ -43,6 +36,13 @@ router.get('/callback',
  */
 router.get('/failed', function(req, res) {
     res.send("Failed!");
+});
+
+/**
+ * Our temporary route for successful login
+ */
+router.get('/success', function(req, res) {
+    res.send("Success!");
 });
 
 module.exports = router;

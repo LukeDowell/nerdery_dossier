@@ -36,4 +36,4 @@ var ProfileSchema = new Schema({
     medicalSummary: String
 });
 
-module.exports = mongoose.model('profile', ProfileSchema);
+module.exports = mongoose.model('Profile', ProfileSchema);

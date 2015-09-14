@@ -16,7 +16,8 @@ var User = require('./models/user');
 /////////////////
 
 var MONGOOSE_URI = "mongodb://localhost/gabbys_salvation";
-var database = mongoose.connect(MONGOOSE_URI);
+mongoose.connect(MONGOOSE_URI);
+var database = mongoose.connection;
 database.on('error', console.error.bind(console, 'mongo error:'));
 database.once('open', function() {
     console.log("Connected to MongoDB!");
