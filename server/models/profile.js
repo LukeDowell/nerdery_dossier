@@ -5,20 +5,33 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var ProfileSchema = new Schema({
-    "contactInfo": {
-        "familyName": {"type":"string"},
-        "givenName": {"type":"string"},
-        "fullName": {"type":"string"},
-        "middleNames": [{ "type":"string" }],
-        "websites": [ {"url": {"type":"string"}} ],
+    googleID: String,
+    bio : {
+        interests : [String],
+        summary : String,
+        demographics : String
     },
-    "organizations": [{
-        "title": {"type":"string"},
-        "name": {"type":"string"},
-        "startDate": {"type":"string"},   // formatted as "YYYY-MM"
-        "endDate":  {"type":"string"},    // formatted as "YYYY-MM"
-        "isPrimary": {"type":"boolean"},
-        "current": {"type":"boolean"} }]
+    contactInfo: {
+        "emailAddress" : {type: String, required : true},
+        "familyName": {type: String},
+        "givenName": {type:String},
+        "fullName": {type: String},
+        "middleNames": [{type: String}],
+        "websites": [ {url: {type: String}} ],
+    },
+    organizations: [{
+        title: {type: String},
+        name: {type: String},
+        startDate: {type: String},
+        endDate:  {type: String},
+        isPrimary: {type: Boolean},
+        current: {type: Boolean}
+    }],
+    meetings : [{
+        date : String,
+        time : String,
+        notes : String
+    }]
 });
 
 
