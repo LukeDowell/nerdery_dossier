@@ -9,37 +9,30 @@
     <link rel="stylesheet" href="assets/styles/style.css"/>
 </head>
 <body>
-
-    <header>
-        <h1>Anything but Gabby's Salvation</h1>
-    </header>
-    <div ng-controller="HomeController" layout="column" style="height:500px;">
+    <div ng-controller="IndexController" layout="column" style="height:500px;">
         <section layout="row" flex>
             <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
                 <md-toolbar class="md-theme-indigo">
-                    <h1 class="md-toolbar-tools">Nerdery Logo</h1>
+                    <img src="http://www.nerdery.com/assets/layout/logo_nerdery-8458f31f2edc07f6cdedc0a2c7a372f7.png"/>
                     <!--start nav buttons-->
-                    <md-button class="md-primary" ng-href="#home" ng-click="close()" hide-gt-md>
+                    <md-button class="md-primary" ng-href="#home" ng-click="close()">
                         HOME
                     </md-button>
-                    <md-button class="md-primary" ng-href="#view" ng-click="close()" hide-gt-md>
+                    <md-button class="md-primary" ng-href="#view" ng-click="close()">
                         VIEW PEOPLE
                     </md-button>
-                    <md-button class="md-primary" ng-click="close()" hide-gt-md>
+                    <md-button class="md-primary" ng-click="close()">
                         YOUR SETTINGS
                     </md-button>
-                    <md-button class="md-primary" ng-click="close()" hide-gt-md>
+                    <md-button class="md-primary" ng-click="close()">
                         ADD NEW PERSON
                     </md-button>
                     <!--end nav buttons-->
                 </md-toolbar>
-                <md-content layout-padding>
-                    <md-button ng-click="close()" class="md-primary" hide-gt-md>
-                        Close Sidenav Left
-                    </md-button>
-                    <p hide-md show-gt-md>
-                        View big. Very locked open. Wow.
-                    </p>
+                <md-content layout-padding hide-md>
+                    <!--<md-button ng-click="close()" class="md-primary">-->
+                        <!--Close Sidenav Left-->
+                    <!--</md-button>-->
                 </md-content>
             </md-sidenav>
             <div>
@@ -49,6 +42,9 @@
                 </md-button>
             </div>
             <md-content flex layout-padding>
+                <header>
+                    <h1>Anything but Gabby's Salvation</h1>
+                </header>
                 <div>
                     <main ng-view></main>
                 </div>
@@ -68,6 +64,6 @@
     <script type="text/javascript" src="vendors/angular-material/angular-material.min.js"></script>
     <script type="text/javascript" src="vendors/angular-route/angular-route.min.js"></script>
     <script type="text/javascript" src="assets/scripts/app.js"></script>
-    <script type="text/javascript" src="assets/scripts/controllers/HomeController.js"></script>
+    <script type="text/javascript" src="assets/scripts/controllers/IndexController.js"></script>
 </body>
 </html>
