@@ -19,13 +19,16 @@
                 <md-toolbar class="md-theme-indigo">
                     <h1 class="md-toolbar-tools">Nerdery Logo</h1>
                     <!--start nav buttons-->
-                    <md-button class="md-primary" hide-gt-md>
+                    <md-button class="md-primary" ng-href="#home" ng-click="close()" hide-gt-md>
+                        HOME
+                    </md-button>
+                    <md-button class="md-primary" ng-href="#view" ng-click="close()" hide-gt-md>
                         VIEW PEOPLE
                     </md-button>
-                    <md-button class="md-primary" hide-gt-md>
+                    <md-button class="md-primary" ng-click="close()" hide-gt-md>
                         YOUR SETTINGS
                     </md-button>
-                    <md-button class="md-primary" hide-gt-md>
+                    <md-button class="md-primary" ng-click="close()" hide-gt-md>
                         ADD NEW PERSON
                     </md-button>
                     <!--end nav buttons-->
@@ -41,7 +44,7 @@
             </md-sidenav>
             <div>
                 <md-button ng-click="toggleLeft()"
-                           class="md-primary" hide-gt-md>
+                           class="md-primary md-fab" hide-gt-md>
                     MENU
                 </md-button>
             </div>
