@@ -42,7 +42,7 @@ router.get('/failed', function(req, res) {
  * Our temporary route for successful login
  */
 router.get('/success', function(req, res) {
-    res.send("Success!");
+    res.send("Success! Welcome, " + req.user.googleID);
 });
 
 module.exports = router;
