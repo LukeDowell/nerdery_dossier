@@ -11,7 +11,7 @@ app.controller("SearchProfileController",['$scope', '$http', '$location', functi
     //this gets the data from the person profile in database
 
     $scope.submit=function(){
-        $http.get('/').then(function(response){
+        $http.get('/person').then(function(response){
             if (response.status !== 200) {
                 throw new Error("Failed to load a person's info from DB");
             }
@@ -21,13 +21,24 @@ app.controller("SearchProfileController",['$scope', '$http', '$location', functi
 
     //Add logic for viewing and editing the person object//
     //**************NEED CODE HERE********************************
+    $scope.people = [];
 
 
-    var Person = {
+    //
+        for(var i =0; i<response.data.length; i++) {
+            var person = {
+                imgurl: response.data[i].imgurl,
+                name: response.data[i].name
+            };
+        }
+
+
+        $scope.people.push(person);
 
 
 
-    }
+
+
 
 
     //call function

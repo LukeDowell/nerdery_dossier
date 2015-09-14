@@ -1,0 +1,67 @@
+<div ng-controller="AddProfileController">
+    <form novalidate class="simple-form">
+
+        <fieldset name="contactInfo">Contact Information
+        Full Name: <input type="text" ng-model="profile.givenName" /><br />
+        Email Address: <input type="email" ng-model="profile.emailAddress" required /><br />
+        Middle Names: <input type="text" ng-model="profile.middleNames"/><br />
+        Family Name: <input type="text" ng-model="profile.familyName"/><br />
+        Websites: <input type="text" ng-model='profile.websites'/><br />
+        </fieldset>
+        <fieldset name="Bio">Bio
+        <!--Need to figure out photo upload-->
+        Photo:
+
+        interests: [String],
+        summary: String,
+        demographics: String,
+        age: {type: Number},
+        birthday: String,
+        gender: String
+        <!--Need to figure out photo upload-->
+
+        Name: <input type="text" ng-model="user.name" /><br />
+        E-mail: <input type="email" ng-model="user.email" /><br />
+        Gender: <input type="radio" ng-model="user.gender" value="male" />male
+        <input type="radio" ng-model="user.gender" value="female" />female<br />
+
+
+        </fieldset>
+
+        <fieldset name="organizations">Organizations
+        organizations: [{
+        title: {type: String},
+        name: {type: String},
+        startDate: {type: String},
+        endDate:  {type: String},
+        isPrimary: {type: Boolean},
+        current: {type: Boolean}
+        }],
+
+        </fieldset>
+        <fieldset name="meetings">Meeting Times
+        meetings : [{
+        date : String,
+        time : String,
+        notes : String
+        }],
+
+        </fieldset>
+
+        <fieldset name="medicalSummary">Medical Summa
+            Medical Summary: <input type="text" ng-model="user.medicalSummary" />
+
+        </fieldset>
+
+
+
+
+
+        <input type="button" ng-click="reset()" value="Reset" />
+        <input type="submit" ng-click="update(user)" value="Save" />
+    </form>
+    <!--<pre>user = {{user | json}}</pre>-->
+    <!--<pre>master = {{master | json}}</pre>-->
+</div>
+
+
