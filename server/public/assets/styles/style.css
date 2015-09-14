@@ -6,3 +6,26 @@
 md-toolbar img {
     margin: 0 auto 0 auto;
 }
+
+.md-theme-nerdery, md-sidenav {
+    background-color: #423e34 !important;
+    opacity: 0.8;
+}
+
+.ngviewbackground {
+    background-image: url("https://nerdery.com/assets/layout/bg_body-c80512dc38953cb82d674ef885397b27.jpg");
+}
+
+md-card {
+    text-align: center;
+    background-color: #423e34;
+    opacity: 0.725;
+}
+
+md-card p, h1 {
+    color: #FFFFFF;
+}
+
+md-card h2 {
+    color: #d7c500;
+}

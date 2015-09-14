@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="assets/styles/style.css"/>
 </head>
 <body ng-controller="IndexController" layout="column">
-    <section layout="row" flex>
+    <section layout="row" class="ngviewbackground" flex>
         <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-            <md-toolbar class="md-theme-indigo">
+            <md-toolbar class="md-theme-nerdery">
                 <img src="http://www.nerdery.com/assets/layout/logo_nerdery-8458f31f2edc07f6cdedc0a2c7a372f7.png"/>
                 <!--start nav buttons-->
                 <md-button class="md-primary" ng-href="#home" ng-click="close()">
@@ -28,11 +28,11 @@
                 </md-button>
                 <!--end nav buttons-->
             </md-toolbar>
-            <md-content layout-padding hide-md>
+            <!--<md-content layout-padding hide-md>-->
                 <!--<md-button ng-click="close()" class="md-primary">-->
                     <!--Close Sidenav Left-->
                 <!--</md-button>-->
-            </md-content>
+            <!--</md-content>-->
         </md-sidenav>
         <div>
             <md-button ng-click="toggleLeft()"
@@ -40,10 +40,10 @@
                 MENU
             </md-button>
         </div>
-        <md-content flex layout-padding>
-            <header>
-                <h1>Anything but Gabby's Salvation</h1>
-            </header>
+        <md-content flex layout-padding class="ngviewbackground">
+            <!--<header>-->
+                <!--<h1>Anything but Gabby's Salvation</h1>-->
+            <!--</header>-->
             <div>
                 <main ng-view></main>
             </div>
