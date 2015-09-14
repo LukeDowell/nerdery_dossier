@@ -5,6 +5,13 @@ var router = require('express').Router();
 var passport = require('passport');
 
 /**
+ * The login page
+ */
+router.get('/', function(req, res) {
+
+});
+
+/**
  * Our 'login' url
  */
 router.get('/google',
@@ -18,6 +25,10 @@ router.get('/google',
     )
 );
 
+/**
+ * The initial google callback. Contains the authorization code
+ * from google.
+ */
 router.get('/callback',
     passport.authenticate('google', {
         failureRedirect: '/auth/failed'
@@ -26,5 +37,12 @@ router.get('/callback',
         res.redirect('/home');
     }
 );
+
+/**
+ * Our route for failed authorization attempts
+ */
+router.get('/failed', function(req, res) {
+    res.send("Failed!");
+});
 
 module.exports = router;

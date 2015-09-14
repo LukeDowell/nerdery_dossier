@@ -25,6 +25,16 @@ database.once('open', function() {
 // SETUP PASSPORT //
 ////////////////////
 
+passport.use(new GoogleStrategy({
+        clientID: config.CLIENT_ID,
+        clientSecret: config.CLIENT_SECRET,
+        callbackURL: config.CALLBACK
+    },
+    function(accessToken, refreshToken, profile, done) {
+
+    }
+));
+
 ///////////////
 // SETUP APP //
 ///////////////
