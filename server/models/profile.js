@@ -15,7 +15,7 @@ var ProfileSchema = new Schema({
         gender: String
     },
     contact: {
-        physicalAddresses: [{street:{type:String}, city:{type:String}, state:{type:String}, zipCode:{type:Number}}],
+        physicalAddresses: [{street:{type:String}, city:{type:String}, state:{type:String}, zipCode:{type:Number}, current:Boolean}],
         socialMedia: {
             twitter: {handle: String, url: String},
             linkedIn: {id: String, url: String},
