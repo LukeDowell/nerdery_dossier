@@ -10,4 +10,6 @@ function init(app) {
     console.log("Routes initialized");
 }
 
-module.exports.init = init;
+module.exports = {
+    init: init
+};
