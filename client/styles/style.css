@@ -17,6 +17,7 @@ md-toolbar img {
 
 .ngviewbackground {
     background-image: url("https://nerdery.com/assets/layout/bg_body-c80512dc38953cb82d674ef885397b27.jpg");
+    background-size: 100% 100%;
 }
 
 md-card {
