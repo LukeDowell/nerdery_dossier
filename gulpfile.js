@@ -17,7 +17,12 @@ var vendorSources = [
     "node_modules/angular-material/angular-material.min.css",
     "node_modules/angular-material/angular-material.min.js",
     "node_modules/angular-route/angular-route.min.js",
+<<<<<<< HEAD
+    "node_modules/angular-messages/angular-messages.min.js"
+
+=======
     "node_modules/angular-route/angular-route.min.js.map"
+>>>>>>> master
 ];
 
 //Place any client side sources here

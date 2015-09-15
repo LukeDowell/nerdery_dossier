@@ -1,0 +1,145 @@
+<div flex layout="row" layout-align="center center" ng-controller="AddProfileController" >
+    <form name="addProfileForm">
+        <md-content flex-sm="100" flex-gt-sm="90" flex-gt-md="70" flex-gt-lg="50" class="md-whiteframe-z2">
+            <!--This is the contactInfo(emailAddress, givenName, middleNames, familyName, fullName, websites, physicalAddress(street, city, state, zipCode) section -->
+            <md-card>
+                 <md-input-container>
+                     <label>Full Name (First, Last):</label>
+                    <input type="text" data-ng-model="profile.fullName">
+                 </md-input-container>
+                 <md-input-container>
+                    <label>Email Address</label>
+                    <input ng-model="profile.emailAddress" required>
+                  </md-input-container>
+
+
+                <!--<md-input-container>-->
+                    <!--<label>Websites</label>-->
+                    <!--<input ng-model="profile.websites">-->
+                <!--</md-input-container>-->
+                <!--<md-input-container>-->
+                    <!--<label>Street</label>-->
+                    <!--<input type="text" data-ng-model="profile.street">-->
+                <!--</md-input-container>-->
+                <!--<md-input-container>-->
+                    <!--<label>City</label>-->
+                    <!--<input ng-model="profile.city">-->
+                <!--</md-input-container>-->
+                <!--<md-input-container>-->
+                    <!--<label>State</label>-->
+                    <!--<input ng-model="profile.state">-->
+                <!--</md-input-container>-->
+                <!--<md-input-container>-->
+                    <!--<label>Zip Code</label>-->
+                    <!--<input ng-model="profile.zipCode">-->
+                <!--</md-input-container>-->
+            </md-card>
+
+            <!--This is the bio (photo,interests, summary, demographics, age, birthday, gender) section
+
+            <md-card>
+                <!--<md-input-container>-->
+                <!--<label>Photo</label>-->
+                <!--<input ng-model="profile.photo">-->
+                <!--</md-input-container>-->
+
+                <!--<md-input-container>-->
+                <!--<label>Summary</label>-->
+                <!--<input ng-model="profile.demographics">-->
+                <!--</md-input-container>-->
+
+                <!--<md-input-container>-->
+                <!--<label>Age</label>-->
+                <!--<input ng-model="profile.age">-->
+                <!--</md-input-container>-->
+
+                <!--<md-input-container>-->
+                <!--<label>Birthday</label>-->
+                <!--<input ng-model="profile.birthday">-->
+                <!--</md-input-container>-->
+
+                <!--<md-input-container>-->
+            <h5>Please Select the Individual's Gender</h5>
+            <md-radio-group ng-model="profile.genderGroup">
+                <md-radio-button value="Female" aria-label="Label 1">Female</md-radio-button>
+                <md-radio-button value="Male" aria-label="Label 2">Male</md-radio-button>
+            </md-radio-group>
+                <!--</md-input-container>-->
+            <!--</md-card>-->
+
+
+
+            <!--This is the organizations (title, name, startDate, endDate, isPrimary, current) section -->
+
+
+            <!--<md-card>-->
+                <!--<md-input-container>-->
+                <!--<label>Title</label>-->
+                <!--<input ng-model="profile.title">-->
+                <!--</md-input-container>-->
+
+                <!--<md-input-container>-->
+                <!--<label>Organization Name</label>-->
+                <!--<input ng-model="profile.organization.name">-->
+                <!--</md-input-container>-->
+
+                <!--<md-input-container>-->
+                <!--<label>Age</label>-->
+                <!--<input ng-model="profile.startDate">-->
+                <!--</md-input-container>-->
+
+                <!--<md-input-container>-->
+                <!--<label>Birthday</label>-->
+                <!--<input ng-model="profile.endDate">-->
+                <!--</md-input-container>-->
+            <h5>Is This the Individual's Primary Occupation?</h5>
+            <md-radio-group ng-model="profile.isPrimary">
+                <md-radio-button value="Yes" aria-label="yes">Yes</md-radio-button>
+                <md-radio-button value="No"  aria-label="no">No</md-radio-button>
+            </md-radio-group>
+
+            <h5>Is This the Individual's Current Occupation?</h5>
+            <md-radio-group ng-model="profile.isCurrent">
+                <md-radio-button value="Yes" aria-label="yes">Yes</md-radio-button>
+                <md-radio-button value="No" aria-label="no">No</md-radio-button>
+            </md-radio-group>
+
+            <!--</md-card>-->
+
+            <!--This is the meetings (data, time, notes) section -->
+
+
+            <!--<md-card>-->
+                <!--<md-input-container>-->
+                <!--<label>Meetings/label>-->
+                <!--<input ng-model="profile.date">-->
+                <!--</md-input-container>-->
+
+                <!--<md-input-container>-->
+                <!--<label>Organization Name</label>-->
+                <!--<input ng-model="profile.time">-->
+                <!--</md-input-container>-->
+
+                <!--<md-input-container>-->
+                <!--<label>Age</label>-->
+                <!--<input ng-model="profile.notes>-->
+                <!--</md-input-container>-->
+
+            <!--</md-card>-->
+
+
+
+            <!--This is the medicalSummary (medicalSummary) section -->
+            <!--<md-card>
+
+                <!--<md-input-container>-->
+                <!--<label>Medical Summary</label>-->
+                <!--<input ng-model="profile.medicalSummary>-->
+                <!--</md-input-container>-->
+
+            <!--</md-card>-->
+            <md-button class="md-primary navButton" ng-submit="submitForm()"> Submit New Person</md-button>
+            <md-button class="md-primary navButton" ng-click="clearForm()"> Clear Form Data </md-button>
+        </md-content>
+    </form>
+</div>

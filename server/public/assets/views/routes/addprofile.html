@@ -1,0 +1,49 @@
+<div flex layout="row" layout-align="center center" ng-controller="AddProfileController" >
+        <form name="Add Profile Form" data-ng-submit="AddProfile()">
+            <div flex-sm="100" flex-gt-sm="90" flex-gt-md="70" flex-gt-lg="50" class="md-whiteframe-z2">
+                <!--This is the Contact information(emailAddress, givenName, middleNames, familyName, fullName, websites, physicalAddress(street, city, state, zipCode) section -->
+                <md-input-container>
+                    <label>Full Name (First, Last):</label>
+                    <input type="text" data-ng-model="profile.title">
+                </md-input-container>
+                <md-input-container>
+                    <label>Email Address</label>
+                    <input ng-model="profile.emailAddress">
+                </md-input-container>
+                <md-input-container>
+                    <label>Websites</label>
+                    <input ng-model="profile.websites">
+                </md-input-container>
+                <md-input-container>
+                    <label>Street</label>
+                    <input type="text" data-ng-model="profile.physicalAddress.street">
+                </md-input-container>
+                <md-input-container>
+                    <label>City</label>
+                    <input ng-model="profile.physicalAddress.city">
+                </md-input-container>
+                <md-input-container>
+                    <label>State</label>
+                    <input ng-model="profile.physicalAddress.state">
+                </md-input-container>
+                <md-input-container>
+                    <label>Zip Code</label>
+                    <input ng-model="profile.physicalAddress.zipCode">
+                </md-input-container>
+
+                <!--This is the Bio (photo,interests, summary, demographics, age, birthday, gender) section -->
+
+
+                <!--This is the Organizations (title, name, startDate, endDate, isPrimary, current) section -->
+
+
+                <!--This is the Meetings (data, time, notes) section -->
+
+
+                <!--This is the medicalSummary (medicalSummary) section -->
+
+            </div>
+        </form>
+    </md-content>
+</div>
+
