@@ -1,3 +1,7 @@
+h1, h2, h3, h4, h5 {
+    font-family: Monda, sans-serif;
+}
+
 .personCards {
     width: 250px;
     display: inline-block;
@@ -9,7 +13,6 @@ md-toolbar img {
 
 .md-theme-nerdery, md-sidenav {
     background-color: #423e34 !important;
-    opacity: 0.8;
 }
 
 .ngviewbackground {
@@ -19,13 +22,21 @@ md-toolbar img {
 md-card {
     text-align: center;
     background-color: #423e34;
-    opacity: 0.725;
+    opacity: 0.75;
 }
 
-md-card p, h1 {
-    color: #FFFFFF;
+md-card img {
+    padding: 15px 15px 0 0;
 }
 
 md-card h2 {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
     color: #d7c500;
+}
+
+md-card h3 {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    color: #8a9b92;
 }

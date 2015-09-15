@@ -7,12 +7,15 @@
     <!-- Begin Styles -->
     <link rel="stylesheet" href="vendors/angular-material/angular-material.min.css"/>
     <link rel="stylesheet" href="assets/styles/style.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Monda:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body ng-controller="IndexController" layout="column">
     <section layout="row" class="ngviewbackground" flex>
         <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
             <md-toolbar class="md-theme-nerdery">
+                <hr>
                 <img src="http://www.nerdery.com/assets/layout/logo_nerdery-8458f31f2edc07f6cdedc0a2c7a372f7.png"/>
+                <hr>
                 <!--start nav buttons-->
                 <md-button class="md-primary" ng-href="#home" ng-click="close()">
                     HOME

@@ -5,7 +5,7 @@ app.controller("HomeController", function($scope) {
     $scope.peopleArray = [
         {
             name: "Grumps McGurt",
-            picture: "maybe",
+            picture: src="/assets/images/kitten1.jpeg",
             time: "8am"
         },
         {
