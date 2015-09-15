@@ -1,21 +1,6 @@
 app.controller("AddProfileController", ['$scope', function($scope) {
     console.log("This is the Add User Controller Working");
-    //
-    //$scope.master = {};
-    //
-    //$scope.update = function (profile) {
-    //    $scope.master = angular.copy(profile);
-    //};
-    //
-    //$scope.reset = function () {
-    //    $scope.profile= angular.copy($scope.master);
-    //}
-    //
 
-
-
-
-//app.controller('DemoCtrl', function($scope) {
     $scope.user = {
         title: 'Developer',
         email: 'ipsum@lorem.com',
@@ -29,7 +14,7 @@ app.controller("AddProfileController", ['$scope', function($scope) {
         postalCode : '94043'
     }
 //});
-   .config( function($mdThemingProvider){
+ app.config( function($mdThemingProvider){
 
         // Configure a dark theme with primary foreground yellow
 
@@ -38,5 +23,5 @@ app.controller("AddProfileController", ['$scope', function($scope) {
             .dark();
 
     });
-    $scope.reset();
+    //$scope.reset();
 }]);

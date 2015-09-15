@@ -9,7 +9,7 @@ var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages'])
                 controller: "HomeController"
             })
             .when('/addprofile', {
-                templateUrl: "/assets/views/routes/addprofile.html",
+                templateUrl: "/assets/views/routes/addnewprofile.html",
                 controller: "AddProfileController"
             })
             .otherwise({
