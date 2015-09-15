@@ -1,7 +1,11 @@
 /**
  * Created by lukedowell on 9/9/15.
  */
+<<<<<<< HEAD
 var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages'])
+=======
+var app = angular.module('app', ['ngMaterial', 'ngRoute'])
+>>>>>>> origin/master
     .config(function($routeProvider) {
         $routeProvider
             .when('/home', {
@@ -30,18 +34,5 @@ app.factory('properties', function() {
             delete props[key];
         }
     }
+
 });
-
-app.controller('AddUserC', ['$scope', function($scope) {
-    $scope.master = {};
-
-    $scope.update = function(user) {
-        $scope.master = angular.copy(user);
-    };
-
-    $scope.reset = function() {
-        $scope.user = angular.copy($scope.master);
-    };
-
-    $scope.reset();
-}]);

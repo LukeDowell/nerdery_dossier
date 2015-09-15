@@ -2,6 +2,7 @@
  * Created by lukedowell on 9/9/15.
  */
 app.controller("HomeController", function($scope) {
+<<<<<<< HEAD
   var people =[];
 
     function person(first, last, age, eye) {
@@ -14,4 +15,7 @@ app.controller("HomeController", function($scope) {
     var person1 = new person("Bob", "Smith", 40, "brown");
 
     console.log(person1);
+=======
+
+>>>>>>> origin/master
 });

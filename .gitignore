@@ -2,3 +2,5 @@
 .DS_STORE/
 node_modules/
 npm-debug.log
+server/config.js
+

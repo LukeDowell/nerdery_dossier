@@ -1,17 +1,24 @@
 /**
  * Created by lukedowell on 9/9/15.
  */
+<<<<<<< HEAD
 var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages'])
+=======
+var app = angular.module('app', ['ngMaterial', 'ngRoute'])
+>>>>>>> origin/master
     .config(function($routeProvider) {
         $routeProvider
             .when('/home', {
                 templateUrl: "/assets/views/routes/home.html",
                 controller: "HomeController"
             })
+<<<<<<< HEAD
             .when('/addprofile', {
                 templateUrl: "/assets/views/routes/addnewprofile.html",
                 controller: "AddProfileController"
             })
+=======
+>>>>>>> origin/master
             .otherwise({
                 redirectTo: '/home'
             })
@@ -30,6 +37,7 @@ app.factory('properties', function() {
             delete props[key];
         }
     }
+<<<<<<< HEAD
 });
 
 app.controller('AddUserC', ['$scope', function($scope) {
@@ -45,3 +53,6 @@ app.controller('AddUserC', ['$scope', function($scope) {
 
     $scope.reset();
 }]);
+=======
+});
+>>>>>>> origin/master
