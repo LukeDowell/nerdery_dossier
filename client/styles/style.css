@@ -38,9 +38,13 @@ md-card h2 {
 md-card h3 {
     padding: 0 0 0 0;
     margin: 0 0 0 0;
-    color: #8a9b92;
+    color: #FFFFFF;
 }
 
 .navButton {
     background-color: #8a9b92;
+}
+
+.md-fab {
+    background-color: #423e34 !important;
 }
