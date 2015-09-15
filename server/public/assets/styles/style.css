@@ -48,3 +48,9 @@ md-card h3 {
 .md-fab {
     background-color: #423e34 !important;
 }
+
+md-sidenav, md-sidenav.md-locked-open {
+    width: 220px;
+    min-width: 220px;
+    max-width: 220px;
+}
