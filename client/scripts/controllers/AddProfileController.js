@@ -1,27 +1,40 @@
 app.controller("AddProfileController", ['$scope', function($scope) {
     console.log("This is the Add User Controller Working");
 
-    $scope.user = {
-        title: 'Developer',
-        email: 'ipsum@lorem.com',
-        firstName: '',
-        lastName: '' ,
-        company: 'Google' ,
-        address: '1600 Amphitheatre Pkwy' ,
-        city: 'Mountain View' ,
-        state: 'CA' ,
-        biography: 'Loves kittens, snowboarding, and can type at 130 WPM.\n\nAnd rumor has it she bouldered up Castle Craig!',
-        postalCode : '94043'
+    $scope.profile = {
+        //googleID: String,
+        //bio : {
+        //    photo: 'https://yt3.ggpht.com/-WyDn0ofyqFs/AAAAAAAAAAI/AAAAAAAAAAA/jJDYIxlkQb4/s150-c-k-no/photo.jpg',
+        //    interests: 'waterpolo',
+        //    summary: 'Blah blah blah',
+        //    demographics: 'what are demographics',
+        //    age: 42,
+        //    birthday: '10/02',
+        //    gender: 'Female'
+        //},
+        contactInfo: {
+            emailAddress: 'nerds@yahoo.com',
+            //givenName: 'Nerd Nerdiness',
+            //middleNames: 'Waldo',
+            //familyName: '',
+            fullName: 'Nerd Nerdiness'
+            //websites: '[www.nerds.com, www.nerdery.com]'
+            //},
+            //organizations: [{
+            //    title: {type: String},
+            //    name: {type: String},
+            //    startDate: {type: String},
+            //    endDate:  {type: String},
+            //    isPrimary: {type: Boolean},
+            //    current: {type: Boolean}
+            //}],
+            //meetings : [{
+            //    date : String,
+            //    time : String,
+            //    notes : String
+            //}],
+            //medicalSummary: String
+        }
     }
-//});
- app.config( function($mdThemingProvider){
 
-        // Configure a dark theme with primary foreground yellow
-
-        $mdThemingProvider.theme('docs-dark', 'default')
-            .primaryPalette('yellow')
-            .dark();
-
-    });
-    //$scope.reset();
 }]);
