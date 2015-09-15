@@ -1,22 +1,4 @@
-<<<<<<< HEAD
-.inputdemoBasicUsage md-datepicker {
-    margin-top: 18px; }
-.inputdemoBasicUsage .md-datepicker-button {
-    height: 36px;
-    width: 36px;
-    line-height: 36px; }
-.inputdemoBasicUsage .md-datepicker-input-container {
-    margin-left: 2px; }
 
-.inputdemoIcons .inputIconDemo {
-    min-height: 48px; }
-.inputdemoIcons md-input-container:not(.md-input-invalid) > md-icon.email {
-    color: green; }
-.inputdemoIcons md-input-container:not(.md-input-invalid) > md-icon.name {
-    color: dodgerblue; }
-.inputdemoIcons md-input-container.md-input-invalid > md-icon.email, .inputdemoIcons md-input-container.md-input-invalid > md-icon.name {
-    color: red; }
-=======
 h1, h2, h3, h4, h5 {
     font-family: Monda, sans-serif;
 }
@@ -74,4 +56,4 @@ md-sidenav, md-sidenav.md-locked-open {
     min-width: 220px;
     max-width: 220px;
 }
->>>>>>> master
+

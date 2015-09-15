@@ -45,9 +45,9 @@ app.controller("AddProfileController", ['$scope', function($scope) {
             comment: ""
         };
 
-        $scope.clearForm = function (comment) {
+        $scope.clearForm = function (profile) {
             $scope.addProfileForm.$setPristine();
-            $scope.comment = defaultForm;
+            $scope.profile = defaultForm;
         };
     }
 

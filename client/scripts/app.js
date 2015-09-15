@@ -1,7 +1,6 @@
 /**
  * Created by lukedowell on 9/9/15.
  */
-<<<<<<< HEAD
 var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages'])
     .config(function($routeProvider) {
         $routeProvider
@@ -12,6 +11,7 @@ var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages'])
             .when('/addprofile', {
                 templateUrl: "/assets/views/routes/addnewprofile.html",
                 controller: "AddProfileController"
+            })
             .when('/view', {
                 templateUrl: "/assets/views/routes/viewperson.html",
                 controller: "HomeController"
@@ -38,5 +38,4 @@ app.factory('properties', function() {
             delete props[key];
         }
     }
-
 });
