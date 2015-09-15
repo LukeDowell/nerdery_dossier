@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .inputdemoBasicUsage md-datepicker {
     margin-top: 18px; }
 .inputdemoBasicUsage .md-datepicker-button {
@@ -15,3 +16,62 @@
     color: dodgerblue; }
 .inputdemoIcons md-input-container.md-input-invalid > md-icon.email, .inputdemoIcons md-input-container.md-input-invalid > md-icon.name {
     color: red; }
+=======
+h1, h2, h3, h4, h5 {
+    font-family: Monda, sans-serif;
+}
+
+.personCards {
+    width: 250px;
+    display: inline-block;
+}
+
+md-toolbar img {
+    margin: 0 auto 0 auto;
+}
+
+.md-theme-nerdery, md-sidenav {
+    background-color: #423e34 !important;
+}
+
+.ngviewbackground {
+    background-image: url("https://nerdery.com/assets/layout/bg_body-c80512dc38953cb82d674ef885397b27.jpg");
+    background-size: 100% 100%;
+}
+
+md-card {
+    text-align: center;
+    background-color: #423e34;
+    opacity: 0.75;
+}
+
+md-card img {
+    padding: 15px 15px 0 0;
+}
+
+md-card h2 {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    color: #d7c500;
+}
+
+md-card h3 {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    color: #FFFFFF;
+}
+
+.navButton {
+    background-color: #8a9b92;
+}
+
+.md-fab {
+    background-color: #423e34 !important;
+}
+
+md-sidenav, md-sidenav.md-locked-open {
+    width: 220px;
+    min-width: 220px;
+    max-width: 220px;
+}
+>>>>>>> master

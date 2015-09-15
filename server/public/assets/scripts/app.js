@@ -13,12 +13,23 @@ var app = angular.module('app', ['ngMaterial', 'ngRoute'])
                 controller: "HomeController"
             })
 <<<<<<< HEAD
+<<<<<<< HEAD
             .when('/addprofile', {
                 templateUrl: "/assets/views/routes/addnewprofile.html",
                 controller: "AddProfileController"
             })
 =======
 >>>>>>> origin/master
+=======
+            .when('/view', {
+                templateUrl: "/assets/views/routes/viewperson.html",
+                controller: "HomeController"
+            })
+            .when('/search', {
+                templateUrl: "/assets/views/routes/searchprofiles.html",
+                controller: "HomeController"
+            })
+>>>>>>> master
             .otherwise({
                 redirectTo: '/home'
             })

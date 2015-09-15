@@ -3,6 +3,7 @@
  */
 app.controller("HomeController", function($scope) {
 <<<<<<< HEAD
+<<<<<<< HEAD
   var people =[];
 
     function person(first, last, age, eye) {
@@ -18,4 +19,83 @@ app.controller("HomeController", function($scope) {
 =======
 
 >>>>>>> origin/master
+=======
+    $scope.peopleArray = [
+        {
+            name: "Grumps McGurt",
+            picture: src="/assets/images/kitten1.jpeg",
+            time: "8am"
+        },
+        {
+            name: "Caboose",
+            picture: "yarp",
+            time: "12pm"
+        },
+        {
+            name: "Church",
+            picture: "narp",
+            time: "2pm"
+        },
+        {
+            name: "Tucker",
+            picture: "yarp",
+            time: "12pm"
+        },
+        {
+            name: "Donut",
+            picture: "yarp",
+            time: "2pm"
+        },
+        {
+            name: "Grif",
+            picture: "yarp",
+            time: "1pm"
+        },
+        {
+            name: "Sarge",
+            picture: "maybe",
+            time: "1pm"
+        },
+        {
+            name: "Simmons",
+            picture: "narp",
+            time: "8am"
+        },
+        {
+            name: "Tex",
+            picture: "narp",
+            time: "9am"
+        },
+        {
+            name: "Lopez",
+            picture: "yarp",
+            time: "2pm"
+        },
+        {
+            name: "Washington",
+            picture: "yarp",
+            time: "10am"
+        },
+        {
+            name: "Dakota",
+            picture: "maybe",
+            time: "10am"
+        },
+        {
+            name: "Virginia",
+            picture: "maybe",
+            time: "10am"
+        },
+        {
+            name: "Vic",
+            picture: "yarp",
+            time: "8am"
+        },
+        {
+            name: "Mission Control",
+            picture: "narp",
+            time: "12pm"
+        }
+    ];
+>>>>>>> master
 });

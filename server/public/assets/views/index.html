@@ -7,13 +7,54 @@
     <!-- Begin Styles -->
     <link rel="stylesheet" href="vendors/angular-material/angular-material.min.css"/>
     <link rel="stylesheet" href="assets/styles/style.css"/>
+    <link href='https://fonts.googleapis.com/css?family=Monda:400,700' rel='stylesheet' type='text/css'>
 </head>
-<body>
+<body ng-controller="IndexController" layout="column">
+    <section layout="row" class="ngviewbackground" flex>
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+            <md-toolbar class="md-theme-nerdery">
+                <hr>
+                <img src="http://www.nerdery.com/assets/layout/logo_nerdery-8458f31f2edc07f6cdedc0a2c7a372f7.png"/>
+                <hr>
+                <!--start nav buttons-->
+                <md-button class="md-primary navButton" ng-href="#home" ng-click="close()">
+                    HOME
+                </md-button>
+                <md-button class="md-primary navButton" ng-href="#view" ng-click="close()">
+                    VIEW PEOPLE
+                </md-button>
+                <md-button class="md-primary navButton" ng-click="close()">
+                    YOUR SETTINGS
+                </md-button>
+                <md-button class="md-primary navButton" ng-click="close()">
+                    ADD NEW PERSON
+                </md-button>
+                <!--end nav buttons-->
+            </md-toolbar>
+            <!--<md-content layout-padding hide-md>-->
+                <!--<md-button ng-click="close()" class="md-primary">-->
+                    <!--Close Sidenav Left-->
+                <!--</md-button>-->
+            <!--</md-content>-->
+        </md-sidenav>
+        <div>
+            <md-button ng-click="toggleLeft()"
+                       class="md-primary md-fab menuButton" hide-gt-md>
+                MENU
+            </md-button>
+        </div>
+        <md-content flex layout-padding class="ngviewbackground">
+            <!--<header>-->
+                <!--<h1>Anything but Gabby's Salvation</h1>-->
+            <!--</header>-->
+            <div>
+                <main ng-view></main>
+            </div>
+        </md-content>
+    </section>
 
-    <header>
-        <h1>Header Content</h1>
-    </header>
 
+<<<<<<< HEAD
     <div>
         <main ng-view></main>
     </div>
@@ -25,6 +66,11 @@
     <footer>
         <p>Footer Content</p>
     </footer>
+=======
+    <!--<footer>-->
+        <!--<p>Footer Content</p>-->
+    <!--</footer>-->
+>>>>>>> master
 
     <!-- Begin Scripts -->
     <script type="text/javascript" src="vendors/angular/angular.min.js"></script>
@@ -34,6 +80,7 @@
     <script type="text/javascript" src="vendors/angular-messages/angular-messages.min.js"></script>
     <script type="text/javascript" src="vendors/angular-route/angular-route.min.js"></script>
     <script type="text/javascript" src="assets/scripts/app.js"></script>
+    <script type="text/javascript" src="assets/scripts/controllers/IndexController.js"></script>
     <script type="text/javascript" src="assets/scripts/controllers/HomeController.js"></script>
     <script type="text/javascript" src="assets/scripts/controllers/SearchProfileController.js"></script>
     <script type="text/javascript" src="assets/scripts/controllers/ViewPersonController.js"></script>

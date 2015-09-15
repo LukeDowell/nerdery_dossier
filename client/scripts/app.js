@@ -3,9 +3,6 @@
  */
 <<<<<<< HEAD
 var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages'])
-=======
-var app = angular.module('app', ['ngMaterial', 'ngRoute'])
->>>>>>> origin/master
     .config(function($routeProvider) {
         $routeProvider
             .when('/home', {
@@ -15,6 +12,13 @@ var app = angular.module('app', ['ngMaterial', 'ngRoute'])
             .when('/addprofile', {
                 templateUrl: "/assets/views/routes/addnewprofile.html",
                 controller: "AddProfileController"
+            .when('/view', {
+                templateUrl: "/assets/views/routes/viewperson.html",
+                controller: "HomeController"
+            })
+            .when('/search', {
+                templateUrl: "/assets/views/routes/searchprofiles.html",
+                controller: "HomeController"
             })
             .otherwise({
                 redirectTo: '/home'
