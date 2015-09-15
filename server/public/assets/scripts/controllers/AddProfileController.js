@@ -37,4 +37,63 @@ app.controller("AddProfileController", ['$scope', function($scope) {
         }
     }
 
+//**********************************CLEAR FORM DATA FUNCTION***********************************************
+    function AddProfileController($scope) {
+        var defaultForm = {
+            author: "",
+            email: "",
+            comment: ""
+        };
+
+        $scope.clearForm = function (comment) {
+            $scope.addProfileForm.$setPristine();
+            $scope.comment = defaultForm;
+        };
+    }
+
+
+
 }]);
+//*******************************NEED TO FIGURE OUT THE FORM SUBMISSION STUFF
+//
+//app.controller('AppCtrl', ['$scope', function($scope){
+//    $scope.data = {
+//        group1 : 'Banana',
+//        group2 : '2'
+//    };
+//}]);
+//
+//app.directive('formSubmit', function(){
+//    return {
+//        require: "form",
+//        restrict: 'A',
+//        link: function($scope, $el, $attrs){
+//            $el.on('submit', function(event){
+//                alert('submit handler');
+//                event.preventDefault();
+//            });
+//        }
+//    }
+//});
+//app.directive('mdRadioGroup', function() {
+//    return {
+//        restrict: 'E',
+//        link: function($scope, $el, $attrs) {
+//            $el.on('keypress', function(event){
+//                if(event.keyCode === 13) {
+//                    var form = angular.element(getClosest($el[0], 'form'));
+//                    form.triggerHandler('submit');
+//                }
+//                function getClosest(el, tag) {
+//                    tag = tag.toUpperCase();
+//                    do {
+//                        if (el.nodeName === tag) {
+//                            return el;
+//                        }
+//                    } while (el = el.parentNode);
+//                    return null;
+//                }
+//            })
+//        }
+//    }
+//});
