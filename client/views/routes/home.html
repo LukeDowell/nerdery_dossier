@@ -1,13 +1,10 @@
 <section id="homePage">
-
-    <h2>Home Content</h2>
-
     <div class="cardDiv">
         <!--hypothetical people array-->
         <md-card class="personCards" ng-repeat="people in peopleArray">
             <md-card-content>
                 <img src="/assets/images/kitten1.jpeg" height="250" width="220"/>
-
+                <!--<div>{{people.image}}</div>   placeholder dov for image objects-->
                 <h2>{{people.name}}</h2>
                 <h3>{{people.time}}</h3>
             </md-card-content>
