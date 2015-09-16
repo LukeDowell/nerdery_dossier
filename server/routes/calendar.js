@@ -1,27 +1,38 @@
 /**
  * Created by lukedowell on 9/16/15.
  */
+
+var router = require('express').Router();
 var google = require('googleapis');
-var OAuth2 = google.auth.OAuth2;
 var config = require('../config');
-var authClient = new OAuth2(config.CLIENT_ID, config.CLIENT_SECRET, config.CALLBACK);
+var oauthClient = new google.auth.OAuth2(config.CLIENT_ID, config.CLIENT_SECRET, config.CALLBACK);
+var calendar = google.calendar('v3');
 
-
-function ensureOAuthClient(req, res, next) {
+router.get('/events', function(req, res){
     if(req.isAuthenticated()) {
-        if(req.user.authClient) {
-            next();
-        } else {
-            try {
-
-            } catch(err) {
-                console.log("OAuth client generation failed! \n" + err);
-            } finally {
-                //Probably shouldn't just send them along
-                next();
+        oauthClient.setCredentials({
+            access_token: req.user.auth.accessToken,
+            refresh_token: req.user.auth.refreshToken
+        });
+        calendar.events.list({
+            auth: oauthClient,
+            calendarId: 'primary',
+            timeMin: (new Date()).toISOString(),
+            maxResults: 10,
+            singleEvents: true,
+            orderBy: 'startTime'
+        }, function(err, response) {
+            if(err) {
+                console.log('The API returned an error: ' + err);
+                res.send(err);
+                return;
             }
-        }
+            var events = response.items;
+            res.send(events);
+        });
     } else {
         res.redirect('/auth');
     }
-}
+});
+
+module.exports = router;

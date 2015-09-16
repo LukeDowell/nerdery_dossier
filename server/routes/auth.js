@@ -10,9 +10,11 @@ var passport = require('passport');
 router.get('/',
     passport.authenticate('google',
         {
-            scope: ['https://www.googleapis.com/auth/plus.me',
-                'https://www.googleapis.com/auth/userinfo.email',
-                'https://www.googleapis.com/auth/userinfo.profile'],
+            scope: [
+                'https://www.googleapis.com/auth/plus.login',
+                'https://www.googleapis.com/auth/plus.profile.emails.read',
+                'https://www.googleapis.com/auth/calendar'
+            ],
             accessType: 'offline'
         }
     )

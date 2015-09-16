@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
     googleID: String,
     profileID: String,
-    authentication: {
+    auth: {
         accessToken: String,
         refreshToken: String
     },
@@ -31,7 +31,7 @@ UserSchema.statics.findOrCreate = function(access, refresh, googleData, done) {
                 //No user exists
                 //Build the user profile
                 var userProfile = new Profile({
-                    contactInfo: {
+                    contact: {
                         emailAddress: googleData.emails[0].value,
                         givenName: googleData.name.givenName,
                         familyName: googleData.name.familyName
@@ -46,7 +46,7 @@ UserSchema.statics.findOrCreate = function(access, refresh, googleData, done) {
                     result = new User({
                         googleID: googleData.id,
                         profileID: userProfile._id,
-                        authentication: {
+                        auth: {
                             accessToken: access,
                             refreshToken: refresh
                         }
