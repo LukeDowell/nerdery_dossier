@@ -1,18 +1,12 @@
-<section id="homePage">
-
-    <h2>Home Content</h2>
-
-    <div class="cardDiv">
-        <!--hypothetical people array-->
-        <md-card class="personCards" ng-repeat="people in peopleArray">
-            <md-card-content>
-                <img src="/assets/images/kitten1.jpeg" height="250" width="220"/>
-                <h2>{{people.name}}</h2>
-                <h3>{{people.time}}</h3>
-            </md-card-content>
-            <!--<md-card-footer>-->
-                <!--Card footer-->
-            <!--</md-card-footer>-->
-        </md-card>
-    </div>
-</section>
+<div class="cardDiv">
+    <md-card class="personCards" ng-repeat="people in peopleArray">
+        <md-card-content>
+            <img src="/assets/images/kitten1.jpeg" height="250" width="220"/>
+            <h2>{{people.name}}</h2>
+            <h3>{{people.time}}</h3>
+        </md-card-content>
+        <!--<md-card-footer>-->
+        <!--Card footer-->
+        <!--</md-card-footer>-->
+    </md-card>
+</div>
