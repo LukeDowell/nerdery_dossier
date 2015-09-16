@@ -7,7 +7,7 @@ var passport = require('passport');
 /**
  * Our 'login' url
  */
-router.get('/google',
+router.get('/',
     passport.authenticate('google',
         {
             scope: ['https://www.googleapis.com/auth/plus.me',
