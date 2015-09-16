@@ -33,7 +33,7 @@ UserSchema.statics.findOrCreate = function(access, refresh, googleData, done) {
                 //No user exists
                 //Build the user profile
                 var userProfile = new Profile({
-                    contactInfo: {
+                    contact: {
                         emailAddress: googleData.emails[0].value,
                         givenName: googleData.name.givenName,
                         familyName: googleData.name.familyName

@@ -8,6 +8,10 @@ h1, h2, h3, h4, h5 {
     display: inline-block;
 }
 
+.cardDiv {
+    text-align: center;
+}
+
 md-toolbar img {
     margin: 0 auto 0 auto;
 }
@@ -18,7 +22,6 @@ md-toolbar img {
 
 .ngviewbackground {
     background-image: url("https://nerdery.com/assets/layout/bg_body-c80512dc38953cb82d674ef885397b27.jpg");
-    /*background-size: 100% 100%;*/
 }
 
 md-card {
@@ -49,6 +52,7 @@ md-card h3 {
 
 .md-fab {
     background-color: #423e34 !important;
+    position: absolute;
 }
 
 md-sidenav, md-sidenav.md-locked-open {
@@ -56,4 +60,3 @@ md-sidenav, md-sidenav.md-locked-open {
     min-width: 220px;
     max-width: 220px;
 }
-
