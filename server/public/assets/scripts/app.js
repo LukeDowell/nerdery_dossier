@@ -14,11 +14,11 @@ var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages'])
             })
             .when('/view', {
                 templateUrl: "/assets/views/routes/viewperson.html",
-                controller: "HomeController"
+                controller: "ViewPersonController"
             })
             .when('/search', {
                 templateUrl: "/assets/views/routes/searchprofiles.html",
-                controller: "HomeController"
+                controller: "SearchProfileController"
             })
             .otherwise({
                 redirectTo: '/home'
