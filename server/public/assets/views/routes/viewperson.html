@@ -1,5 +1,25 @@
 <section id="viewperson">
-    <div>
-        <h2>View Person Things</h2>
+    <div class="viewPersonContainer">
+        <div class="paddingContainer" layout-sm="column" layout-gt-sm="row">
+            <div>
+                <img src={{Person.bio.photo.url}} height="265" width="200"/>
+            </div>
+            <div flex="80" class="contact">
+                <h2 class="nameh2">{{Person.contact.givenName}} {{Person.contact.familyName}}</h2>
+                <p>{{Person.contact.fullName}}</p>
+                <h3>{{Person.organizations[0].title}} at <a href={{Person.contact.websites[0].url}}>{{Person.contact.websites[0].name}}</a></h3>
+                <p>from: {{Person.organizations[0].startDate}} to {{Person.organizations[0].endDate}}</p>
+                <div layout="row" layout-sm="column">
+                    <div flex="40">
+                        <p>{{Person.contact.emailAddress}}</p>
+                        <p><a href={{Person.contact.socialMedia.twitter.url}}>{{Person.contact.socialMedia.twitter.handle}}</a> on Twitter</p>
+                    </div>
+                    <div flex="40">
+                        <p><a href={{Person.contact.socialMedia.linkedIn.url}}>{{Person.contact.socialMedia.linkedIn.id}}</a> on LinkedIn</p>
+                        <p><a href={{Person.contact.socialMedia.facebook.url}}>{{Person.contact.socialMedia.facebook.id}}</a> on Facebook</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
