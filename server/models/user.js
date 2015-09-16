@@ -3,6 +3,7 @@
  */
 var mongoose = require('mongoose'),
     Profile = require('./profile'),
+    Event = require('./event'),
     Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
@@ -12,7 +13,8 @@ var UserSchema = new Schema({
         accessToken: String,
         refreshToken: String
     },
-    profile: {type: Schema.Types.ObjectId, ref: 'Profile'}
+    profile: {type: Schema.Types.ObjectId, ref: 'Profile'},
+    events: [{type: Schema.Types.ObjectId, ref: 'Event'}]
 });
 
 UserSchema.statics.findOrCreate = function(access, refresh, googleData, done) {

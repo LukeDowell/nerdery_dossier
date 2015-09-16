@@ -15,7 +15,12 @@ var ProfileSchema = new Schema({
         gender: String
     },
     contact: {
-        physicalAddresses: [{street:{type:String}, city:{type:String}, state:{type:String}, zipCode:{type:Number}, current:Boolean}],
+        physicalAddresses: [{
+            street:{type:String},
+            city:{type:String},
+            state:{type:String},
+            zipCode:{type:Number},
+            current:Boolean}],
         socialMedia: {
             twitter: {handle: String, url: String},
             linkedIn: {id: String, url: String},
@@ -42,11 +47,7 @@ var ProfileSchema = new Schema({
         NFP: [{name: String, title: String, summary: String}],
         group: [{name: String, title: String, summary: String}]
     }],
-    meeting: [{
-        date:  String,
-        time:  String,
-        notes: String
-    }],
+    meetings: [{type: Schema.Types.ObjectId, ref: 'Event'}],
     education: [{
         institution: String,
         startDate: String,
