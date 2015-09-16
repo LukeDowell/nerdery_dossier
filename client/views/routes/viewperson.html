@@ -5,21 +5,85 @@
                 <img src={{Person.bio.photo.url}} height="265" width="200"/>
             </div>
             <div flex="80" class="contact">
-                <h2 class="nameh2">{{Person.contact.givenName}} {{Person.contact.familyName}}</h2>
-                <p>{{Person.contact.fullName}}</p>
-                <h3>{{Person.organizations[0].title}} at <a href={{Person.contact.websites[0].url}}>{{Person.contact.websites[0].name}}</a></h3>
-                <p>from: {{Person.organizations[0].startDate}} to {{Person.organizations[0].endDate}}</p>
+                <div>
+                    <h2 class="nameh2" editable-text="Person.contact.givenName">{{Person.contact.givenName || "empty"}} </h2>
+                    <h2 class="nameh2" editable-text="Person.contact.familyName">{{Person.contact.familyName || "empty"}}</h2>
+                </div>
+                <p editable-text="Person.contact.fullName">{{Person.contact.fullName || "empty"}}</p>
+                <div class="positionDiv">
+                    <h3 class="displayInline" editable-text="Person.organizations[0].title">{{Person.organizations[0].title}}</h3>
+                    <h3 class="displayInline"> at <a href={{Person.contact.websites[0].url}}>{{Person.contact.websites[0].name}}</a></h3>
+                    <!--I used [0] as the array index since there was only 1 organization, what do we do when there are more? How to iterate + bind?-->
+                </div>
+                <div>
+                    <p class="displayInline" editable-text="Person.organizations[0].startDate">from: {{Person.organizations[0].startDate}}</p>
+                    <p class="displayInline" editable-text="Person.organizations[0].endDate"> to {{Person.organizations[0].endDate}}</p>
+                </div>
                 <div layout="row" layout-sm="column">
-                    <div flex="40">
-                        <p>{{Person.contact.emailAddress}}</p>
-                        <p><a href={{Person.contact.socialMedia.twitter.url}}>{{Person.contact.socialMedia.twitter.handle}}</a> on Twitter</p>
-                    </div>
-                    <div flex="40">
-                        <p><a href={{Person.contact.socialMedia.linkedIn.url}}>{{Person.contact.socialMedia.linkedIn.id}}</a> on LinkedIn</p>
-                        <p><a href={{Person.contact.socialMedia.facebook.url}}>{{Person.contact.socialMedia.facebook.id}}</a> on Facebook</p>
-                    </div>
+                <div flex="40">
+                    <p editable-text="Person.contact.emailAddress">{{Person.contact.emailAddress || "empty"}}</p>
+                    <p><a href={{Person.contact.socialMedia.twitter.url}}>{{Person.contact.socialMedia.twitter.handle}}</a> on Twitter</p>
+                </div>
+                <div flex="40">
+                    <p><a href={{Person.contact.socialMedia.linkedIn.url}}>{{Person.contact.socialMedia.linkedIn.id}}</a> on LinkedIn</p>
+                    <p><a href={{Person.contact.socialMedia.facebook.url}}>{{Person.contact.socialMedia.facebook.id}}</a> on Facebook</p>
+                </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="viewPersonContainer paddingContainer">
+        <h2 class="sectionLabel">Next Meeting</h2>
+        <div>
+            <p class="displayInline" editable-text="Person.meeting.date">Meeting on {{Person.meeting.date || "empty"}}, </p>
+            <p class="displayInline" editable-text="Person.meeting.time">at {{Person.meeting.time || "empty"}}</p>
+        </div>
+        <p editable-text="Person.meeting.notes">Of note: {{Person.meeting.notes || "empty"}}</p>
+    </div>
+    <div class="viewPersonContainer paddingContainer">
+        <h2 class="sectionLabel">Summary</h2>
+        <div>
+            <p class="displayInline" editable-text="Person.contact.birthday">Birthday: {{Person.bio.birthday || "empty"}}, </p>
+            <p class="displayInline" editable-text="Person.contact.age">{{Person.bio.age || "empty"}} years old, </p>
+            <p class="displayInline" editable-text="Person.contact.gender">{{Person.bio.gender || "empty"}}</p>
+        </div>
+        <div>
+            <p class="displayInline" editable-text="Person.contact.physicalAddresses[0].street">{{Person.contact.physicalAddresses[0].street || "empty"}} </p>
+            <p class="displayInline" editable-text="Person.contact.physicalAddresses[0].city">{{Person.contact.physicalAddresses[0].city || "empty"}}, </p>
+            <p class="displayInline" editable-text="Person.contact.physicalAddresses[0].state">{{Person.contact.physicalAddresses[0].state || "empty"}} </p>
+            <p class="displayInline" editable-text="Person.contact.physicalAddresses[0].zipCode">{{Person.contact.physicalAddresses[0].zipCode || "empty"}}</p>
+        </div>
+        <p editable-textarea="Person.bio.summary" e-rows="5">{{Person.bio.summary || "empty"}}</p>
+        <!--the width of the text area can be set by using e-cols="X"-->
+    </div>
+    <div class="viewPersonContainer paddingContainer">
+        <h2 class="sectionLabel">Interests</h2>
+        <ul class="displayInlineBlock" ng-repeat="note in Person.bio.interests">
+            <li>{{note.name}}</li>
+            <!--need to find a way to databind to the object key/value within the interests array-->
+            <!--how do we add another interest?-->
+        </ul>
+    </div>
+    <div class="viewPersonContainer paddingContainer">
+        <h2 class="sectionLabel">Education</h2>
+        <div>
+            <p class="displayInline" editable-text="Person.education.institution">{{Person.contact.givenName}} studied at {{Person.education.institution || "empty"}} </p>
+            <p class="displayInline" editable-text="Person.education.startDate">from {{Person.education.startDate || "empty"}} to </p>
+            <p class="displayInline" editable-text="Person.education.endDate">{{Person.education.endDate || "empty"}} </p>
+            <p class="displayInline" editable-text="Person.education.type">in the School of {{Person.education.type || "empty"}}, </p>
+            <p class="displayInline" editable-text="Person.education.degree">where they earned a {{Person.education.degree || "empty"}}.</p>
+        </div>
+    </div>
+    <div class="viewPersonContainer paddingContainer">
+        <h2 class="sectionLabel">Affiliations</h2>
+    </div>
+    <div class="viewPersonContainer paddingContainer">
+        <h2 class="sectionLabel">Recent News Coverage</h2>
+    </div>
+    <div class="viewPersonContainer paddingContainer">
+        <h2 class="sectionLabel">Relationships</h2>
+    </div>
+    <div class="viewPersonContainer paddingContainer">
+        <h2 class="sectionLabel">Medical</h2>
     </div>
 </section>

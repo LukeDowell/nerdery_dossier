@@ -24,9 +24,9 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
     ///fakeperson start///////////////////////////////////////////
         bio: {
             photo: {url:"http://www.ew.com/sites/default/files/i/imgs/080425/Stoner-Movies/Big-Lebowski-Dude_nl.jpg"},
-            interests: ["Spelunking", "Steer Wrasslin"],
-            summary: "Way out west there was this fella... fella I wanna tell ya about. Fella by the name of Jeff Lebowski. At least that was the handle his loving parents gave him, but he never had much use for it himself. Mr. Lebowski, he called himself The Dude. Now, Dude - that's a name no one would self-apply where I come from. But then there was a lot about the Dude that didn't make a whole lot of sense. And a lot about where he lived, likewise. But then again, maybe that's why I found the place so darned interestin'. They call Los Angeles the City Of Angels. I didn't find it to be that, exactly. But I'll allow there are some nice folks there. 'Course I can't say I've seen London, and I ain't never been to France. And I ain't never seen no queen in her damned undies, so the feller says. But I'll tell you what - after seeing Los Angeles, and this here story I'm about to unfold, well, I guess I seen somethin' every bit as stupefyin' as you'd see in any of them other places. And in English, too. So I can die with a smile on my face, without feelin' like the good Lord gypped me. Now this here story I'm about to unfold took place back in the early '90s - just about the time of our conflict with Sad'm and the I-raqis. I only mention it because sometimes there's a man... I won't say a hero, 'cause, what's a hero? But sometimes, there's a man. And I'm talkin' about the Dude here. Sometimes, there's a man, well, he's the man for his time and place. He fits right in there. And that's the Dude, in Los Angeles. And even if he's a lazy man - and the Dude was most certainly that. Quite possibly the laziest in Los Angeles County, which would place him high in the runnin' for laziest worldwide. But sometimes there's a man, sometimes, there's a man. Aw. I lost my train of thought here. But... aw, hell. I've done introduced him enough.",
-            demographics: "White/Caucasian",
+            interests: [{name:"Bowling"},
+                        {name: "White Russians"}],
+            summary: "Way out west there was this fella... fella I wanna tell ya about. Fella by the name of Jeff Lebowski. At least that was the handle his loving parents gave him, but he never had much use for it himself. Mr. Lebowski, he called himself The Dude. Now, Dude - that's a name no one would self-apply where I come from. But then there was a lot about the Dude that didn't make a whole lot of sense.",            demographics: "White/Caucasian",
             age: 42,
             birthday: "9-15-73",
             gender: "Male"
@@ -54,24 +54,24 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
             isPrimary: true,
             current:   true
         }],
-        affiliation: [{
-            charity: [{name: "Doctor's Without Borders, USA", title: "Doctor", summary: "Charity Founder, in 1988 he did stuff, lots of stuff, charity like."}],
-            NFP: [{name: "Financial Architects Empires", title: "Architect", summary: "Archetectual tHings, lots of them."}],
-            group: [{name: "The National Speleological Society", title: "Spelunker-in-training", summary: "The national caving organization of the USA, with links to all affiliated regions, grottos (clubs), sections, and special interest groups."}]
-        }],
-        meeting: [{
+        affiliation: {
+            charity: {name: "Doctor's Without Borders, USA", title: "Doctor", summary: "Charity Founder, in 1988 he did stuff, lots of stuff, charity like."},
+            NFP: {name: "Financial Architects Empires", title: "Architect", summary: "Archetectual tHings, lots of them."},
+            group: {name: "The National Speleological Society", title: "Spelunker-in-training", summary: "The national caving organization of the USA, with links to all affiliated regions, grottos (clubs), sections, and special interest groups."}
+        },
+        meeting: {
             date:  "9-22-15",
             time:  "1PM",
             notes: "Meet with feeble public access show, and exploit them."
-        }],
-        education: [{
+        },
+        education: {
             institution: "St. Olaf College",
             startDate: "9-2-91",
             endDate: "5-4-95",
             type: "Fine Arts",
             degree: "Bachelor of Fine Arts",
             diplomaReceived: true
-        }],
+        },
         relationships: [{
             Name: "Bunny Lebowski",
             familyMember: false,
@@ -79,7 +79,7 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
             parent: false,
             spouse: true,
             child: false,
-            summary: "Uli doesn't care about anything. He's a Nihilist. "
+            summary: "Uli doesn't care about anything. He's a Nihilist."
         }],
         newsCoverage: [{
             personal: {summary: "The Movie", url: "http://www.imdb.com/title/tt0118715/news"},

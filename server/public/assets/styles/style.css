@@ -60,19 +60,21 @@ md-sidenav, md-sidenav.md-locked-open {
 .nameh2 {
     padding-top: 0;
     margin-top: 0;
+    display: inline;
 }
 
 .viewPersonContainer {
     background-color: #423e34;
     opacity: 0.8;
     box-shadow: 0 1px 1px 2px #302d27;
+    margin-bottom: 12px;
 }
 
 .viewPersonContainer h3, h4, h5, p, li {
     color: #FFFFFF;
 }
 
-.viewPersonContainer h2 {
+.viewPersonContainer h2, .viewPersonContainer h2:hover {
     color: #98bcb8;
 }
 
@@ -86,4 +88,29 @@ md-sidenav, md-sidenav.md-locked-open {
 
 .contact {
     margin-left: 10px;
+}
+
+.editable-click {
+    border-bottom: none;
+}
+
+h3.editable-click, h4.editable-click, h5.editable-click, p.editable-click, li.editable-click, h3.editable-click:hover, h4.editable-click:hover, h5.editable-click:hover, p.editable-click:hover, li.editable-click:hover {
+    color: #FFFFFF;
+}
+
+.displayInline {
+    display: inline;
+}
+
+.displayInlineBlock {
+    display: inline-block;
+}
+
+.positionDiv {
+    margin-bottom: 10px;
+}
+
+.sectionLabel {
+    padding-top: 0;
+    margin-top: 0;
 }
