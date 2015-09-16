@@ -15,7 +15,7 @@ router.get('/', function(req, res) {
 /**
  * Our 'login' url
  */
-router.get('/',
+router.get('/login',
     passport.authenticate('google',
         {
             scope: [
@@ -34,11 +34,9 @@ router.get('/',
  */
 router.get('/callback',
     passport.authenticate('google', {
-        failureRedirect: '/auth/failed'
-    }),
-    function (req, res) {
-        res.redirect('/auth/success');
-    }
+        failureRedirect: '/auth/failed',
+        successRedirect: '/auth/success'
+    })
 );
 
 /**

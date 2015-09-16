@@ -1,0 +1,38 @@
+@font-face {
+    font-family: "Stratum 2 Bold"
+    src: url(../fonts/stratum.ttf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Universe Next"
+    src: url(../fonts/universe.ttf)
+}
+
+html {
+    background-image: url(../images/background.jpg);
+}
+
+body {
+    margin: 20px;
+    background-image: inherit;
+}
+
+md-whiteframe {
+    background: rgb(52, 49, 41);
+    padding: 20px;
+}
+
+h2 {
+    font-family: "Stratum 2 Bold", "Arial", "sans-serif"
+}
+
+p {
+    font-family: "Universe Next", "Arial", "sans-serif"
+}
+
+#logo {
+    height: 150px;
+    width: auto;
+    max-width: 200px;
+}
