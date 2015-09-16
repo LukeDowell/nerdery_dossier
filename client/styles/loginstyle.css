@@ -1,11 +1,11 @@
 @font-face {
-    font-family: "Stratum 2 Bold"
+    font-family: "Stratum 2 Bold";
     src: url(../fonts/stratum.ttf);
     font-weight: bold;
 }
 
 @font-face {
-    font-family: "Universe Next"
+    font-family: "Universe Next";
     src: url(../fonts/universe.ttf)
 }
 
@@ -24,11 +24,14 @@ md-whiteframe {
 }
 
 h2 {
-    font-family: "Stratum 2 Bold", "Arial", "sans-serif"
+    font-family: "Stratum 2 Bold", "Arial", "sans-serif";
+    font-size: 50px;
+    color: white;
 }
 
 p {
-    font-family: "Universe Next", "Arial", "sans-serif"
+    font-family: "Universe Next", "Arial", "sans-serif";
+    color: white;
 }
 
 #logo {

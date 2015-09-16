@@ -34,9 +34,9 @@ router.get('/login',
  */
 router.get('/callback',
     passport.authenticate('google', {
-        failureRedirect: '/auth/failed',
-        successRedirect: '/auth/success'
-    })
+        failureRedirect: '/auth',
+        successRedirect: '/'
+    });
 );
 
 /**

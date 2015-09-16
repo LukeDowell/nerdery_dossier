@@ -12,7 +12,10 @@
         <!-- Warning text -->
         <h2>Halt! Who goes there?</h2>
         <p>Please sign in with Google to continue using this application.</p>
-        <button ng-click="loginClicked()">Sign In</button>
+        <div layout="row">
+            <img id="signIn" ng-click="loginClicked()" src="assets/images/google_button.png"/>
+            <md-progress-circular ng-show="isLoggingIn" md-diameter="25px"></md-progress-circular>
+        </div>
     </md-whiteframe>
     <!-- BEGIN SCRIPT -->
     <script type="text/javascript" src="/vendors/angular/angular.min.js"></script>
