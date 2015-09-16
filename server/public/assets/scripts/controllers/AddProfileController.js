@@ -1,4 +1,4 @@
-app.controller("AddProfileController", ['$scope', function($scope) {
+app.controller("AddProfileController", ['$scope','$http', function($scope,$http) {
     console.log("This is the Add User Controller Working");
 
     $scope.profile = {
@@ -37,7 +37,21 @@ app.controller("AddProfileController", ['$scope', function($scope) {
         }
     }
 
-//**********************************CLEAR FORM DATA FUNCTION***********************************************
+//**************************************SUBMIT FORM TO Server*************************************************
+    $scope.submit = function() {
+        $http.post('/profiles/new').then(function (response) {
+            if (response.status !== 200) {
+                throw new Error("Failed to pull data from the API");
+
+            }
+            console.log(response);
+        });
+    };
+
+
+
+
+//***************************************CLEAR FORM DATA FUNCTION***********************************************
     function AddProfileController($scope) {
         var defaultForm = {
             author: "",
@@ -51,49 +65,4 @@ app.controller("AddProfileController", ['$scope', function($scope) {
         };
     }
 
-
-
 }]);
-//*******************************NEED TO FIGURE OUT THE FORM SUBMISSION STUFF
-//
-//app.controller('AppCtrl', ['$scope', function($scope){
-//    $scope.data = {
-//        group1 : 'Banana',
-//        group2 : '2'
-//    };
-//}]);
-//
-//app.directive('formSubmit', function(){
-//    return {
-//        require: "form",
-//        restrict: 'A',
-//        link: function($scope, $el, $attrs){
-//            $el.on('submit', function(event){
-//                alert('submit handler');
-//                event.preventDefault();
-//            });
-//        }
-//    }
-//});
-//app.directive('mdRadioGroup', function() {
-//    return {
-//        restrict: 'E',
-//        link: function($scope, $el, $attrs) {
-//            $el.on('keypress', function(event){
-//                if(event.keyCode === 13) {
-//                    var form = angular.element(getClosest($el[0], 'form'));
-//                    form.triggerHandler('submit');
-//                }
-//                function getClosest(el, tag) {
-//                    tag = tag.toUpperCase();
-//                    do {
-//                        if (el.nodeName === tag) {
-//                            return el;
-//                        }
-//                    } while (el = el.parentNode);
-//                    return null;
-//                }
-//            })
-//        }
-//    }
-//});

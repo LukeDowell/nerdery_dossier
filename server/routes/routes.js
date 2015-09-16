@@ -5,8 +5,11 @@ var index = require('./index');
 
 var auth = require('./auth');
 
+var profiles = require('./profiles');
+
 function init(app) {
     app.use('/auth', auth);
+    app.use('/profiles', profiles);
     app.use('/', index);
     console.log("Routes initialized");
 }
