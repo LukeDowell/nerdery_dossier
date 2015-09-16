@@ -36,7 +36,7 @@ router.get('/callback',
     passport.authenticate('google', {
         failureRedirect: '/auth',
         successRedirect: '/'
-    });
+    })
 );
 
 /**
