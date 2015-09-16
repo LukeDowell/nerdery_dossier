@@ -4,13 +4,17 @@
 var router = require('express').Router();
 var path = require('path');
 
-router.get('/home', ensureAuthenticated, function(req, res) {
-    res.send("You must be authenticated!");
-});
-
+/**
+ * Wilcard router. Needs authentication to provide anything
+ */
 router.get('/*', function(req, res) {
-    var file = req.params[0] || "assets/views/index.html";
-    res.sendFile(path.join(__dirname, "../public", file));
+    if(req.isAuthenticated()) {
+        var file = req.params[0] || "assets/views/index.html";
+        res.sendFile(path.join(__dirname, "../public", file));
+    } else {
+        //If not authorized, kick the request to the login page
+        res.redirect('/auth');
+    }
 });
 
 /**
