@@ -76,14 +76,47 @@
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Affiliations</h2>
+        <div>
+            <div>
+                <h3 class="displayInline" editable-text="Person.affiliation.charity.title">{{Person.affiliation.charity.title || "empty"}}, at </h3>
+                <h3 class="displayInline" editable-text="Person.affiliation.charity.name">{{Person.affiliation.charity.name || "empty"}}</h3>
+                <p editable-text="Person.affiliation.charity.summary">{{Person.affiliation.charity.summary || "empty"}}</p>
+            </div>
+            <div>
+                <h3 class="displayInline" editable-text="Person.affiliation.NFP.title">{{Person.affiliation.NFP.title || "empty"}}, at </h3>
+                <h3 class="displayInline" editable-text="Person.affiliation.NFP.name">{{Person.affiliation.NFP.name || "empty"}}</h3>
+                <p editable-text="Person.affiliation.NFP.summary">{{Person.affiliation.NFP.summary || "empty"}}</p>
+            </div>
+            <div>
+                <h3 class="displayInline" editable-text="Person.affiliation.group.title">{{Person.affiliation.group.title || "empty"}}, at </h3>
+                <h3 class="displayInline" editable-text="Person.affiliation.group.name">{{Person.affiliation.group.name || "empty"}}</h3>
+                <p editable-text="Person.affiliation.group.summary">{{Person.affiliation.group.summary || "empty"}}</p>
+            </div>
+        </div>
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Recent News Coverage</h2>
+        <div>
+            <h3>Personal News</h3>
+            <p editable-text="Person.newsCoverage.personal.summary">{{Person.newsCoverage.personal.summary || "empty"}}</p>
+            <p>Link to article <a href={{Person.newsCoverage.personal.url}}>{{Person.newsCoverage.personal.url}}</a></p>
+        </div>
+        <div>
+            <h3>Company News</h3>
+            <p editable-text="Person.newsCoverage.company.summary">{{Person.newsCoverage.company.summary || "empty"}}</p>
+            <p>Link to article <a href={{Person.newsCoverage.company.url}}>{{Person.newsCoverage.company.url}}</a></p>
+        </div>
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Relationships</h2>
+        <h3 editable-text="Person.relationships[0].name">{{Person.relationships[0].name || "empty"}}</h3>
+        <p editable-text="Person.relationships[0].summary">{{Person.relationships[0].summary || "empty"}}</p>
+        <!--- arrays need to be dealt with whenever solution becomes available---->
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Medical</h2>
+        <h3 editable-text="Person.medical.summary">{{Person.medical.summary || "empty"}}</h3>
+        <p editable-text="Person.medical.physicalCharacteristics">{{Person.medical.physicalCharacteristics || "empty"}}</p>
+        <p editable-text="Person.medical.complications">{{Person.medical.complications || "empty"}}</p>
     </div>
 </section>

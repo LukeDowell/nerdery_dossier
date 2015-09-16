@@ -55,8 +55,8 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
             current:   true
         }],
         affiliation: {
-            charity: {name: "Doctor's Without Borders, USA", title: "Doctor", summary: "Charity Founder, in 1988 he did stuff, lots of stuff, charity like."},
-            NFP: {name: "Financial Architects Empires", title: "Architect", summary: "Archetectual tHings, lots of them."},
+            charity: {name: "Doctor's Without Borders, USA", title: "Doctor", summary: "In 1988 he did stuff, lots of stuff, charity like."},
+            NFP: {name: "Financial Architects Empires", title: "Architect", summary: "Archetectual things, lots of them."},
             group: {name: "The National Speleological Society", title: "Spelunker-in-training", summary: "The national caving organization of the USA, with links to all affiliated regions, grottos (clubs), sections, and special interest groups."}
         },
         meeting: {
@@ -73,7 +73,7 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
             diplomaReceived: true
         },
         relationships: [{
-            Name: "Bunny Lebowski",
+            name: "Bunny Lebowski",
             familyMember: false,
             grandParent: false,
             parent: false,
@@ -81,14 +81,14 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
             child: false,
             summary: "Uli doesn't care about anything. He's a Nihilist."
         }],
-        newsCoverage: [{
+        newsCoverage: {
             personal: {summary: "The Movie", url: "http://www.imdb.com/title/tt0118715/news"},
-            company: {summary: "Not on the rug, man", url: "arthurbarrydesigns.com"}
-        }],
+            company: {summary: "Not on the rug, man", url: "http://www.arthurbarrydesigns.com"}
+        },
         medical: {
             summary: "Overall health: 80%",
-            complications: "none",
-            physicalCharacteristics: "white, overweight, bathrobe"
+            complications: "Oh, the usual. Bowls. Drives around. The occasional acid flashback.",
+            physicalCharacteristics: "White, overweight, bathrobe."
         }
         ///fakeperson end/////////////////////////////////////////////
 
