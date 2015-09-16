@@ -1,6 +1,10 @@
 app.controller("AddProfileController", ['$scope','$http', function($scope,$http) {
     console.log("This is the Add User Controller Working");
 
+    $scope.cleanProfile = {
+
+    };
+
     $scope.profile = {
         //googleID: String,
         //bio : {
@@ -35,14 +39,15 @@ app.controller("AddProfileController", ['$scope','$http', function($scope,$http)
             //}],
             //medicalSummary: String
         }
-    }
+    };
 
 //SUBMIT FORM TO SERVER
+
+
     $scope.submit = function() {
         $http.post('/profiles/new').then(function (response) {
             if (response.status !== 200) {
                 throw new Error("Failed to pull data from the API");
-
             }
             console.log(response);
         });
@@ -50,19 +55,12 @@ app.controller("AddProfileController", ['$scope','$http', function($scope,$http)
 
 
 
-
 //CLEAR FORM DATA FUNCTION
-    function AddProfileController($scope) {
-        var defaultForm = {
-            author: "",
-            email: "",
-            comment: ""
-        };
+    var cleanProfile = angular.copy($scope.cleanProfile);
 
-        $scope.clearForm = function (profile) {
-            $scope.addProfileForm.$setPristine();
-            $scope.profile = defaultForm;
-        };
-    }
-
+    $scope.resetForm = function ()
+    {
+        $scope.profile = angular.copy(cleanProfile);
+        $scope.addProfileForm.$setPristine();
+    };
 }]);
