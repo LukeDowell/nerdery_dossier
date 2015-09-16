@@ -15,6 +15,19 @@ var UserSchema = new Schema({
     profile: {type: Schema.Types.ObjectId, ref: 'Profile'}
 });
 
+/**
+ * Attempts to find an existing user in our database based on their google id.
+ * If the user does not exist/cannot be found, a new one is created.
+ *
+ * @param access
+ *      The google api access token
+ * @param refresh
+ *      The google api refresh token
+ * @param googleData
+ *      All google data returned from the login callback
+ * @param done
+ *      Callback to pass information to passport
+ */
 UserSchema.statics.findOrCreate = function(access, refresh, googleData, done) {
     this.findOne({
             googleID: googleData.id
