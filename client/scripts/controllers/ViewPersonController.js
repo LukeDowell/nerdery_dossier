@@ -62,7 +62,7 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
         meeting: [{
             date:  "9-22-15",
             time:  "1PM",
-            notes: "Meet with feeble public access show, and exploit them."
+            note: "Meet with feeble public access show, and exploit them."
         }],
         education: [{
             institution: "St. Olaf College",
@@ -74,11 +74,7 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
         }],
         relationships: [{
             name: "Bunny Lebowski",
-            familyMember: false,
-            grandParent: false,
-            parent: false,
-            spouse: true,
-            child: false,
+            relationship: "Girlfriend",
             summary: "Uli doesn't care about anything. He's a Nihilist."
         }],
         newsCoverage: [{
@@ -102,10 +98,18 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
 
 
 
-    //call function to submit altered data to DB
-    $scope.submit;
+    //start functions to apply altered data to current person object
     $scope.addInterest = function() {
-        var l = $scope.interestsForm;
-        $scope.Person.bio.interests.push({ name: l, isNew: true })
+        var a = $scope.interestsForm;
+        $scope.Person.bio.interests.push({ name: a, isNew: true })
     };
+    $scope.addMeeting = function() {
+        var b = $scope.meetDateForm;
+        var c = $scope.meetTimeForm;
+        var d = $scope.meetNoteForm;
+        $scope.Person.meeting.push({ date: b, time: c, note: d, isNew: true })
+    };
+
+    //submit altered person object to DB
+    $scope.submit;
 }]);

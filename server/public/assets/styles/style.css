@@ -45,6 +45,7 @@ md-card h3 {
 
 .navButton {
     background-color: #8a9b92;
+    color: #FFFFFF;
 }
 
 .md-fab {
@@ -114,4 +115,13 @@ h3.editable-click, h4.editable-click, h5.editable-click, p.editable-click, li.ed
 .sectionLabel {
     padding-top: 0;
     margin-top: 0;
+}
+
+.centeredViewButton {
+    background-color: #8a9b92;
+    color: #FFFFFF;
+}
+
+.centerAllTheButtons {
+    text-align: center;
 }
