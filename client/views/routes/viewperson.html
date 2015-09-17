@@ -58,11 +58,48 @@
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Interests</h2>
+
+        <!--experiments!!!-->
+        <div ng-repeat="note in Person.bio.interests">
+            <span editable-text="note.name" e-form="interestsForm" shown="true"> {{note.name}} </span>
+            <button ng-click="interestsForm.$show()" ng-show="!interestsForm.$visible">edit</button>
+            <form editable-form name="interestsForm" shown="$last && note.isNew" ng-show="interestsForm.$visible">
+                <button type="submit">save</button>
+                <button type="button" ng-click="interestsForm.$cancel()">cancel</button>
+            </form>
+            <br />
+        </div>
+
+
+        <pre>{{Person.bio.interests | json}}</pre>
+
+        <!--end experiments!-->
+        <!--start example-->
+
+        <!--<div ng-repeat="item in items">-->
+            <!--<span editable-text="item.value" e-form="form" shown="true"> {{item.value}} </span>-->
+            <!--<button ng-click="form.$show()" ng-show="!form.$visible">edit</button>-->
+            <!--<form editable-form name="form" shown="$last && item.isNew" ng-show="form.$visible">-->
+                <!--<button type="submit">save</button>-->
+                <!--<button type="button" ng-click="form.$cancel()">cancel</button>-->
+            <!--</form>-->
+            <!--<br />-->
+        <!--</div>-->
+        <!--<br>-->
+        <!--<button ng-click="addItem()">add</button>-->
+
+        <!--<pre>  {{ items | json}}</pre>-->
+
+        <!--end example-->
+
+
         <ul class="displayInlineBlock" ng-repeat="note in Person.bio.interests">
             <li>{{note.name}}</li>
             <!--need to find a way to databind to the object key/value within the interests array-->
             <!--how do we add another interest?-->
         </ul>
+        <br>
+        <button ng-click="addInterest()">add</button>
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Education</h2>

@@ -100,7 +100,12 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
     $scope.fullName = $scope.Person.contact.givenName + " " + $scope.Person.contact.middleName + " " + $scope.Person.contact.familyName;
 
 
+
+
     //call function to submit altered data to DB
     $scope.submit;
-
+    $scope.addInterest = function() {
+        var l = $scope.interestsForm;
+        $scope.Person.bio.interests.push({ name: l, isNew: true })
+    };
 }]);
