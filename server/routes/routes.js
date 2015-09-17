@@ -3,7 +3,7 @@
  */
 var index = require('./index');
 var auth = require('./auth');
-var calendar = require('./calendar');
+var calendar = require('./cal');
 
 var profiles = require('./profiles');
 
