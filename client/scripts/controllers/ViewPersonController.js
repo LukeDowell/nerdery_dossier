@@ -123,6 +123,26 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
         var l = $scope.summaryForm;
         $scope.Person.relationships.push({ name: j, relationship: k, summary: l, isNew: true })
     };
+    $scope.addArticle = function() {
+        var m = $scope.articleTypeForm;
+        var n = $scope.articleSummaryForm;
+        var o = $scope.articleurlForm;
+        $scope.Person.newsCoverage.push({ type: m, summary: n, url: o, isNew: true })
+    };
+    $scope.addAffiliation = function() {
+        var p = $scope.affiliationTypeForm;
+        var q = $scope.affiliationNameForm;
+        var r = $scope.affiliationTitleForm;
+        var s = $scope.affiliationSummaryForm;
+        $scope.Person.affiliation.push({ type: p, name: q, title: r, summary: s, isNew: true })
+    };
+    $scope.addAddress = function() {
+        var t = $scope.streetForm;
+        var u = $scope.cityForm;
+        var v = $scope.stateForm;
+        var w = $scope.zipCodeForm;
+        $scope.Person.contact.physicalAddresses.push({ street: t, city: u, state: v, zipCode: w, isNew: true })
+    };
     //submit altered person object to DB
     $scope.submit;
 }]);
