@@ -53,14 +53,9 @@
                 <button type="button" ng-click="meetNoteForm.$cancel()">cancel</button>
             </form>
         </div>
-        <br>
-        {{ Person.bio.interests | json }}
-        <br>
-        {{ Person.meeting | json }}
         <div class="centerAllTheButtons">
             <md-button class="centeredViewButton" ng-click="addMeeting()">add</md-button>
         </div>
-        <!---   Add "meeting" form and button goes here  -->
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Summary</h2>
@@ -81,7 +76,7 @@
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Interests</h2>
         <ul class="displayInlineBlock" ng-repeat="note in Person.bio.interests">
-            <li editable-text="note.name" e-form="interestsForm" shown="true" ng-click="interestsForm.$show()" ng-show="!interestsForm.$visible"> {{note.name}} </li>
+            <li editable-text="note.name" e-form="interestsForm" shown="true" e-placeholder="Enter Interest" ng-click="interestsForm.$show()" ng-show="!interestsForm.$visible"> {{note.name}} </li>
             <form editable-form name="interestsForm" shown="$last && note.isNew" ng-show="interestsForm.$visible">
                 <button type="submit">save</button>
                 <button type="button" ng-click="interestsForm.$cancel()">cancel</button>
