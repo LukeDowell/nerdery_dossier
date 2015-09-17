@@ -16,9 +16,9 @@ var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages'])
                 templateUrl: "/assets/views/routes/viewperson.html",
                 controller: "HomeController"
             })
-            .when('/usersettings', {
-                templateUrl: "/assets/views/routes/usersettings.html",
-                controller: "UserSettingsController"
+            .when('/yoursettings', {
+                templateUrl: "/assets/views/routes/yoursettings.html",
+                controller: "SettingsController"
             })
             .when('/search', {
                 templateUrl: "/assets/views/routes/searchprofiles.html",

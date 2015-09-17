@@ -1,20 +1,20 @@
- <form name="addProfileForm">
+<h2>To Create a New Profile, Please Complete the Form Below:</h2>
+<form name="addProfileForm">
         <md-content flex-sm="100" flex-gt-sm="90" flex-gt-md="70" flex-gt-lg="50" class="md-whiteframe-z2" >
             <div layout="row" layout-align="center">
-                <md-card class="forminputs" id="photocard" flex="35">
+                <md-card class="forminputs" id="photocard" flex="25">
+                    <h4>PHOTO UPLOAD:</h4>
                 <md-input-container>
                     <label>Photo</label>
-                    <h5>Click on the Select File Button to Upload a Profile Image</h5>
                 </md-input-container>
-                <md-button class="md-primary navButton" ng-click="selectFile()">Select File to Upload</md-button>
+                <md-button class="md-secondary" ng-click="selectFile()">Select File to Upload</md-button>
                     <input ng-model="profile.photo" id="#fileToUpload" type="file" style="display:none;">
                 </md-card>
-
-
-            <md-card class="forminputs" flex="55">
+            <md-card class="forminputs" flex="71">
+                <h4>PERSONAL INFORMATION:</h4>
                  <md-input-container>
                      <label>Full Name (First, Last):</label>
-                    <input type="text" data-ng-model="profile.fullName">
+                    <input type="text" ng-model="profile.fullName">
                  </md-input-container>
                  <md-input-container>
                     <label>Email Address</label>
@@ -26,7 +26,7 @@
                 </md-input-container>
                 <md-input-container>
                     <label>Street</label>
-                    <input type="text" data-ng-model="profile.street">
+                    <input type="text" ng-model="profile.street">
                 </md-input-container>
                 <md-input-container>
                     <label>City</label>
@@ -46,6 +46,7 @@
             <!--This is the bio (interests, summary, demographics, age, birthday, gender) section-->
 
             <md-card class="forminputs">
+                <h4>BIOGRPAHICAL DATA:</h4>
                 <md-input-container>
                 <label>Summary</label>
                 <input ng-model="profile.demographics">
@@ -72,6 +73,7 @@
             <!--This is the organizations (title, name, startDate, endDate, isPrimary, current) section -->
 
             <md-card class="forminputs">
+                <h4>WORK HISTORY AND ORGANIZATIONS:</h4>
                 <md-input-container>
                 <label>Title</label>
                 <input ng-model="profile.title">
@@ -94,13 +96,13 @@
 
                 <div layout="row" flex="40">
 
-                <h5>Is This the Individual's Primary Occupation?</h5>
+                <h5>IS THIS THE INDIVIDUAL'S PRIMARY OCCUPATION?</h5>
                 <md-radio-group ng-model="profile.isPrimary">
                 <md-radio-button value="Yes" aria-label="yes">Yes</md-radio-button>
                 <md-radio-button value="No"  aria-label="no">No</md-radio-button>
                  </md-radio-group>
 
-                 <h5>Is This the Individual's Current Occupation?</h5>
+                 <h5>IS THIS THE INDIVIDUAL'S CURRENT OCCUPATION?</h5>
                 <md-radio-group ng-model="profile.isCurrent">
                 <md-radio-button value="Yes" aria-label="yes">Yes</md-radio-button>
                 <md-radio-button value="No" aria-label="no">No</md-radio-button>
@@ -109,19 +111,21 @@
             </md-card>
 
 
-            <!--This is the meetings (data, time, notes) section -->
+            <!--This is the meetings (date, time, notes) section -->
 
 
             <md-card class="forminputs">
+                <h4>UPCOMING MEETINGS:</h4>
                 <md-input-container>
-                <label>Meetings</label>
+                <label>Date</label>
                 <input ng-model="profile.date">
                 </md-input-container>
 
                 <md-input-container>
-                <label>Organization Name</label>
-                <input ng-model="profile.time">
+                    <label>Time</label>
+                    <input ng-model="profile.time">
                 </md-input-container>
+
 
                 <md-input-container>
                 <label>Notes</label>
@@ -131,6 +135,7 @@
 
             <!--This is the medicalSummary (medicalSummary) section -->
             <md-card class="forminputs">
+                <h4>MEDICAL INFORMATION:</h4>
               <md-input-container>
                 <label>Medical Summary</label>
                 <input ng-model="profile.medicalSummary">

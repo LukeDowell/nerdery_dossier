@@ -58,13 +58,18 @@ md-sidenav, md-sidenav.md-locked-open {
     max-width: 220px;
 }
 
-#photocard {
-    height: 350px;
-}
+/*#photocard {*/
+    /*height: 350px;*/
+/*}*/
 .forminputs {
     background-color: #8a9b92;
 }
 
 .forminputs label{
-   color: #000000;
+   color:#000000;
+}
+
+.md-secondary  {
+    margin-top: 30px;
+    background-color:#423e34;
 }
