@@ -109,7 +109,20 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
         var d = $scope.meetNoteForm;
         $scope.Person.meeting.push({ date: b, time: c, note: d, isNew: true })
     };
-
+    $scope.addEducation = function() {
+        var e = $scope.institutionForm;
+        var f = $scope.startDateForm;
+        var g = $scope.endDateForm;
+        var h = $scope.typeForm;
+        var i = $scope.degreeForm;
+        $scope.Person.education.push({ institution: e, startDate: f, endDate: g, type: h, degree: i, isNew: true })
+    };
+    $scope.addRelationship = function() {
+        var j = $scope.nameForm;
+        var k = $scope.relationshipForm;
+        var l = $scope.summaryForm;
+        $scope.Person.relationships.push({ name: j, relationship: k, summary: l, isNew: true })
+    };
     //submit altered person object to DB
     $scope.submit;
 }]);
