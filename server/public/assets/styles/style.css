@@ -3,6 +3,11 @@ h1, h2, h3, h4, h5 {
     font-family: Monda, sans-serif;
 }
 
+.cardDiv {
+    text-align: center;
+
+}
+
 .personCards {
     width: 250px;
     display: inline-block;
@@ -17,8 +22,7 @@ md-toolbar img {
 }
 
 .ngviewbackground {
-    background-image: url("https://nerdery.com/assets/layout/bg_body-c80512dc38953cb82d674ef885397b27.jpg");
-    background-size: 100% 100%;
+        background-image: url(../images/background.jpg);
 }
 
 md-card {
@@ -50,6 +54,7 @@ md-card h3 {
 
 .md-fab {
     background-color: #423e34 !important;
+    position: absolute;
 }
 
 md-sidenav, md-sidenav.md-locked-open {
