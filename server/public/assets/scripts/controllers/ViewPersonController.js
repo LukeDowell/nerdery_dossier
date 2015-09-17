@@ -26,7 +26,8 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
             photo: {url:"http://www.ew.com/sites/default/files/i/imgs/080425/Stoner-Movies/Big-Lebowski-Dude_nl.jpg"},
             interests: [{name:"Bowling"},
                         {name: "White Russians"}],
-            summary: "Way out west there was this fella... fella I wanna tell ya about. Fella by the name of Jeff Lebowski. At least that was the handle his loving parents gave him, but he never had much use for it himself. Mr. Lebowski, he called himself The Dude. Now, Dude - that's a name no one would self-apply where I come from. But then there was a lot about the Dude that didn't make a whole lot of sense.",            demographics: "White/Caucasian",
+            summary: "Way out west there was this fella... fella I wanna tell ya about. Fella by the name of Jeff Lebowski. At least that was the handle his loving parents gave him, but he never had much use for it himself. Mr. Lebowski, he called himself The Dude. Now, Dude - that's a name no one would self-apply where I come from. But then there was a lot about the Dude that didn't make a whole lot of sense.",
+            demographics: "White/Caucasian",
             age: 42,
             birthday: "9-15-73",
             gender: "Male"
@@ -41,9 +42,8 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
             },
             emailAddress: "newbelgium@gmail.com",
             givenName:    "Jeffrey",
-            middleNames: ["The Dude"],
+            middleName: "The Dude",
             familyName:   "Lebowski",
-            fullName:     "Jeffrey 'The Dude' Lebowski",
             websites:    [{name:"New Belgium Brewery", url:"https://www.newbelgium.com/"}]
         },
         organizations: [{
@@ -54,24 +54,24 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
             isPrimary: true,
             current:   true
         }],
-        affiliation: {
-            charity: {name: "Doctor's Without Borders, USA", title: "Doctor", summary: "In 1988 he did stuff, lots of stuff, charity like."},
-            NFP: {name: "Financial Architects Empires", title: "Architect", summary: "Archetectual things, lots of them."},
-            group: {name: "The National Speleological Society", title: "Spelunker-in-training", summary: "The national caving organization of the USA, with links to all affiliated regions, grottos (clubs), sections, and special interest groups."}
-        },
-        meeting: {
+        affiliation: [
+            {type: "Charity", name: "Doctor's Without Borders, USA", title: "Doctor", summary: "In 1988 he did stuff, lots of stuff, charity like."},
+            {type: "NFP", name: "Financial Architects Empires", title: "Architect", summary: "Archetectual things, lots of them."},
+            {type: "Group", name: "The National Speleological Society", title: "Spelunker-in-training", summary: "The national caving organization of the USA, with links to all affiliated regions, grottos (clubs), sections, and special interest groups."}
+        ],
+        meeting: [{
             date:  "9-22-15",
             time:  "1PM",
             notes: "Meet with feeble public access show, and exploit them."
-        },
-        education: {
+        }],
+        education: [{
             institution: "St. Olaf College",
             startDate: "9-2-91",
             endDate: "5-4-95",
             type: "Fine Arts",
             degree: "Bachelor of Fine Arts",
             diplomaReceived: true
-        },
+        }],
         relationships: [{
             name: "Bunny Lebowski",
             familyMember: false,
@@ -81,10 +81,11 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
             child: false,
             summary: "Uli doesn't care about anything. He's a Nihilist."
         }],
-        newsCoverage: {
-            personal: {summary: "The Movie", url: "http://www.imdb.com/title/tt0118715/news"},
-            company: {summary: "Not on the rug, man", url: "http://www.arthurbarrydesigns.com"}
-        },
+        newsCoverage: [{
+            type: "Personal", summary: "The Movie", url: "http://www.imdb.com/title/tt0118715/news"},
+            {type: "Company", summary: "Not on the rug, man", url: "http://www.arthurbarrydesigns.com"
+
+        }],
         medical: {
             summary: "Overall health: 80%",
             complications: "Oh, the usual. Bowls. Drives around. The occasional acid flashback.",
@@ -95,9 +96,11 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
 
     };
 
+    // start client side data manipulation
+    $scope.fullName = $scope.Person.contact.givenName + " " + $scope.Person.contact.middleName + " " + $scope.Person.contact.familyName;
 
-    //call function
-    $scope.submit
 
+    //call function to submit altered data to DB
+    $scope.submit;
 
 }]);

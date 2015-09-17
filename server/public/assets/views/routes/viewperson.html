@@ -9,7 +9,7 @@
                     <h2 class="nameh2" editable-text="Person.contact.givenName">{{Person.contact.givenName || "empty"}} </h2>
                     <h2 class="nameh2" editable-text="Person.contact.familyName">{{Person.contact.familyName || "empty"}}</h2>
                 </div>
-                <p editable-text="Person.contact.fullName">{{Person.contact.fullName || "empty"}}</p>
+                <p editable-text="Person.contact.middleName">{{fullName}}</p>
                 <div class="positionDiv">
                     <h3 class="displayInline" editable-text="Person.organizations[0].title">{{Person.organizations[0].title}}</h3>
                     <h3 class="displayInline"> at <a href={{Person.contact.websites[0].url}}>{{Person.contact.websites[0].name}}</a></h3>
@@ -35,10 +35,10 @@
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Next Meeting</h2>
         <div>
-            <p class="displayInline" editable-text="Person.meeting.date">Meeting on {{Person.meeting.date || "empty"}}, </p>
-            <p class="displayInline" editable-text="Person.meeting.time">at {{Person.meeting.time || "empty"}}</p>
+            <p class="displayInline" editable-text="Person.meeting[0].date">Meeting on {{Person.meeting[0].date || "empty"}}, </p>
+            <p class="displayInline" editable-text="Person.meeting[0].time">at {{Person.meeting[0].time || "empty"}}</p>
         </div>
-        <p editable-text="Person.meeting.notes">Of note: {{Person.meeting.notes || "empty"}}</p>
+        <p editable-text="Person.meeting[0].notes">Of note: {{Person.meeting[0].notes || "empty"}}</p>
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Summary</h2>
@@ -67,44 +67,48 @@
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Education</h2>
         <div>
-            <p class="displayInline" editable-text="Person.education.institution">{{Person.contact.givenName}} studied at {{Person.education.institution || "empty"}} </p>
-            <p class="displayInline" editable-text="Person.education.startDate">from {{Person.education.startDate || "empty"}} to </p>
-            <p class="displayInline" editable-text="Person.education.endDate">{{Person.education.endDate || "empty"}} </p>
-            <p class="displayInline" editable-text="Person.education.type">in the School of {{Person.education.type || "empty"}}, </p>
-            <p class="displayInline" editable-text="Person.education.degree">where they earned a {{Person.education.degree || "empty"}}.</p>
+            <p class="displayInline" editable-text="Person.education[0].institution">{{Person.contact.givenName}} studied at {{Person.education[0].institution || "empty"}} </p>
+            <p class="displayInline" editable-text="Person.education[0].startDate">from {{Person.education[0].startDate || "empty"}} to </p>
+            <p class="displayInline" editable-text="Person.education[0].endDate">{{Person.education[0].endDate || "empty"}} </p>
+            <p class="displayInline" editable-text="Person.education[0].type">in the School of {{Person.education[0].type || "empty"}}, </p>
+            <p class="displayInline" editable-text="Person.education[0].degree">where they earned a {{Person.education[0].degree || "empty"}}.</p>
         </div>
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Affiliations</h2>
         <div>
             <div>
-                <h3 class="displayInline" editable-text="Person.affiliation.charity.title">{{Person.affiliation.charity.title || "empty"}}, at </h3>
-                <h3 class="displayInline" editable-text="Person.affiliation.charity.name">{{Person.affiliation.charity.name || "empty"}}</h3>
-                <p editable-text="Person.affiliation.charity.summary">{{Person.affiliation.charity.summary || "empty"}}</p>
+                <h3 class="displayInline" editable-text="Person.affiliation[0].title">{{Person.affiliation[0].title || "empty"}}, at </h3>
+                <h3 class="displayInline" editable-text="Person.affiliation[0].name">{{Person.affiliation[0].name || "empty"}}</h3>
+                <h3 class="displayInline" editable-text="Person.affiliation[0].type">, a {{Person.affiliation[0].type || "empty"}}</h3>
+                <p editable-text="Person.affiliation[0].summary">{{Person.affiliation[0].summary || "empty"}}</p>
             </div>
             <div>
-                <h3 class="displayInline" editable-text="Person.affiliation.NFP.title">{{Person.affiliation.NFP.title || "empty"}}, at </h3>
-                <h3 class="displayInline" editable-text="Person.affiliation.NFP.name">{{Person.affiliation.NFP.name || "empty"}}</h3>
-                <p editable-text="Person.affiliation.NFP.summary">{{Person.affiliation.NFP.summary || "empty"}}</p>
+                <h3 class="displayInline" editable-text="Person.affiliation[1].type">{{Person.affiliation[1].type || "empty"}}, </h3>
+                <h3 class="displayInline" editable-text="Person.affiliation[1].title">{{Person.affiliation[1].title || "empty"}}, at </h3>
+                <h3 class="displayInline" editable-text="Person.affiliation[1].name">{{Person.affiliation[1].name || "empty"}}</h3>
+                <h3 class="displayInline" editable-text="Person.affiliation[1].type">, a {{Person.affiliation[1].type || "empty"}}</h3>
+                <p editable-text="Person.affiliation[1].summary">{{Person.affiliation[1].summary || "empty"}}</p>
             </div>
             <div>
-                <h3 class="displayInline" editable-text="Person.affiliation.group.title">{{Person.affiliation.group.title || "empty"}}, at </h3>
-                <h3 class="displayInline" editable-text="Person.affiliation.group.name">{{Person.affiliation.group.name || "empty"}}</h3>
-                <p editable-text="Person.affiliation.group.summary">{{Person.affiliation.group.summary || "empty"}}</p>
+                <h3 class="displayInline" editable-text="Person.affiliation[2].title">{{Person.affiliation[2].title || "empty"}}, at </h3>
+                <h3 class="displayInline" editable-text="Person.affiliation[2].name">{{Person.affiliation[2].name || "empty"}}</h3>
+                <h3 class="displayInline" editable-text="Person.affiliation[2].type">, a {{Person.affiliation[2].type || "empty"}}</h3>
+                <p editable-text="Person.affiliation[2].summary">{{Person.affiliation[2].summary || "empty"}}</p>
             </div>
         </div>
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Recent News Coverage</h2>
         <div>
-            <h3>Personal News</h3>
-            <p editable-text="Person.newsCoverage.personal.summary">{{Person.newsCoverage.personal.summary || "empty"}}</p>
-            <p>Link to article <a href={{Person.newsCoverage.personal.url}}>{{Person.newsCoverage.personal.url}}</a></p>
+            <h3 editable-text="Person.newsCoverage[0].type">{{Person.newsCoverage[0].type || "empty"}}</h3>
+            <p editable-text="Person.newsCoverage[0].summary">{{Person.newsCoverage[0].summary || "empty"}}</p>
+            <p>Link to article <a href={{Person.newsCoverage[0].url}}>{{Person.newsCoverage[0].url}}</a></p>
         </div>
         <div>
-            <h3>Company News</h3>
-            <p editable-text="Person.newsCoverage.company.summary">{{Person.newsCoverage.company.summary || "empty"}}</p>
-            <p>Link to article <a href={{Person.newsCoverage.company.url}}>{{Person.newsCoverage.company.url}}</a></p>
+            <h3 editable-text="Person.newsCoverage[1].type">{{Person.newsCoverage[1].type || "empty"}}</h3>
+            <p editable-text="Person.newsCoverage[1].summary">{{Person.newsCoverage[1].summary || "empty"}}</p>
+            <p>Link to article <a href={{Person.newsCoverage[1].url}}>{{Person.newsCoverage[1].url}}</a></p>
         </div>
     </div>
     <div class="viewPersonContainer paddingContainer">
