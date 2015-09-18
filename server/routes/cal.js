@@ -12,7 +12,7 @@ var calendar = require('../modules/calendar');
 router.get('/events', function(req, res){
     //Check if authenticated
     if(req.isAuthenticated()) {
-        calendar.getCalendarEvents(req.user.auth.accessToken, req.user.auth.refreshToken, function(err, response) {
+        calendar.getCalendarEvents(req.user, function(err, response) {
             if(err) {
                 res.redirect('/auth/login');
             }

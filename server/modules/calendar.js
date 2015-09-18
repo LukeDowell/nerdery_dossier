@@ -9,10 +9,8 @@ var calendar = google.calendar('v3');
 
 /**
  *
- * @param access
- *      The access token of the user whose calendar you want to access
- * @param refresh
- *      The refresh token of the user whose calendar you want to access
+ * @param user
+ *      The user whose calendar you want to access
  * @param callback
  *      The results callback. Takes in an error and a response, the events are located
  *      in response.items
@@ -23,19 +21,33 @@ var calendar = google.calendar('v3');
  *      singleEvents: Also not sure what this is.
  *      orderBy: Sorting options. The only one I know is 'startTime'
  */
-function getCalendarEvents(access, refresh, callback, options) {
+function getCalendarEvents(user, callback, options) {
+    var params = {};
+    if(options) {
+        params.calendarId = options.calendarId ? options.calendarId : 'primary';
+        params.timeMin = options.timeMin ? options.timeMin : (new Date()).toISOString();
+        params.maxResults = options.maxResults ? options.maxResults : 25;
+        params.singleEvents = options.singleEvents ? options.singleEvents : true;
+        params.orderBy = options.orderBy ? options.orderBy : 'startTime';
+    } else {
+        params.calendarId = 'primary';
+        params.timeMin = (new Date()).toISOString();
+        params.maxResults = 25;
+        params.singleEvents = true;
+        params.orderBy = 'startTime';
+    }
     oauthClient.setCredentials({
-         access_token: access,
-         refresh_token: refresh
+         access_token: user.auth.accessToken,
+         refresh_token: user.auth.refreshToken
     });
     return calendar.events.list(
         {
             auth: oauthClient,
-            calendarId: 'primary',
-            timeMin: (new Date()).toISOString(),
-            maxResults: 25,
-            singleEvents: true,
-            orderBy: 'startTime'
+            calendarId: params.calendarId,
+            timeMin: params.timeMin,
+            maxResults: params.maxResults,
+            singleEvents: params.singleEvents,
+            orderBy: params.orderBy
         },
         callback
     );
@@ -46,7 +58,7 @@ function getCalendarEvents(access, refresh, callback, options) {
  * @param date
  *      The date
  */
-function getAttendees(date) {
+function getAttendees(user, date) {
 
 }
 
