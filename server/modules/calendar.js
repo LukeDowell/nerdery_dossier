@@ -41,6 +41,15 @@ function getCalendarEvents(access, refresh, callback, options) {
     );
 }
 
+/**
+ * Takes in a date and returns all event attendees to events that day
+ * @param date
+ *      The date
+ */
+function getAttendees(date) {
+
+}
+
 module.exports = {
     getCalendarEvents : getCalendarEvents
 };
