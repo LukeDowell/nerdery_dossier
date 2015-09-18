@@ -1,10 +1,30 @@
 var router = require('express').Router();
+var multiparty = require('connect-multiparty')();
 var path = require('path');
+var fs = require('fs');
 
-router.post('/images', function(req, res){
-    console.log("The image uploads are now posting");
-    res.send("Thank you for uploading your image");
+router.post('/image', multiparty, function(req, res){
+    var file = req.files.file;
+    console.log(file.name);
+    console.log(file.type);
+    console.log(file.path);
 
+    var is = fs.createReadStream(file.path);
+    var os = fs.createWriteStream(path.join(__dirname, "../public/assets/images/uploads/", file.name));
+    is.pipe(os);
+
+    is.on('error', function(err) {
+        if(err) {
+            console.log(err);
+        }
+    });
+
+    is.on('end', function() {
+        fs.unlink(file.path, function(err) {
+            console.log(err);
+        });
+        res.sendFile(path.join(__dirname, "../public/assets/images/uploads/", file.name));
+    });
 });
 
 router.post('/new', function(req, res) {
