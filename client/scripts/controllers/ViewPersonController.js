@@ -166,10 +166,8 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
         for (var i = 0; i < array.length; i++){
             if (array[i].current === true){
                 $scope.currentEmployer = array[i];
-                console.log("If statement hit" + array[i]);
             }
         }
-        console.log($scope.currentEmployer);
     };
     findCurrentEmployer($scope.Person.organizations);
 }]);
