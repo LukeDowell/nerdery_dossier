@@ -43,16 +43,25 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
             emailAddress: "newbelgium@gmail.com",
             givenName:    "Jeffrey",
             middleName: "The Dude",
-            familyName:   "Lebowski",
-            websites:    [{name:"New Belgium Brewery", url:"https://www.newbelgium.com/"}]
+            familyName:   "Lebowski"
         },
         organizations: [{
             title:     "Director of Fun",
             name:      "New Belgium Brewery",
             startDate: "9-10-92",
             endDate:   "current",
+            website:   "https://www.newbelgium.com/",
             isPrimary: true,
             current:   true
+        },
+            {
+            title:     "Director of Anything But Fun",
+            name:      "Sad Place, McSadsville",
+            startDate: "12-4-88",
+            endDate:   "9-10-92",
+            website:   "https://myspace.com/sadville",
+            isPrimary: false,
+            current:   false
         }],
         affiliation: [
             {type: "Charity", name: "Doctor's Without Borders, USA", title: "Doctor", summary: "In 1988 he did stuff, lots of stuff, charity like."},
@@ -99,6 +108,7 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
 
 
     //start functions to apply altered data to current person object
+    $scope.currentEmployer = {};
     $scope.addInterest = function() {
         var a = $scope.interestsForm;
         $scope.Person.bio.interests.push({ name: a, isNew: true })
@@ -143,6 +153,24 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
         var w = $scope.zipCodeForm;
         $scope.Person.contact.physicalAddresses.push({ street: t, city: u, state: v, zipCode: w, isNew: true })
     };
+    $scope.addEmployer = function() {
+        var x = $scope.empTitleForm;
+        var y = $scope.empNameForm;
+        var z = $scope.empStartDateForm;
+        var aa = $scope.empEndDateForm;
+        var bb = $scope.empWebsiteForm;
+        $scope.Person.organizations.push({ title: x, name: y, startDate: z, endDate: aa, website: bb, isPrimary: false, current: false, isNew: true })
+    };
     //submit altered person object to DB
     $scope.submit;
+    var findCurrentEmployer = function(array){
+        for (var i = 0; i < array.length; i++){
+            if (array[i].current === true){
+                $scope.currentEmployer = array[i];
+                console.log("If statement hit" + array[i]);
+            }
+        }
+        console.log($scope.currentEmployer);
+    };
+    findCurrentEmployer($scope.Person.organizations);
 }]);

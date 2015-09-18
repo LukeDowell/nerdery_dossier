@@ -11,11 +11,9 @@
                 </div>
                 <p editable-text="Person.contact.middleName">{{fullName}}</p>
                 <div class="positionDiv">
-                    <h3 class="displayInline" editable-text="Person.organizations[0].title">{{Person.organizations[0].title}}</h3>
-                    <h3 class="displayInline"> at <a href={{Person.contact.websites[0].url}}>{{Person.contact.websites[0].name}}</a></h3>
-                    <!--I used [0] as the array index since there was only 1 organization, what do we do when there are more? How to iterate + bind?-->
+                    <h3 class="displayInline">{{currentEmployer.title}}</h3>
+                    <h3 class="displayInline"> at <a href={{currentEmployer.url}}>{{currentEmployer.name}}</a></h3>
                 </div>
-                <p class="topediturl" editable-text="Person.contact.websites[0].url">Edit URL</p>
                 <div>
                     <p class="displayInline" editable-text="Person.organizations[0].startDate">from: {{Person.organizations[0].startDate}}</p>
                     <p class="displayInline" editable-text="Person.organizations[0].endDate"> to {{Person.organizations[0].endDate}}</p>
@@ -71,11 +69,51 @@
         </div>
     </div>
     <div class="viewPersonContainer paddingContainer">
+        <h2 class="sectionLabel">Work History</h2>
+        <div ng-repeat="employer in Person.organizations">
+            <div class="positionDiv">
+                <h3 class="displayInline" editable-text="employer.title" e-form="empTitleForm" shown="true" e-placeholder="Employee Title" ng-click="empTitleForm.$show()" ng-show="!empTitleForm.$visible">{{employer.title}}</h3>
+                <form editable-form name="empTitleForm" shown="$last && employer.isNew" ng-show="empTitleForm.$visible">
+                    <button type="submit">save</button>
+                    <button type="button" ng-click="empTitleForm.$cancel()">cancel</button>
+                </form>
+                <h3 class="displayInline"> at <a href={{employer.website}}>{{employer.name}}</a></h3>
+            </div>
+                <p class="topediturl displayInline" editable-text="employer.name" e-form="empNameForm" shown="true" e-placeholder="Employer Name" ng-click="empNameForm.$show()" ng-show="!empNameForm.$visible">Edit Employer Name /</p>
+                <form editable-form name="empNameForm" shown="$last && employer.isNew" ng-show="empNameForm.$visible">
+                    <button type="submit">save</button>
+                    <button type="button" ng-click="empNameForm.$cancel()">cancel</button>
+                </form>
+                <p class="topediturl displayInline" editable-text="employer.website" e-form="empWebsiteForm" shown="true" e-placeholder="Employer Website" ng-click="empWebsiteForm.$show()" ng-show="!empWebsiteForm.$visible">/ Edit Employer URL</p>
+                <form editable-form name="empWebsiteForm" shown="$last && employer.isNew" ng-show="empWebsiteForm.$visible">
+                    <button type="submit">save</button>
+                    <button type="button" ng-click="empWebsiteForm.$cancel()">cancel</button>
+                </form>
+            <div>
+                <p class="displayInline" editable-text="employer.startDate" e-form="empStartDateForm" shown="true" e-placeholder="Emp Start Date" ng-click="empStartDateForm.$show()" ng-show="!empStartDateForm.$visible">from: {{employer.startDate}}</p>
+                <form editable-form name="empStartDateForm" shown="$last && employer.isNew" ng-show="empStartDateForm.$visible">
+                    <button type="submit">save</button>
+                    <button type="button" ng-click="empStartDateForm.$cancel()">cancel</button>
+                </form>
+                <p class="displayInline" editable-text="employer.endDate" e-form="empEndDateForm" shown="true" e-placeholder="Emp End Date" ng-click="empEndDateForm.$show()" ng-show="!empEndDateForm.$visible"> to {{employer.endDate}}</p>
+                <form editable-form name="empEndDateForm" shown="$last && employer.isNew" ng-show="empEndDateForm.$visible">
+                    <button type="submit">save</button>
+                    <button type="button" ng-click="empEndDateForm.$cancel()">cancel</button>
+                </form>
+            </div>
+        </div>
+        <div class="centerAllTheButtons">
+            <md-button class="centeredViewButton" ng-click="addEmployer()">add</md-button>
+        </div>
+        <br>
+        {{Person.organizations}}
+    </div>
+    <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Summary</h2>
         <div>
-            <p class="displayInline" editable-text="Person.contact.birthday">Birthday: {{Person.bio.birthday || "empty"}}, </p>
-            <p class="displayInline" editable-text="Person.contact.age">{{Person.bio.age || "empty"}} years old, </p>
-            <p class="displayInline" editable-text="Person.contact.gender">{{Person.bio.gender || "empty"}}</p>
+            <p class="displayInline" editable-text="Person.contact.birthday" e-placeholder="Birthdate">Birthday: {{Person.bio.birthday || "empty"}}, </p>
+            <p class="displayInline" editable-text="Person.contact.age" e-placeholder="Age">{{Person.bio.age || "empty"}} years old, </p>
+            <p class="displayInline" editable-text="Person.contact.gender" e-placeholder="Gender">{{Person.bio.gender || "empty"}}</p>
         </div>
         <div ng-repeat="address in Person.contact.physicalAddresses">
             <p class="displayInline" editable-text="address.street" e-form="streetForm" shown="true" e-placeholder="Enter Street" ng-click="streetForm.$show()" ng-show="!streetForm.$visible">{{address.street || "empty"}} </p>
