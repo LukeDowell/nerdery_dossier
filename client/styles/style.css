@@ -2,6 +2,11 @@ h1, h2, h3, h4, h5 {
     font-family: Monda, sans-serif;
 }
 
+.cardDiv {
+    text-align: center;
+
+}
+
 .personCards {
     width: 250px;
     display: inline-block;
@@ -16,8 +21,7 @@ md-toolbar img {
 }
 
 .ngviewbackground {
-    background-image: url("https://nerdery.com/assets/layout/bg_body-c80512dc38953cb82d674ef885397b27.jpg");
-    background-size: 100% 100%;
+        background-image: url(../images/background.jpg);
 }
 
 md-card {
@@ -139,4 +143,21 @@ h3.editable-click, h4.editable-click, h5.editable-click, p.editable-click, li.ed
 
 .rightSocialDiv {
     margin-top: 17px;
+}
+
+/*#photocard {*/
+    /*height: 350px;*/
+/*}*/
+
+.forminputs {
+    background-color: #8a9b92;
+}
+
+.forminputs label{
+   color:#000000;
+}
+
+.md-secondary  {
+    margin-top: 30px;
+    background-color:#423e34;
 }

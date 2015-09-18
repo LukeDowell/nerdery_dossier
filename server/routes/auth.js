@@ -3,16 +3,26 @@
  */
 var router = require('express').Router();
 var passport = require('passport');
+var path = require('path');
+
+/**
+ * Our login page
+ */
+router.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname, "../public", "assets/views/login.html"));
+});
 
 /**
  * Our 'login' url
  */
-router.get('/google',
+router.get('/login',
     passport.authenticate('google',
         {
-            scope: ['https://www.googleapis.com/auth/plus.me',
-                'https://www.googleapis.com/auth/userinfo.email',
-                'https://www.googleapis.com/auth/userinfo.profile'],
+            scope: [
+                'https://www.googleapis.com/auth/plus.login',
+                'https://www.googleapis.com/auth/plus.profile.emails.read',
+                'https://www.googleapis.com/auth/calendar'
+            ],
             accessType: 'offline'
         }
     )
@@ -24,11 +34,9 @@ router.get('/google',
  */
 router.get('/callback',
     passport.authenticate('google', {
-        failureRedirect: '/auth/failed'
-    }),
-    function (req, res) {
-        res.redirect('/auth/success');
-    }
+        failureRedirect: '/auth',
+        successRedirect: '/'
+    })
 );
 
 /**

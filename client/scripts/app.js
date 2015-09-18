@@ -16,6 +16,10 @@ var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages', 'xeditab
                 templateUrl: "/assets/views/routes/viewperson.html",
                 controller: "ViewPersonController"
             })
+            .when('/yoursettings', {
+                templateUrl: "/assets/views/routes/yoursettings.html",
+                controller: "SettingsController"
+            })
             .when('/search', {
                 templateUrl: "/assets/views/routes/searchprofiles.html",
                 controller: "SearchProfileController"

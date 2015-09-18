@@ -8,30 +8,57 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
     googleID: String,
     profileID: String,
-    authentication: {
+    auth: {
         accessToken: String,
         refreshToken: String
     },
     profile: {type: Schema.Types.ObjectId, ref: 'Profile'}
 });
 
+/**
+ * Attempts to find an existing user in our database based on their google id.
+ * If the user does not exist/cannot be found, a new one is created.
+ *
+ * @param access
+ *      The google api access token
+ * @param refresh
+ *      The google api refresh token
+ * @param googleData
+ *      All google data returned from the login callback
+ * @param done
+ *      Callback to pass information to passport
+ */
 UserSchema.statics.findOrCreate = function(access, refresh, googleData, done) {
     this.findOne({
             googleID: googleData.id
         },
-        function(err, result) {
+        function(err, user) {
             if(err) {
                 //Something is broken
                 done(err);
             }
-            if(result) {
+            if(user) {
                 //We have found an existing user
-                done(err, result);
+                //Update access and refresh tokens if they exist
+                if(access) {
+                    console.log("Updating access token");
+                    user.auth.accessToken = access;
+                }
+                if(refresh) {
+                    console.log("Updating refresh token");
+                    user.auth.refreshToken = refresh;
+                }
+                user.save(function(err) {
+                    if(err) {
+                        console.log("Mongoose error occured with User: " + user.googleID);
+                    }
+                    done(err, user);
+                });
             } else {
                 //No user exists
                 //Build the user profile
                 var userProfile = new Profile({
-                    contactInfo: {
+                    contact: {
                         emailAddress: googleData.emails[0].value,
                         givenName: googleData.name.givenName,
                         familyName: googleData.name.familyName
@@ -46,7 +73,7 @@ UserSchema.statics.findOrCreate = function(access, refresh, googleData, done) {
                     result = new User({
                         googleID: googleData.id,
                         profileID: userProfile._id,
-                        authentication: {
+                        auth: {
                             accessToken: access,
                             refreshToken: refresh
                         }
