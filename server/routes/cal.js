@@ -24,4 +24,22 @@ router.get('/events', function(req, res){
     }
 });
 
+/**
+ * Requests all attendees for events occuring today
+ */
+router.get('/attendees', function(req, res) {
+    //Check if authenticated
+    if(req.isAuthenticated()) {
+        calendar.getAttendees(req.user, calendar.time.today, function(err, response) {
+            if(err) {
+                res.redirect('/auth/login');
+            }
+            res.send(response.items);
+        });
+    } else {
+        //If not authenticated, send them to the login page
+        res.redirect('/auth');
+    }
+});
+
 module.exports = router;
