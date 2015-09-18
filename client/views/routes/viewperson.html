@@ -15,19 +15,32 @@
                     <h3 class="displayInline"> at <a href={{Person.contact.websites[0].url}}>{{Person.contact.websites[0].name}}</a></h3>
                     <!--I used [0] as the array index since there was only 1 organization, what do we do when there are more? How to iterate + bind?-->
                 </div>
+                <p class="topediturl" editable-text="Person.contact.websites[0].url">Edit URL</p>
                 <div>
                     <p class="displayInline" editable-text="Person.organizations[0].startDate">from: {{Person.organizations[0].startDate}}</p>
                     <p class="displayInline" editable-text="Person.organizations[0].endDate"> to {{Person.organizations[0].endDate}}</p>
                 </div>
                 <div layout="row" layout-sm="column">
-                <div flex="40">
-                    <p editable-text="Person.contact.emailAddress">{{Person.contact.emailAddress || "empty"}}</p>
-                    <p><a href={{Person.contact.socialMedia.twitter.url}}>{{Person.contact.socialMedia.twitter.handle}}</a> on Twitter</p>
-                </div>
-                <div flex="40">
-                    <p><a href={{Person.contact.socialMedia.linkedIn.url}}>{{Person.contact.socialMedia.linkedIn.id}}</a> on LinkedIn</p>
-                    <p><a href={{Person.contact.socialMedia.facebook.url}}>{{Person.contact.socialMedia.facebook.id}}</a> on Facebook</p>
-                </div>
+                    <div flex="40">
+                        <p editable-text="Person.contact.emailAddress">{{Person.contact.emailAddress || "empty"}}</p>
+                        <div>
+                            <p class="displayInline"><a href={{Person.contact.socialMedia.twitter.url}}>{{Person.contact.socialMedia.twitter.handle}}</a></p>
+                            <p class="displayInline" editable-text="Person.contact.socialMedia.twitter.handle"> on Twitter</p>
+                        </div>
+                        <p class="editurl" editable-text="Person.contact.socialMedia.twitter.url">Edit URL</p>
+                    </div>
+                    <div class="rightSocialDiv" flex="40">
+                        <div>
+                            <p class="displayInline"><a href={{Person.contact.socialMedia.linkedIn.url}}>{{Person.contact.socialMedia.linkedIn.id}}</a></p>
+                            <p class="displayInline" editable-text="Person.contact.socialMedia.linkedIn.id"> on LinkedIn</p>
+                        </div>
+                        <p class="editurl" editable-text="Person.contact.socialMedia.linkedIn.url">Edit URL</p>
+                        <div>
+                            <p class="displayInline"><a href={{Person.contact.socialMedia.facebook.url}}>{{Person.contact.socialMedia.facebook.id}}</a></p>
+                            <p class="displayInline" editable-text="Person.contact.socialMedia.facebook.id"> on Facebook</p>
+                        </div>
+                        <p class="editurl" editable-text="Person.contact.socialMedia.facebook.url">Edit URL</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -184,8 +197,8 @@
                     <button type="button" ng-click="articleSummaryForm.$cancel()">cancel</button>
                 </form>
                 <div>
-                    <p class="displayInline">Link to article <a href={{article.url}}>{{article.url}}, </a></p>
-                    <p class="displayInline" editable-text="article.url" e-form="articleurlForm" shown="true" e-placeholder="Enter URL" ng-click="articleurlForm.$show()" ng-show="!articleurlForm.$visible">Edit</p>
+                    <p class="displayInline">Link to article <a href={{article.url}}>{{article.url}}</a></p>
+                    <p class="editurl" editable-text="article.url" e-form="articleurlForm" shown="true" e-placeholder="Enter URL" ng-click="articleurlForm.$show()" ng-show="!articleurlForm.$visible">Edit URL</p>
                     <form editable-form name="articleurlForm" shown="$last && article.isNew" ng-show="articleurlForm.$visible">
                         <button type="submit">save</button>
                         <button type="button" ng-click="articleurlForm.$cancel()">cancel</button>
