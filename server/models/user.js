@@ -31,14 +31,28 @@ UserSchema.statics.findOrCreate = function(access, refresh, googleData, done) {
     this.findOne({
             googleID: googleData.id
         },
-        function(err, result) {
+        function(err, user) {
             if(err) {
                 //Something is broken
                 done(err);
             }
-            if(result) {
+            if(user) {
                 //We have found an existing user
-                done(err, result);
+                //Update access and refresh tokens if they exist
+                if(access) {
+                    console.log("Updating access token");
+                    user.auth.accessToken = access;
+                }
+                if(refresh) {
+                    console.log("Updating refresh token");
+                    user.auth.refreshToken = refresh;
+                }
+                user.save(function(err) {
+                    if(err) {
+                        console.log("Mongoose error occured with User: " + user.googleID);
+                    }
+                    done(err, user);
+                });
             } else {
                 //No user exists
                 //Build the user profile

@@ -8,22 +8,60 @@ var Profile = require('../models/profile'),
 
 event.build = function(events) {
     for(var i = 0; i < events.length; i++) {
-
         var newEvent = new Event(events[i]);
-
+        console.log("event "+ i)
         for(var j = 0; j < newEvent.attendees.length; j++) {
-           //Check if profile already exists for attendee
-           //console.log("profile search", profileModule.findByEmail(newEvent.attendees[j].email));
+            console.log(j);
+            //find preexisting profile
+            Profile.findOne({'contact.emailAddress' : newEvent.attendees[j].email}, function(err, profile) {
+                if(err) console.log(err);
+                if(profile == null) {
+                    console.log("no profile already exists");
+                }
+                else {
+                    console.log(profile);
+                }
+            });
 
-            //Create new profile
-            var newProfile = profileModule.create(newEvent.attendees[j]);
-           //Add the meeting to our profile then save it to the database
-            newProfile.meetings.push(newEvent);
-            newProfile.save();
-            //Set profile as a member of the event
-            //newEvent.attendees.push({profile : newProfile._id});
+            //create profile if none found
+
+
+            //push profile to event
+
+
+            //push meeting to profile
+
+
+            //save
+
+
+            //Profile.findOne({'contact.emailAddress' : newEvent.attendees[j].email}, function(error, profile) {
+            //    if(profile == null) {
+            //        console.log("profile is null");
+            //        console.log(newEvent.attendees[j]);
+            //        if(newEvent.attendees[j].email && newEvent.attendees[j].displayName){
+            //            profile = profileModule.create(newEvent.attendees[j]);
+            //            profile.meetings.push(newEvent);
+            //            profile.save(function(err) {
+            //                if(err) { console.log("error at new profile save")}
+            //                else {
+            //                    newEvent.attendees[j].profile = profile._id;
+            //                }
+            //            });
+            //
+            //        }
+            //    }
+            //    else {
+            //        profile.meetings.push(newEvent);
+            //        profile.save(function(err) {
+            //            if(err) { console.log("error at new profile save")}
+            //            else {
+            //                newEvent.attendees[j].profile = profile._id;
+            //            }
+            //        });
+            //    }
+            //});
         }
-
         newEvent.save();
     }
 };

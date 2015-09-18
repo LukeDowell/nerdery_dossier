@@ -17,11 +17,30 @@ var calendar = require('../modules/calendar'),
 router.get('/events', function(req, res){
     //Check if authenticated
     if(req.isAuthenticated()) {
-        calendar.getCalendarEvents(req.user.auth.accessToken, req.user.auth.refreshToken, function(err, cal) {
-            console.log(err);
-            console.log(cal);
-            events.build(cal.items);
-            res.send(cal.items);
+        calendar.getCalendarEvents(req.user, function(err, response) {
+            if(err) {
+                res.redirect('/auth/login');
+            }
+            events.build(response.items);
+            res.send(response.items);
+        });
+    } else {
+        //If not authenticated, send them to the login page
+        res.redirect('/auth');
+    }
+});
+
+/**
+ * Requests all attendees for events occuring today
+ */
+router.get('/attendees', function(req, res) {
+    //Check if authenticated
+    if(req.isAuthenticated()) {
+        calendar.getAttendees(req.user, calendar.time.today, function(err, response) {
+            if(err) {
+                res.redirect('/auth/login');
+            }
+            res.send(response.items);
         });
     } else {
         //If not authenticated, send them to the login page
