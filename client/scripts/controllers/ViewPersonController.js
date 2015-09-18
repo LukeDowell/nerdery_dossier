@@ -103,7 +103,6 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
     };
 
     // start client side data manipulation
-    $scope.fullName = $scope.Person.contact.givenName + " " + $scope.Person.contact.middleName + " " + $scope.Person.contact.familyName;
 
 
 

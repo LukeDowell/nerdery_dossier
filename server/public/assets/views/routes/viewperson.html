@@ -9,7 +9,7 @@
                     <h2 class="nameh2" editable-text="Person.contact.givenName">{{Person.contact.givenName || "empty"}} </h2>
                     <h2 class="nameh2" editable-text="Person.contact.familyName">{{Person.contact.familyName || "empty"}}</h2>
                 </div>
-                <p editable-text="Person.contact.middleName">{{fullName}}</p>
+                <p editable-text="Person.contact.middleName">{{Person.contact.givenName}} {{Person.contact.middleName}} {{Person.contact.familyName}}</p>
                 <div class="positionDiv">
                     <h3 class="displayInline">{{currentEmployer.title}}</h3>
                     <h3 class="displayInline"> at <a href={{currentEmployer.website}}>{{currentEmployer.name}}</a></h3>

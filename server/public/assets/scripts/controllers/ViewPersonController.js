@@ -43,7 +43,8 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
             emailAddress: "newbelgium@gmail.com",
             givenName:    "Jeffrey",
             middleName: "The Dude",
-            familyName:   "Lebowski"
+            familyName:   "Lebowski",
+            website: "www.google.com"
         },
         organizations: [{
             title:     "Director of Fun",
@@ -102,7 +103,6 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
     };
 
     // start client side data manipulation
-    $scope.fullName = $scope.Person.contact.givenName + " " + $scope.Person.contact.middleName + " " + $scope.Person.contact.familyName;
 
 
 
