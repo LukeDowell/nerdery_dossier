@@ -22,8 +22,19 @@ md-toolbar img {
 }
 
 .ngviewbackground {
-        background-image: url(../images/background.jpg);
+    background-image: url(../images/background.jpg);
 }
+
+
+html {
+    background: url(../images/background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
 
 md-card {
     text-align: center;
@@ -77,4 +88,35 @@ md-sidenav, md-sidenav.md-locked-open {
 .md-secondary  {
     margin-top: 30px;
     background-color:#423e34;
+    color: #FFFFFF;
+
+}
+
+.thumb {
+    width: 24px;
+    height: 24px;
+    float: none;
+    position: relative;
+    top: 7px;
+}
+
+form .progress {
+    line-height: 15px;
+}
+
+.progress {
+    display: inline-block;
+    width: 100px;
+    border: 3px groove #CCC;
+}
+
+.progress div {
+    font-size: smaller;
+    background: rgb(63,81,181);
+    width: 0;
+}
+
+.upload {
+    height: 100px;
+    width: 100px;
 }

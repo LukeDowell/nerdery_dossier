@@ -4,11 +4,21 @@
             <div layout="row" layout-align="center">
                 <md-card class="forminputs" id="photocard" flex="25">
                     <h4>PHOTO UPLOAD:</h4>
-                <md-input-container>
-                    <label>Photo</label>
-                </md-input-container>
-                <md-button class="md-secondary" ng-click="selectFile()">Select File to Upload</md-button>
-                    <input ng-model="profile.photo" id="#fileToUpload" type="file" style="display:none;">
+                    <md-button class="md-secondary"
+                             type="file"  ngf-select="uploadFiles($file)"
+                               accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">UPLOAD PHOTO
+                    </md-button>
+
+                    <div class="preview">
+                        <img class="upload" ngf-src="file || 'localhost:5000/server/assets/images/image.png'">
+                    </div>
+                    <div style="font:smaller">{{f.name}} {{f.$error}} {{f.$errorParam}}
+                    <span class="progress" ng-show="f.progress >= 0">
+                         <div style="width:{{f.progress}}%"
+                              ng-bind="f.progress + '%'"></div>
+                     </span>
+                    </div>
+                    {{errorMsg}}
                 </md-card>
             <md-card class="forminputs" flex="71">
                 <h4>PERSONAL INFORMATION:</h4>

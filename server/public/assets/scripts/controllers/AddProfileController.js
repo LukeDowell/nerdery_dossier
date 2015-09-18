@@ -1,4 +1,4 @@
-app.controller("AddProfileController", ['$scope','$http', function($scope,$http) {
+app.controller("AddProfileController", ['$scope','$http', 'Upload', '$timeout', function($scope,$http, Upload, $timeout) {
     console.log("This is the Add User Controller Working");
 
     $scope.cleanProfile = {
@@ -54,7 +54,6 @@ app.controller("AddProfileController", ['$scope','$http', function($scope,$http)
     };
 
 
-
 //CLEAR FORM DATA FUNCTION
     var cleanProfile = angular.copy($scope.cleanProfile);
 
@@ -63,4 +62,36 @@ app.controller("AddProfileController", ['$scope','$http', function($scope,$http)
         $scope.profile = angular.copy(cleanProfile);
         $scope.addProfileForm.$setPristine();
     };
+
+//PHOTO UPLOAD SECTION
+
+    $scope.uploadFiles = function(file) {
+        $scope.f = file;
+        if (file && !file.$error) {
+            file.upload = Upload.upload({
+                url: '/profiles/images',
+                method: 'POST',
+                file: file
+            });
+            console.log("we've hit the post");
+
+            file.upload.then(function (response) {
+                $timeout(function () {
+                    file.result = response.data;
+                });
+            }, function (response) {
+                if (response.status > 0)
+                    $scope.errorMsg = response.status + ': ' + response.data;
+            });
+
+            file.upload.progress(function (evt) {
+                file.progress = Math.min(100, parseInt(100.0 *
+                    evt.loaded / evt.total));
+            });
+        }
+    }
+
+
+
 }]);
+
