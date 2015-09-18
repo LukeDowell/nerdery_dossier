@@ -1,30 +1,42 @@
+/**
+ * Created by mikelseverson on 9/16/15.
+ */
 var Profile = require('../models/profile'),
     Event = require('../models/event'),
-    profileBuilder = require('./profiles');
+    profileModule = require('./profiles'),
+    event = {};
 
-//Function will create an empty event and 3 empty profiles
-var createEvent = function() {
-    var newEvent = new Event();
+//Function will create an empty event
+event.create = function() {
+    var newEvent = new Event({
+        summary: "event summary"
+    });
 
     //Simulates iterating through a list of attendees
-    for(var i = 1; i <= 3; i++) {
+    for(var i = 1; i <= 1; i++) {
+
         //Check if profile already exists for attendee
-        //Profile.find({something}, function(err, profile) { newEvent.attendees.push({profile: newProfile});}
+        var foundProfile = profileModule.findByEmail('')
 
         //Create new profile
-        var newProfile = profileBuilder();
+        var newProfile = profileModule.create();
+
         //Add the meeting to our profile then save it to the database
         newProfile.meetings.push(newEvent);
         newProfile.save();
+
         //Set profile as a member of the event
         newEvent.attendees.push({profile : newProfile._id});
     }
+
     //Save event to the database
     newEvent.save();
+
+    return newEvent;
 };
 
-//Will return populated event from event id - unused
-var buildEventById = function(id) {
+//Will return populated event from event id
+event.findEvent = function(id) {
     Event.findById(id)
         .populate('attendees.profile')
         .exec(function(err, event) {
@@ -32,5 +44,35 @@ var buildEventById = function(id) {
         });
 };
 
+event.editEvent = function(id) {
+    Event.findById(id)
+        .populate('atendees.profile')
+        .exec(function(err, event) {
+        })
+}
 
-module.exports = createEvent;
+//Adds an attendee to a preexisting event
+event.addAttendee = function(id, attendee) {
+    Event.findById(id)
+        .populate('attendees.profile')
+        .exec(function(err, event) {
+            event.attendees.push({profile : attendee._id});
+            return event;
+        });
+};
+
+//Removes an attendee to a preexisting event
+event.removeAttendee = function(id, attendee) {
+    Event.findById(id)
+        .populate('attendees.profile')
+        .exec(function(err, event) {
+            return event;
+        });
+};
+
+//Remove event by id
+event.remove = function(id) {
+    Event.findById(id).delete();
+};
+
+module.exports = event;

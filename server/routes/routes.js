@@ -7,6 +7,7 @@ var auth = require('./auth');
 
 function init(app) {
     app.use('/auth', auth);
+    app.use('/data', data);
     app.use('/', index);
     console.log("Routes initialized");
 }
