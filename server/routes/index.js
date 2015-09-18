@@ -3,12 +3,16 @@
  */
 var router = require('express').Router();
 var path = require('path');
-var eventModule = require('../modules/events');
 
-
-
+/**
+ * Wilcard router. Needs authentication to provide anything
+ */
 router.get('/*', function(req, res) {
-    var file = req.params[0] || "assets/views/index.html";
+    var dest = "assets/views/login.html";
+    if(req.isAuthenticated()) {
+        dest = "assets/views/index.html";
+    }
+    var file = req.params[0] || dest;
     res.sendFile(path.join(__dirname, "../public", file));
 });
 

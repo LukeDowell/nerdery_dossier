@@ -6,6 +6,30 @@ var Profile = require('../models/profile'),
     profileModule = require('./profiles'),
     event = {};
 
+event.build = function(events) {
+    for(var i = 0; i < events.length; i++) {
+
+        var newEvent = new Event(events[i]);
+
+        for(var j = 0; j < newEvent.attendees.length; j++) {
+           //Check if profile already exists for attendee
+           //console.log("profile search", profileModule.findByEmail(newEvent.attendees[j].email));
+
+            //Create new profile
+            var newProfile = profileModule.create(newEvent.attendees[j]);
+           //Add the meeting to our profile then save it to the database
+            newProfile.meetings.push(newEvent);
+            newProfile.save();
+            //Set profile as a member of the event
+            //newEvent.attendees.push({profile : newProfile._id});
+        }
+
+        newEvent.save();
+    }
+};
+
+
+
 //Function will create an empty event
 event.create = function() {
     var newEvent = new Event({

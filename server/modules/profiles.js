@@ -6,14 +6,11 @@ var Profile = require('../models/profile'),
     profile = {};
 
 //Create Profile
-profile.create = function() {
+profile.create = function(user) {
     var newProfile = new Profile({
         contact: {
-            givenName: "dsadsdsdsa",
-            emailAddress: "dsadas@gmail.com"
-        },
-        bio: {
-            age: 1
+            givenName: user.displayName,
+            emailAddress: user.email
         }
     });
     newProfile.save(function (err) {
