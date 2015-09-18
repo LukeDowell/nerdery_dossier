@@ -107,7 +107,7 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
 
 
 
-    //start functions to apply altered data to current person object
+    //begin functions to apply altered data to current person object
     $scope.currentEmployer = {};
     $scope.addInterest = function() {
         var a = $scope.interestsForm;
@@ -161,7 +161,6 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
         var bb = $scope.empWebsiteForm;
         $scope.Person.organizations.push({ title: x, name: y, startDate: z, endDate: aa, website: bb, isPrimary: false, current: false, isNew: true })
     };
-    //submit altered person object to DB
     $scope.submit;
     var findCurrentEmployer = function(array){
         for (var i = 0; i < array.length; i++){

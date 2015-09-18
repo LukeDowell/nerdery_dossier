@@ -12,11 +12,11 @@
                 <p editable-text="Person.contact.middleName">{{fullName}}</p>
                 <div class="positionDiv">
                     <h3 class="displayInline">{{currentEmployer.title}}</h3>
-                    <h3 class="displayInline"> at <a href={{currentEmployer.url}}>{{currentEmployer.name}}</a></h3>
+                    <h3 class="displayInline"> at <a href={{currentEmployer.website}}>{{currentEmployer.name}}</a></h3>
                 </div>
                 <div>
-                    <p class="displayInline" editable-text="Person.organizations[0].startDate">from: {{Person.organizations[0].startDate}}</p>
-                    <p class="displayInline" editable-text="Person.organizations[0].endDate"> to {{Person.organizations[0].endDate}}</p>
+                    <p class="displayInline">from: {{currentEmployer.startDate}}</p>
+                    <p class="displayInline"> to {{currentEmployer.endDate}}</p>
                 </div>
                 <div layout="row" layout-sm="column">
                     <div flex="40">
@@ -105,8 +105,6 @@
         <div class="centerAllTheButtons">
             <md-button class="centeredViewButton" ng-click="addEmployer()">add</md-button>
         </div>
-        <br>
-        {{Person.organizations}}
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Summary</h2>
