@@ -102,12 +102,7 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
 
     };
 
-    // start client side data manipulation
-
-
-
-
-    //begin functions to apply altered data to current person object
+    //begin functions to allow xeditable functionality on current person object
     $scope.currentEmployer = {};
     $scope.addInterest = function() {
         var a = $scope.interestsForm;
@@ -161,7 +156,9 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
         var bb = $scope.empWebsiteForm;
         $scope.Person.organizations.push({ title: x, name: y, startDate: z, endDate: aa, website: bb, isPrimary: false, current: false, isNew: true })
     };
-    $scope.submit;
+
+    // start client side data manipulation
+
     var findCurrentEmployer = function(array){
         for (var i = 0; i < array.length; i++){
             if (array[i].current === true){
@@ -170,4 +167,7 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
         }
     };
     findCurrentEmployer($scope.Person.organizations);
+
+    ////start submit function, still needs to be routed, etc.
+    $scope.submit;
 }]);
