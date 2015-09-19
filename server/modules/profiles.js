@@ -9,7 +9,7 @@ var Profile = require('../models/profile'),
 profile.create = function(user) {
     var newProfile = new Profile({
         contact: {
-            emailAddress: user
+            emailAddress: user.email
         }
     });
     newProfile.save(function (err) {
@@ -24,19 +24,18 @@ profile.editById = function(id) {
 };
 
 //Query profile by emailAddress
-profile.findByEmail = function(emailAddress, callback) {
+profile.findByEmail = function(emailAddress) {
     Profile.findOne({'contact.emailAddress' : emailAddress})
         .populate('meetings')
         .exec(function(err, profile) {
-            console.log('profile', profile)
             if(err) console.log(err);
-            return profile, callback;
+            return profile
         });
 };
 
 //Remove a profile
 profile.Remove = function(id) {
-    Profile.findOne({});
+    Profile.findbyId(id).remove();
 };
 
 module.exports = profile;
