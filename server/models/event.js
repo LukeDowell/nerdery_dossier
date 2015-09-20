@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var EventSchema = new Schema({
-    id: String,
+    id: {type : String, unique: true},
     htmlLink: String,
     created: String,
     updated: String,
@@ -18,6 +18,7 @@ var EventSchema = new Schema({
         dateTime: String,
         timeZone: String
     },
+    profiles : [{ type: Schema.ObjectId, ref: 'Profile', unique : true}],
     end: {
         date: String,
         dateTime: String,

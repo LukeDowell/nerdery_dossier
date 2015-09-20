@@ -4,37 +4,57 @@
 var Profile = require('../models/profile'),
     Event = require('../models/event'),
     profileModule = require('./profiles'),
+    calendarModule = require('./calendar'),
     event = {};
 
 
-//Function will create an empty event
+//save an event to database
 event.create = function(event) {
+
+    //Remove any events have have changes
+    Event.findOne({id : event.id}, function(err, storedEvent) {
+        if(err) console.log(err);
+        if(storedEvent) {
+            if(storedEvent.updated == event.updated) {
+                console.log("last updated" + event.updated);
+                return "event already exists and was last updated " + event.updated;
+            }
+            else {
+                storedEvent.remove();
+            }
+        }
+    });
+
     var newEvent = new Event(event);
 
-    console.log(newEvent);
+    if(event.attendees.length > 0) {
+        for(var i = 0; i < event.attendees.length; i++) {
+            var attendee = event.attendees[i];
 
-    //Simulates iterating through a list of attendees
-    for(var i = 0; i < event.attendees.length; i++) {
+            profileModule.findByEmail(attendee.email, function(err, profile) {
+                if(err) console.log(err);
+                else if(profile) {
+                    profile.meetings.push(newEvent);
+                    profile.save();
+                    newEvent.profiles.push(profile._id);
+                    newEvent.save();
+                }
+            });
+            var newProfile = profileModule.create(attendee);
 
-        //Check if profile already exists for attendee
-        //var foundProfile = profileModule.findByEmail('')
-
-        //Create new profile
-        console.log("Sending: ..... " + i , event.attendees[i])
-        var newProfile = profileModule.create(event.attendees[i]);
-
-        //Add the meeting to our profile then save it to the database
-        newProfile.meetings.push(newEvent);
-        newProfile.save();
-
-        //Set profile as a member of the event
-        //newEvent.attendees[i].push({profile : newProfile._id});
+            newProfile.meetings.push(newEvent);
+            newProfile.save();
+            newEvent.profiles.push(newProfile._id);
+            newEvent.save();
+        }
     }
 
-    //Save event to the database
-    newEvent.save();
-
     return newEvent;
+};
+
+//returns all events
+event.queryEvents = function(callback) {
+    return Event.find({}, callback);
 };
 
 //Will return populated event from event id
@@ -49,7 +69,7 @@ event.findEvent = function(id) {
 //Edit an event
 event.editEvent = function(id) {
     Event.findById(id)
-        .populate('atendees.profile')
+        .populate('attendees.profile')
         .exec(function(err, event) {
         })
 };

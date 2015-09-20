@@ -27,11 +27,12 @@ var ProfileSchema = new Schema({
             facebook: {id: String, url: String},
             instagram: {id: String, url: String}
         },
-        emailAddress: {type: String, unique: true, required:true},
-        givenName:    {type: String},
-        middleNames: [{type: String}],
-        familyName:   {type: String},
-        fullName:     {type: String},
+        emailAddress: {type: String, index: true, unique: true},
+        displayName:  String,
+        givenName:    String,
+        middleName:   String,
+        familyName:   String,
+        fullName:     String,
         websites:    [{name:{type:String}, url:{type:String}}]
     },
     organizations: [{

@@ -21,14 +21,9 @@ router.get('/events', function(req, res){
             if(err) {
                 res.redirect('/auth/login');
             }
-            var eventsArray = [];
             response.items.forEach(function(event, index) {
-                console.log(event);
-                var newEvent = events.create(event);
-                console.log("created event #:" + index + " " + newEvent);
-                eventsArray[index] = newEvent;
+                events.create(event);
             });
-
             res.send(response.items);
         });
     } else {

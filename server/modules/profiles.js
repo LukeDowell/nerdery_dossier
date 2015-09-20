@@ -7,15 +7,12 @@ var Profile = require('../models/profile'),
 
 //Create Profile
 profile.create = function(user) {
-    var newProfile = new Profile({
+    return new Profile({
         contact: {
-            emailAddress: user.email
+            emailAddress: user.email,
+            displayName: user.displayName
         }
     });
-    newProfile.save(function (err) {
-        if (err) console.log(err);
-    });
-    return newProfile;
 };
 
 //Edit a preexisting profile
@@ -24,13 +21,9 @@ profile.editById = function(id) {
 };
 
 //Query profile by emailAddress
-profile.findByEmail = function(emailAddress) {
-    Profile.findOne({'contact.emailAddress' : emailAddress})
-        .populate('meetings')
-        .exec(function(err, profile) {
-            if(err) console.log(err);
-            return profile
-        });
+profile.findByEmail = function(emailAddress, callback) {
+    return Profile.findOne({'contact.emailAddress' : emailAddress}, callback)
+        .populate('meetings');
 };
 
 //Remove a profile
