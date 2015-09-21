@@ -1,15 +1,15 @@
-<div class="cardDiv">
-    <div ng-repeat="event in events">
-            <h1>
-                {{event.startTime}}
-            </h1>
-            <md-card class="personCards" ng-repeat="profile in event.attendees" ng-click="editPerson(profile)">
-                <md-card-content>
-                    <img ng-src="{{profile.imageURL}}" height="250" width="220"/>
-                    <h2>{{profile.name}}</h2>
-                    <p>{{profile.email}}</p>
-                </md-card-content>
-            </md-card>
-            <button class="addPerson" ng-click="addPerson(event.startTime)">Add Person</button>
+<div class="eventCard md-padding" ng-repeat="event in events" layout="column" layout-align="space-between start">
+    <h1 layout="row" class="md-title">
+        {{event.startTime}}
+    </h1>
+    <md-button class="md-raised" ng-click="addPerson(event.startTime)">Add Person</md-button>
+    <div layout="row" flex layout-align="space-around center" layout-wrap>
+        <md-card class="personCards" ng-repeat="profile in event.attendees" ng-click="editPerson(profile)">
+            <md-card-content>
+                <img ng-src="{{profile.imageURL}}" height="250" width="220"/>
+                <h2>{{profile.name}}</h2>
+                <p>{{profile.email}}</p>
+            </md-card-content>
+        </md-card>
     </div>
 </div>

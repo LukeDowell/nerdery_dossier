@@ -1,31 +1,18 @@
 /**
  * Created by lukedowell on 9/9/15.
  */
-app.controller("HomeController", function($scope, $http) {
-    $scope.events = [
-        {
-            startTime: "12:00",
-            attendees: {
-                a: {
-                    name: "Luke D",
-                    email: "lukedowell@gmail.com",
-                    imageURL: "http://www.westdean.org.uk/images/profile-placeholder.jpg",
-                    id: "1"
-                },
-                b: {
-                    name: "Board Member",
-                    email: "lukedowell@gmail.com",
-                    imageURL: "http://www.westdean.org.uk/images/profile-placeholder.jpg",
-                    id: "2"
-                },
-                c: {
-                    name: "Some Guy (PR)",
-                    email: "lukedowell@gmail.com",
-                    imageURL: "http://www.westdean.org.uk/images/profile-placeholder.jpg",
-                    id: "3"
-                }
-            }
-        },
+app.controller("HomeController", function($scope, $http, properties) {
+    //Pull all the daily events in
+    $scope.isLoading = true;
+
+    $http.get('/events/today')
+        .then(function(response) {
+
+        }, function(response) {
+           //Error
+        });
+
+    $scope.events =
         {
             startTime: "15:00",
             attendees: {
@@ -42,8 +29,8 @@ app.controller("HomeController", function($scope, $http) {
                     id: "2"
                 }
             }
-        }
-    ];
+        };
+
 
     /**
      * Goes to the add new person page with a predefined start time
@@ -61,5 +48,6 @@ app.controller("HomeController", function($scope, $http) {
      */
     $scope.editPerson = function(person) {
         console.log("Editing person: " + person.name);
+        properties.set("edit-person", person);
     };
 });

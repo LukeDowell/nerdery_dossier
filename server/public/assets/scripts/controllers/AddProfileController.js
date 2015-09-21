@@ -42,18 +42,14 @@ app.controller("AddProfileController", ['$scope','$http', function($scope,$http)
     };
 
 //SUBMIT FORM TO SERVER
-
-
-    $scope.submit = function() {
-        $http.post('/profiles/new').then(function (response) {
-            if (response.status !== 200) {
-                throw new Error("Failed to pull data from the API");
-            }
-            console.log(response);
-        });
-    };
-
-
+$scope.submit = function() {
+    $http.post('/profiles/new').then(function (response) {
+        if (response.status !== 200) {
+            throw new Error("Failed to pull data from the API");
+        }
+        console.log(response);
+    });
+};
 
 //CLEAR FORM DATA FUNCTION
     var cleanProfile = angular.copy($scope.cleanProfile);
