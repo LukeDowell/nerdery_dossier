@@ -6,73 +6,68 @@ var mongoose = require('mongoose'),
 
 var ProfileSchema = new Schema({
     bio: {
-        photo: [String],
-        interests: [String],
+        imageUrl: String,
+        interests: [{name: String}],
         summary: String,
-        demographics: String,
         age: Number,
         birthday: String,
         gender: String
     },
     contact: {
-        physicalAddresses: [{street:{type:String}, city:{type:String}, state:{type:String}, zipCode:{type:Number}, current:Boolean}],
+        physicalAddresses: [{
+            street: String,
+            city: String,
+            state: String,
+            zipCode: Number,
+            current: Boolean
+        }],
         socialMedia: {
             twitter: {handle: String, url: String},
             linkedIn: {id: String, url: String},
             facebook: {id: String, url: String},
             instagram: {id: String, url: String}
         },
-        emailAddress: {type: String, required:true},
-        givenName:    {type: String},
-        middleNames: [{type: String}],
-        familyName:   {type: String},
-        fullName:     {type: String},
-        websites:    [{name:{type:String}, url:{type:String}}]
+        emailAddress: String,
+        phoneNumber: String,
+        fullName: String,
+        website: String
     },
-    organizations: [{
-        title:     {type: String},
-        name:      {type: String},
-        startDate: {type: String},
-        endDate:   {type: String},
-        isPrimary: {type: Boolean},
-        current:   {type: Boolean}
+    workHistory: [{
+        title: String,
+        name: String,
+        startDate: String,
+        endDate: String,
+        current: Boolean
     }],
     affiliation: [{
-        charity: [{name: String, title: String, summary: String}],
-        NFP: [{name: String, title: String, summary: String}],
-        group: [{name: String, title: String, summary: String}]
+        name: String,
+        title: String,
+        summary: String
     }],
     meeting: [{
         date:  String,
         time:  String,
-        notes: String
+        note: String
+    }],
+    events: [{
+        id: String
     }],
     education: [{
         institution: String,
         startDate: String,
         endDate: String,
-        type: String,
-        degree: String,
-        diplomaReceived: Boolean
+        summary: String
     }],
     relationships: [{
-        Name: {},
-        familyMember: Boolean,
-        grandParent: Boolean,
-        parent: Boolean,
-        spouse: Boolean,
-        child: Boolean,
+        name: String,
+        relationship: String,
         summary: String
     }],
     newsCoverage: [{
-        personal: {summary: String, url: String},
-        company: {summary: String, url: String}
-    }],
-    medical: {
         summary: String,
-        complications: String,
-        physicalCharacteristics: String
-    }
+        url: String
+    }],
+    medical: String
 });
 
 module.exports = mongoose.model('Profile', ProfileSchema);
