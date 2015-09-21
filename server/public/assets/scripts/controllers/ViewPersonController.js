@@ -169,5 +169,7 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
     findCurrentEmployer($scope.Person.organizations);
 
     ////start submit function, still needs to be routed, etc.
-    $scope.submit;
+    $scope.submitProfileChanges = function(){
+        //PUT server call, passing in the current/edited Person object
+    };
 }]);
