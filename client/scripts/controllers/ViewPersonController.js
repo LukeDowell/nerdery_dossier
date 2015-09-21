@@ -59,9 +59,9 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
             current:   false
         }],
         affiliation: [
-            {name: "Doctor's Without Borders, USA", title: "Doctor", summary: "In 1988 he did stuff, lots of stuff, charity like."},
-            {name: "Financial Architects Empires", title: "Architect", summary: "Archetectual things, lots of them."},
-            {name: "The National Speleological Society", title: "Spelunker-in-training", summary: "The national caving organization of the USA, with links to all affiliated regions, grottos (clubs), sections, and special interest groups."}
+            {name: "Rug Collecting Afficianados", title: "Doctor", summary: "In 1988 he did stuff, lots of stuff, charity like."},
+            {name: "Bowl for a Cure", title: "Supporter", summary: "Bowling things, all of them."},
+            {name: "Little Lebowski Urban Achievers", title: "President", summary: "That rug really tied the room together."}
         ],
         meeting: [{
             date:  "9-22-15",
@@ -69,10 +69,10 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
             note: "Meet with feeble public access show, and exploit them."
         }],
         education: [{
-            institution: "St. Olaf College",
+            institution: "St. Loaf College",
             startDate: "9-2-91",
             endDate: "5-4-95",
-            summary: "Fine Arts, Bachelor of Fine Arts"
+            summary: "Fine Arts, Maker of fine White Russians"
         }],
         relationships: [{
             name: "Bunny Lebowski",
