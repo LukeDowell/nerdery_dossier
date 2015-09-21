@@ -4,10 +4,11 @@
             <div>
                 <img src={{Person.bio.imageUrl}} height="265" width="200"/>
             </div>
-            <div flex="80" class="contact">
+            <div flex="70" class="contact">
                 <div>
                     <h2 class="nameh2" editable-text="Person.contact.fullName">{{Person.contact.fullName || "empty"}}</h2>
                 </div>
+                <hr>
                 <div class="positionDiv">
                     <h3 class="displayInline">{{currentEmployer.title}}</h3>
                     <h3 class="displayInline"> at {{currentEmployer.name}}</h3>
@@ -16,6 +17,7 @@
                     <p class="displayInline">from: {{currentEmployer.startDate}}</p>
                     <p class="displayInline"> to {{currentEmployer.endDate}}</p>
                 </div>
+                <hr>
                 <div layout="row" layout-sm="column">
                     <div flex="40">
                         <!--add personal website?-->
@@ -27,12 +29,12 @@
                         </div>
                         <p class="editurl" editable-text="Person.contact.socialMedia.twitter.url">Edit URL</p>
                     </div>
-                    <div class="rightSocialDiv" flex="40">
+                    <div flex="40">
                         <div>
                             <p class="displayInline"><a href={{Person.contact.website}}>{{Person.contact.website}}</a></p>
                             <p class="displayInline"> - Personal Website</p>
                         </div>
-                        <p class="editurl" editable-text="Person.contact.website">Edit Personal Website</p>
+                        <p class="editurl" editable-text="Person.contact.website">Edit Web Address</p>
                         <div>
                             <p class="displayInline"><a href={{Person.contact.socialMedia.linkedIn.url}}>{{Person.contact.socialMedia.linkedIn.id}}</a></p>
                             <p class="displayInline" editable-text="Person.contact.socialMedia.linkedIn.id"> on LinkedIn</p>
@@ -50,6 +52,7 @@
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Meetings</h2>
+        <hr>
         <div ng-repeat="meet in Person.meeting">
             <div>
                 <p class="displayInline" editable-text="meet.date" e-form="meetDateForm" shown="true" e-placeholder="Enter Date" ng-click="meetDateForm.$show()" ng-show="!meetDateForm.$visible">Meeting on {{meet.date}}, </p>
@@ -75,6 +78,7 @@
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Work History</h2>
+        <hr>
         <div ng-repeat="employer in Person.workHistory">
             <div class="positionDiv">
                 <h3 class="displayInline" editable-text="employer.title" e-form="empTitleForm" shown="true" e-placeholder="Employee Title" ng-click="empTitleForm.$show()" ng-show="!empTitleForm.$visible">{{employer.title}}</h3>
@@ -99,6 +103,7 @@
                     <button type="submit">save</button>
                     <button type="button" ng-click="empEndDateForm.$cancel()">cancel</button>
                 </form>
+                <hr>
             </div>
         </div>
         <div class="centerAllTheButtons">
@@ -107,6 +112,7 @@
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Summary</h2>
+        <hr>
         <div>
             <p class="displayInline" editable-text="Person.contact.birthday" e-placeholder="Birthdate">Birthday: {{Person.bio.birthday || "empty"}}, </p>
             <p class="displayInline" editable-text="Person.contact.age" e-placeholder="Age">{{Person.bio.age || "empty"}} years old, </p>
@@ -142,6 +148,7 @@
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Interests</h2>
+        <hr>
         <ul class="displayInlineBlock" ng-repeat="note in Person.bio.interests">
             <li editable-text="note.name" e-form="interestsForm" shown="true" e-placeholder="Enter Interest" ng-click="interestsForm.$show()" ng-show="!interestsForm.$visible"> {{note.name}} </li>
             <form editable-form name="interestsForm" shown="$last && note.isNew" ng-show="interestsForm.$visible">
@@ -156,6 +163,7 @@
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Education</h2>
+        <hr>
         <div ng-repeat="school in Person.education">
             <p editable-text="school.institution" e-form="institutionForm" shown="true" e-placeholder="Enter Institution" ng-click="institutionForm.$show()" ng-show="!institutionForm.$visible">{{Person.contact.givenName}}Studied at: {{school.institution || "empty"}} </p>
             <form editable-form name="institutionForm" shown="$last && school.isNew" ng-show="institutionForm.$visible">
@@ -184,6 +192,7 @@
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Affiliations</h2>
+        <hr>
         <div ng-repeat="affiliated in Person.affiliation">
             <div>
                 <h3 class="displayInline" editable-text="affiliated.title" e-form="affiliationTitleForm" shown="true" e-placeholder="Enter Aff. Title" ng-click="affiliationTitleForm.$show()" ng-show="!affiliationTitleForm.$visible">{{affiliated.title || "empty"}}, at </h3>
@@ -209,6 +218,7 @@
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Recent News Coverage</h2>
+        <hr>
         <div ng-repeat="article in Person.newsCoverage">
             <div>
                 <p editable-text="article.summary" e-form="articleSummaryForm" shown="true" e-placeholder="Enter Article Summary" ng-click="articleSummaryForm.$show()" ng-show="!articleSummaryForm.$visible">{{article.summary || "empty"}}</p>
@@ -232,6 +242,7 @@
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Relationships</h2>
+        <hr>
         <div ng-repeat="relation in Person.relationships">
             <div>
                 <h3 class="displayInline" editable-text="relation.name" e-form="nameForm" shown="true" e-placeholder="Enter Rel. Name" ng-click="nameForm.$show()" ng-show="!nameForm.$visible">{{relation.name || "empty"}}, </h3>
@@ -257,6 +268,7 @@
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Medical</h2>
+        <hr>
         <p editable-text="Person.medical.complications">{{Person.medical || "empty"}}</p>
     </div>
     <div class="viewPersonContainer paddingContainer">

@@ -141,10 +141,6 @@ h3.editable-click, h4.editable-click, h5.editable-click, p.editable-click, li.ed
     font-size: 12px;
 }
 
-.rightSocialDiv {
-    margin-top: 17px;
-}
-
 /*#photocard {*/
     /*height: 350px;*/
 /*}*/
@@ -160,4 +156,8 @@ h3.editable-click, h4.editable-click, h5.editable-click, p.editable-click, li.ed
 .md-secondary  {
     margin-top: 30px;
     background-color:#423e34;
+}
+
+hr {
+    border-color: #605a4c;
 }

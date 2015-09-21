@@ -84,7 +84,7 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
             {summary: "Not on the rug, man", url: "http://www.arthurbarrydesigns.com"
 
         }],
-        medical: "Sucks"
+        medical: "Oh, the usual. I bowl. Drive around. The occasional acid flashback."
         ///fakeperson end/////////////////////////////////////////////
     };
 
