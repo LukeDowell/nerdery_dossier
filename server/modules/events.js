@@ -30,7 +30,7 @@ event.create = function(event) {
                 else if(profile) {
                     profile.meetings.push(newEvent);
                     profile.save();
-                    newEvent.profiles.push({profileId: profile._id, displayName: profile.contact.displayName, emailAddress: profile.contact.emailAddress});
+                    newEvent.profiles.push({profileId: profile._id, fullName: profile.contact.fullName, emailAddress: profile.contact.emailAddress});
                     newEvent.save();
                 }
             });
@@ -38,7 +38,7 @@ event.create = function(event) {
             var newProfile = profileModule.create(attendee);
             newProfile.meetings.push(newEvent);
             newProfile.save();
-            newEvent.profiles.push({profileId: newProfile._id, displayName: newProfile.contact.displayName, emailAddress: newProfile.contact.emailAddress});
+            newEvent.profiles.push({profileId: newProfile._id, fullName: newProfile.contact.fullName, emailAddress: newProfile.contact.emailAddress});
             newEvent.save();
         }
     }

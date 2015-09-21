@@ -10,7 +10,7 @@ profile.create = function(user) {
     return new Profile({
         contact: {
             emailAddress: user.email,
-            displayName: user.displayName
+            fullName: user.fullName
         }
     });
 };

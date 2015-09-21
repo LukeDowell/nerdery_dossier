@@ -6,21 +6,20 @@ var mongoose = require('mongoose'),
 
 var ProfileSchema = new Schema({
     bio: {
-        photo: [String],
-        interests: [String],
+        photo: String,
+        interests: [{name : String}],
         summary: String,
-        demographics: String,
         age: Number,
         birthday: String,
         gender: String
     },
     contact: {
         physicalAddresses: [{
-            street:{type:String},
-            city:{type:String},
-            state:{type:String},
-            zipCode:{type:Number},
-            current:Boolean}],
+            street: String,
+            city: String,
+            state: String,
+            zipCode: Number,
+            current: Boolean }],
         socialMedia: {
             twitter: {handle: String, url: String},
             linkedIn: {id: String, url: String},
@@ -28,20 +27,15 @@ var ProfileSchema = new Schema({
             instagram: {id: String, url: String}
         },
         emailAddress: {type: String, index: true, unique: true},
-        displayName:  String,
-        givenName:    String,
-        middleName:   String,
-        familyName:   String,
         fullName:     String,
-        websites:    [{name:{type:String}, url:{type:String}}]
+        website:      String
     },
     organizations: [{
-        title:     {type: String},
-        name:      {type: String},
-        startDate: {type: String},
-        endDate:   {type: String},
-        isPrimary: {type: Boolean},
-        current:   {type: Boolean}
+        title:     String,
+        name:      String,
+        startDate: String,
+        endDate:   String,
+        current:   Boolean
     }],
     affiliation: [{
         name: String, title: String, summary: String, type: String
@@ -51,27 +45,18 @@ var ProfileSchema = new Schema({
         institution: String,
         startDate: String,
         endDate: String,
-        type: String,
-        degree: String
+        summary: String
     }],
     relationships: [{
-        Name: {},
-        familyMember: Boolean,
-        grandParent: Boolean,
-        parent: Boolean,
-        spouse: Boolean,
-        child: Boolean,
+        name: String,
+        relationship: String,
         summary: String
     }],
     newsCoverage: [{
-        personal: {summary: String, url: String},
-        company: {summary: String, url: String}
-    }],
-    medical: {
         summary: String,
-        complications: String,
-        physicalCharacteristics: String
-    }
+        url: String
+    }],
+    medical: String
 });
 
 module.exports = mongoose.model('Profile', ProfileSchema);
