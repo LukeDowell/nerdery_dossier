@@ -38,9 +38,7 @@ app.controller("AddProfileController", ['$scope','$http', 'Upload', '$timeout', 
         affiliation: [
             { name: "", title: "", summary:"" }
         ],
-        events : [{
-            id : "",
-        }],
+        meetingTimes: [" "],
         education: [{
             institution: "",
             startDate: "",

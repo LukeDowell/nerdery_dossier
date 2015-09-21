@@ -1,7 +1,8 @@
 /**
  * Created by lukedowell on 9/9/15.
  */
-var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages','ngFileUpload'])
+
+var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages','ngFileUpload','xeditable'])
     .config(function($routeProvider) {
         $routeProvider
             .when('/home', {
@@ -14,7 +15,7 @@ var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages','ngFileUp
             })
             .when('/view', {
                 templateUrl: "/assets/views/routes/viewperson.html",
-                controller: "HomeController"
+                controller: "ViewPersonController"
             })
             .when('/yoursettings', {
                 templateUrl: "/assets/views/routes/yoursettings.html",
@@ -22,7 +23,7 @@ var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages','ngFileUp
             })
             .when('/search', {
                 templateUrl: "/assets/views/routes/searchprofiles.html",
-                controller: "HomeController"
+                controller: "SearchProfileController"
             })
             .otherwise({
                 redirectTo: '/home'

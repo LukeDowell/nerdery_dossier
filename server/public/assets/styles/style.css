@@ -1,4 +1,3 @@
-
 h1, h2, h3, h4, h5 {
     font-family: Monda, sans-serif;
 }
@@ -40,7 +39,6 @@ md-card {
     text-align: center;
     background-color: #423e34;
     opacity: 0.75;
-
 }
 
 md-card img {
@@ -61,6 +59,7 @@ md-card h3 {
 
 .navButton {
     background-color: #8a9b92;
+    color: #FFFFFF;
 }
 
 .md-fab {
@@ -74,9 +73,93 @@ md-sidenav, md-sidenav.md-locked-open {
     max-width: 220px;
 }
 
+.nameh2 {
+    padding-top: 0;
+    margin-top: 0;
+    display: inline;
+}
+
+.viewPersonContainer {
+    background-color: #423e34;
+    opacity: 0.8;
+    box-shadow: 0 1px 1px 2px #302d27;
+    margin-bottom: 12px;
+}
+
+.viewPersonContainer h3, h4, h5, p, li {
+    color: #FFFFFF;
+}
+
+.viewPersonContainer h2, .viewPersonContainer h2:hover {
+    color: #98bcb8;
+}
+
+.viewPersonContainer a {
+    color: #d7c500;
+}
+
+.paddingContainer {
+    padding: 10px 10px 10px 10px;
+}
+
+.contact {
+    margin-left: 10px;
+}
+
+.editable-click {
+    border-bottom: none;
+}
+
+h3.editable-click, h4.editable-click, h5.editable-click, p.editable-click, li.editable-click, h3.editable-click:hover, h4.editable-click:hover, h5.editable-click:hover, p.editable-click:hover, li.editable-click:hover {
+    color: #FFFFFF;
+}
+
+.displayInline {
+    display: inline;
+}
+
+.displayInlineBlock {
+    display: inline-block;
+}
+
+.positionDiv {
+    margin-bottom: 10px;
+}
+
+.sectionLabel {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.centeredViewButton {
+    background-color: #8a9b92;
+    color: #FFFFFF;
+}
+
+.centerAllTheButtons {
+    text-align: center;
+}
+
+.editurl {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+    font-size: 12px;
+}
+
+.topediturl {
+    padding: 0 0 0 0;
+    margin: -14px 0 14px 0;
+    font-size: 12px;
+}
+
+.rightSocialDiv {
+    margin-top: 17px;
+}
+
 /*#photocard {*/
     /*height: 350px;*/
 /*}*/
+
 .forminputs {
     background-color: #8a9b92;
 }
