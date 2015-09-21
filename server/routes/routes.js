@@ -4,7 +4,7 @@
 var index = require('./index');
 var auth = require('./auth');
 var calendar = require('./cal');
-
+var events = require('./events');
 var profiles = require('./profiles');
 
 /**
@@ -18,6 +18,7 @@ function init(app) {
     //Cascading order
     app.use('/cal', calendar);
     app.use('/auth', auth);
+    app.use('/events', events);
     app.use('/profiles', profiles);
     app.use('/', index);
     console.log("Routes initialized");
