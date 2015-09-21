@@ -1,15 +1,27 @@
+@font-face {
+    font-family: "Stratum 2 Bold";
+    src: url(../fonts/stratum.ttf);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Universe Next";
+    src: url(../fonts/universe.ttf)
+}
+
+/*
+----------------
+    HTML
+    SIDEBAR
+----------------
+*/
+
 h1, h2, h3, h4, h5 {
-    font-family: Monda, sans-serif;
+    font-family: "Stratum 2 Bold", "Arial", "sans-serif"
 }
 
-.cardDiv {
-    text-align: center;
-
-}
-
-.personCards {
-    width: 250px;
-    display: inline-block;
+p {
+    font-family: "Universe Next", "Arial", "sans-serif";
 }
 
 md-toolbar img {
@@ -22,6 +34,33 @@ md-toolbar img {
 
 .ngviewbackground {
         background-image: url(../images/background.jpg);
+}
+
+.navButton {
+    background-color: #8a9b92;
+    color: #FFFFFF;
+}
+
+.md-fab {
+    background-color: #423e34 !important;
+    position: absolute;
+}
+
+md-sidenav, md-sidenav.md-locked-open {
+    width: 220px;
+    min-width: 220px;
+    max-width: 220px;
+}
+/*
+----------------------
+     HOME
+     VIEWPERSON
+----------------------
+*/
+
+.personCards {
+    width: 250px;
+    display: inline-block;
 }
 
 md-card {
@@ -46,27 +85,16 @@ md-card h3 {
     color: #FFFFFF;
 }
 
-.navButton {
-    background-color: #8a9b92;
-    color: #FFFFFF;
-}
-
-.md-fab {
-    background-color: #423e34 !important;
-    position: absolute;
-}
-
-md-sidenav, md-sidenav.md-locked-open {
-    width: 220px;
-    min-width: 220px;
-    max-width: 220px;
-}
-
 .nameh2 {
     padding-top: 0;
     margin-top: 0;
     display: inline;
 }
+/*
+---------------
+    VIEW
+---------------
+*/
 
 .viewPersonContainer {
     background-color: #423e34;
@@ -144,10 +172,6 @@ h3.editable-click, h4.editable-click, h5.editable-click, p.editable-click, li.ed
 .rightSocialDiv {
     margin-top: 17px;
 }
-
-/*#photocard {*/
-    /*height: 350px;*/
-/*}*/
 
 .forminputs {
     background-color: #8a9b92;

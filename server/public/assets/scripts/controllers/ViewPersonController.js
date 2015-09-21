@@ -43,7 +43,8 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
             emailAddress: "newbelgium@gmail.com",
             givenName:    "Jeffrey",
             middleName: "The Dude",
-            familyName:   "Lebowski"
+            familyName:   "Lebowski",
+            website: "www.google.com"
         },
         organizations: [{
             title:     "Director of Fun",
