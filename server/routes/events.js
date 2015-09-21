@@ -3,31 +3,25 @@
  */
 var router = require('express').Router();
 var path = require('path');
-var Event = require('../models/event');
 
+//Models
+var Event = require('../models/event'),
+    Profile = require('../models/profile');
+
+//Modules
+var calendar = require('../modules/calendar');
+
+//returns all events
 router.get('/all', function(req, res) {
-    var parsedResponse = "";
     Event.find({}, function(err, events) {
-        events.forEach(function(event, index) {
-            parsedResponse += event.id + ":";
-            parsedResponse += "</br>";
-            parsedResponse += "</br>";
-
-            parsedResponse += " " + event.attendees;
-            parsedResponse += "</br>";
-            parsedResponse += "</br>";
-
-        });
-        res.send(parsedResponse);
+        res.send(events);
     });
 });
 
-
-
-router.post('/new', function(req, res) {
-    console.log("Hey we have post");
-    res.send("Your new event has successfully been created");
-
+router.get('/today', function(req, res) {
+   calendar.getAttendees(req.user, date, function() {
+       Profile.find()
+   })
 });
 
 module.exports = router;

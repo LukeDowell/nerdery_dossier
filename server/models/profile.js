@@ -49,6 +49,7 @@ var ProfileSchema = new Schema({
         group: [{name: String, title: String, summary: String}]
     }],
     meetings: [{type: Schema.Types.ObjectId, ref: 'Event'}],
+
     education: [{
         institution: String,
         startDate: String,

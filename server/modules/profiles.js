@@ -15,7 +15,7 @@ profile.create = function(user) {
     });
 };
 
-//Edit a preexisting profile
+//Edit profile
 profile.editById = function(id) {
     Profile.findById(id);
 };
