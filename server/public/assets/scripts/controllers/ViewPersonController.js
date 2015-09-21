@@ -125,18 +125,18 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
         $scope.Person.affiliation.push({ name: n, title: o, summary: p, isNew: true })
     };
     $scope.addAddress = function() {
-        var t = $scope.streetForm;
-        var u = $scope.cityForm;
-        var v = $scope.stateForm;
-        var w = $scope.zipCodeForm;
-        $scope.Person.contact.physicalAddress.push({ street: t, city: u, state: v, zipCode: w, isNew: true })
+        var q = $scope.streetForm;
+        var r = $scope.cityForm;
+        var s = $scope.stateForm;
+        var t = $scope.zipCodeForm;
+        $scope.Person.contact.physicalAddress.push({ street: q, city: r, state: s, zipCode: t, isNew: true })
     };
     $scope.addEmployer = function() {
-        var x = $scope.empTitleForm;
-        var y = $scope.empNameForm;
-        var z = $scope.empStartDateForm;
-        var aa = $scope.empEndDateForm;
-        $scope.Person.workHistory.push({ title: x, name: y, startDate: z, endDate: aa, current: false, isNew: true })
+        var u = $scope.empTitleForm;
+        var v = $scope.empNameForm;
+        var w = $scope.empStartDateForm;
+        var x = $scope.empEndDateForm;
+        $scope.Person.workHistory.push({ title: u, name: v, startDate: w, endDate: x, current: false, isNew: true })
     };
 
     // start client side data manipulation
