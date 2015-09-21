@@ -20,9 +20,7 @@ router.get('/all', function(req, res) {
     });
 });
 
-//Returns all events occurring on date
+//todo: Returns all events occurring on date
 
-
-//Deletes event by _id
 
 module.exports = router;

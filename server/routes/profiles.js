@@ -28,6 +28,13 @@ router.get('/get/:emailAddress', function(req, res) {
 router.post('/create', function(req, res) {
     var newProfile = profileModules.create(req.body.user);
     newProfile.save();
+
+    //does an event exist?
+
+    //yes - add profile to event
+
+    //no - create event, add profile, add to event
+
     res.send(newProfile);
 });
 

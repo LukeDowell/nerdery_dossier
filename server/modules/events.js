@@ -16,6 +16,7 @@ event.create = function(event) {
         if(err) console.log(err);
         if(storedEvent) {
             if(storedEvent.updated != event.updated) {
+                // todo: resolve conflicts instead of removing
                 storedEvent.remove();
             }
         }
