@@ -21,6 +21,7 @@
                 <div layout="row" layout-sm="column">
                     <div flex="40">
                         <p editable-text="Person.contact.emailAddress">{{Person.contact.emailAddress || "empty"}}</p>
+                        <p editable-text="Person.contact.phoneNumber">{{Person.contact.phoneNumber || "empty"}}</p>
                         <div>
                             <p class="displayInline"><a href={{Person.contact.socialMedia.twitter.url}}>{{Person.contact.socialMedia.twitter.handle}}</a></p>
                             <p class="displayInline" editable-text="Person.contact.socialMedia.twitter.handle"> on Twitter</p>

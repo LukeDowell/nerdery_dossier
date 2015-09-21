@@ -6,16 +6,21 @@ var mongoose = require('mongoose'),
 
 var ProfileSchema = new Schema({
     bio: {
-        photo: {url: String},
-        interests: [{Name: String}],
+        imageUrl: String,
+        interests: [String],
         summary: String,
-        demographics: String,
         age: Number,
         birthday: String,
         gender: String
     },
     contact: {
-        physicalAddresses: [{street: String, city: String, state: String, zipCode: Number, current:Boolean}],
+        physicalAddress: [{
+            street: String,
+            city: String,
+            state: String,
+            zipCode: Number,
+            current: Boolean
+        }],
         socialMedia: {
             twitter: {handle: String, url: String},
             linkedIn: {id: String, url: String},
@@ -23,22 +28,18 @@ var ProfileSchema = new Schema({
             instagram: {id: String, url: String}
         },
         emailAddress: String,
-        givenName: String,
-        middleNames: String,
-        familyName: String,
+        phoneNumber: String,
+        fullName: String,
         website: String
     },
-    organizations: [{
+    workHistory: [{
         title: String,
         name: String,
         startDate: String,
         endDate: String,
-        website: String,
-        isPrimary: Boolean,
         current: Boolean
     }],
     affiliation: [{
-        type: String,
         name: String,
         title: String,
         summary: String
@@ -48,13 +49,14 @@ var ProfileSchema = new Schema({
         time:  String,
         note: String
     }],
+    events: [{
+        id: String
+    }],
     education: [{
         institution: String,
         startDate: String,
         endDate: String,
-        type: String,
-        degree: String,
-        diplomaReceived: Boolean
+        summary: String
     }],
     relationships: [{
         name: String,
@@ -62,15 +64,10 @@ var ProfileSchema = new Schema({
         summary: String
     }],
     newsCoverage: [{
-        type: String,
         summary: String,
-        url: String,
+        url: String
     }],
-    medical: {
-        summary: String,
-        complications: String,
-        physicalCharacteristics: String
-    }
+    medical: String
 });
 
 module.exports = mongoose.model('Profile', ProfileSchema);
