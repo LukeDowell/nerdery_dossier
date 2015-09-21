@@ -6,8 +6,8 @@ var mongoose = require('mongoose'),
 
 var ProfileSchema = new Schema({
     bio: {
-        photo: [String],
-        interests: [String],
+        photo: {url: String},
+        interests: [{Name: String}],
         summary: String,
         demographics: String,
         age: Number,
@@ -15,37 +15,38 @@ var ProfileSchema = new Schema({
         gender: String
     },
     contact: {
-        physicalAddresses: [{street:{type:String}, city:{type:String}, state:{type:String}, zipCode:{type:Number}, current:Boolean}],
+        physicalAddresses: [{street: String, city: String, state: String, zipCode: Number, current:Boolean}],
         socialMedia: {
             twitter: {handle: String, url: String},
             linkedIn: {id: String, url: String},
             facebook: {id: String, url: String},
             instagram: {id: String, url: String}
         },
-        emailAddress: {type: String, required:true},
-        givenName:    {type: String},
-        middleNames: [{type: String}],
-        familyName:   {type: String},
-        fullName:     {type: String},
-        websites:    [{name:{type:String}, url:{type:String}}]
+        emailAddress: String,
+        givenName: String,
+        middleNames: String,
+        familyName: String,
+        website: String
     },
     organizations: [{
-        title:     {type: String},
-        name:      {type: String},
-        startDate: {type: String},
-        endDate:   {type: String},
-        isPrimary: {type: Boolean},
-        current:   {type: Boolean}
+        title: String,
+        name: String,
+        startDate: String,
+        endDate: String,
+        website: String,
+        isPrimary: Boolean,
+        current: Boolean
     }],
     affiliation: [{
-        charity: [{name: String, title: String, summary: String}],
-        NFP: [{name: String, title: String, summary: String}],
-        group: [{name: String, title: String, summary: String}]
+        type: String,
+        name: String,
+        title: String,
+        summary: String
     }],
     meeting: [{
         date:  String,
         time:  String,
-        notes: String
+        note: String
     }],
     education: [{
         institution: String,
@@ -56,17 +57,14 @@ var ProfileSchema = new Schema({
         diplomaReceived: Boolean
     }],
     relationships: [{
-        Name: {},
-        familyMember: Boolean,
-        grandParent: Boolean,
-        parent: Boolean,
-        spouse: Boolean,
-        child: Boolean,
+        name: String,
+        relationship: String,
         summary: String
     }],
     newsCoverage: [{
-        personal: {summary: String, url: String},
-        company: {summary: String, url: String}
+        type: String,
+        summary: String,
+        url: String,
     }],
     medical: {
         summary: String,
