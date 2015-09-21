@@ -20,10 +20,15 @@ profile.editById = function(id) {
     Profile.findById(id);
 };
 
+//returns all profiles
+profile.getAll = function(callback) {
+    Profile.find({}, callback)
+};
+
 //Query profile by emailAddress
 profile.findByEmail = function(emailAddress, callback) {
-    return Profile.findOne({'contact.emailAddress' : emailAddress}, callback)
-        .populate('meetings');
+    return Profile.findOne({'contact.emailAddress' : emailAddress})
+        .populate('events').exec(callback);
 };
 
 //Remove a profile

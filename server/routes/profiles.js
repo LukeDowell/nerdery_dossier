@@ -1,29 +1,46 @@
-var router = require('express').Router();
-var path = require('path');
-profiles = require('../modules/profiles');
+var router = require('express').Router(),
+    path = require('path');
 
+//Models
+var Event = require('../models/event'),
+    Profile = require('../models/profile');
 
-router.post('/create', function(req, res) {
-    console.log("Hey we have post");
-    res.send("Your new profile has successfully been created");
+//Modules
+var calendarModules = require('../modules/calendar'),
+    eventModules = require('../modules/events'),
+    profileModules = require('../modules/profiles');
+
+//Returns all profile objects with populated meeting information
+router.get('/get', function(req, res) {
+    Profile.find({}).populate('events').exec(function(err, profiles) {
+        res.send(profiles);
+    })
 });
 
-router.get('/email', function(req, res) {
-    profiles.findByEmail('mkseve@gmail.com'), function(err, profile) {
-        console.log(profile);
-        console.log(err);
+//Returns profile associated to email
+router.get('/get/:emailAddress', function(req, res) {
+    profileModules.findByEmail(req.params.emailAddress, function (err, profile) {
         res.send(profile);
-    };
+    });
 });
 
-router.post('/remove', function(req, res) {
-    console.log("Hey we have post");
-    res.send("Your new profile has successfully been created");
+//Creates a profile req.body.user.contact.emailAddress is required
+router.post('/create', function(req, res) {
+    var newProfile = profileModules.create(req.body.user);
+    newProfile.save();
+    res.send(newProfile);
 });
 
-router.post('/edit', function(req, res) {
-    console.log("Hey we have post");
-    res.send("Your new profile has successfully been created");
+//Removes profile with email address
+router.get('/remove/:emailAddress', function(req, res) {
+   profileModules.findByEmail(req.params.emailAddress, function(err, profile) {
+       if(profile) {
+           profile.remove();
+           res.send("profile removed");
+       } else {
+           res.send("Profile not found with email: " + req.params.emailAddress);
+       }
+    });
 });
 
 module.exports = router;

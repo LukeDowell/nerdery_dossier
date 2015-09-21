@@ -28,7 +28,7 @@ event.create = function(event) {
             profileModule.findByEmail(attendee.email, function(err, profile) {
                 if(err) console.log(err);
                 else if(profile) {
-                    profile.meetings.push(newEvent);
+                    profile.events.push(newEvent);
                     profile.save();
                     newEvent.profiles.push({profileId: profile._id, fullName: profile.contact.fullName, emailAddress: profile.contact.emailAddress});
                     newEvent.save();
@@ -36,7 +36,7 @@ event.create = function(event) {
             });
 
             var newProfile = profileModule.create(attendee);
-            newProfile.meetings.push(newEvent);
+            newProfile.events.push(newEvent);
             newProfile.save();
             newEvent.profiles.push({profileId: newProfile._id, fullName: newProfile.contact.fullName, emailAddress: newProfile.contact.emailAddress});
             newEvent.save();

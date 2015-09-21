@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 
 var ProfileSchema = new Schema({
     bio: {
-        photo: String,
+        photo: {url: String},
         interests: [{name : String}],
         summary: String,
         age: Number,
@@ -28,6 +28,7 @@ var ProfileSchema = new Schema({
         },
         emailAddress: {type: String, index: true, unique: true},
         fullName:     String,
+        phoneNumber:  String,
         website:      String
     },
     organizations: [{
@@ -38,9 +39,9 @@ var ProfileSchema = new Schema({
         current:   Boolean
     }],
     affiliation: [{
-        name: String, title: String, summary: String, type: String
+        name: String, title: String, summary: String
     }],
-    meetings: [{type: Schema.Types.ObjectId, ref: 'Event'}],
+    events: [{type: Schema.Types.ObjectId, ref: 'Event'}],
     education: [{
         institution: String,
         startDate: String,

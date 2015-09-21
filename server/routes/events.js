@@ -1,27 +1,28 @@
 /**
  * Created by mikelseverson on 9/18/15.
  */
-var router = require('express').Router();
-var path = require('path');
+var router = require('express').Router(),
+    path = require('path');
 
 //Models
 var Event = require('../models/event'),
     Profile = require('../models/profile');
 
 //Modules
-var calendar = require('../modules/calendar');
+var calendarModules = require('../modules/calendar'),
+    eventModules = require('../modules/events'),
+    profileModules = require('../modules/profiles');
 
-//returns all events
+//Returns all events
 router.get('/all', function(req, res) {
-    Event.find({}, function(err, events) {
-        res.send(events);
+    Event.find({}).populate('profiles.profileId').exec(function(err, events) {
+       res.send(events);
     });
 });
 
-router.get('/today', function(req, res) {
-   calendar.getAttendees(req.user, date, function() {
-       Profile.find()
-   })
-});
+//Returns all events occurring on date
+
+
+//Deletes event by _id
 
 module.exports = router;

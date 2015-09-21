@@ -21,7 +21,7 @@ router.get('/events', function(req, res){
             if(err) {
                 res.redirect('/auth/login');
             }
-            response.items.forEach(function(event, index) {
+            response.items.forEach(function(event) {
                 events.create(event);
             });
             res.send(response.items);
