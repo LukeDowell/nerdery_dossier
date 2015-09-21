@@ -7,14 +7,14 @@ var mongoose = require('mongoose'),
 var ProfileSchema = new Schema({
     bio: {
         imageUrl: String,
-        interests: [String],
+        interests: [{name: String}],
         summary: String,
         age: Number,
         birthday: String,
         gender: String
     },
     contact: {
-        physicalAddress: [{
+        physicalAddresses: [{
             street: String,
             city: String,
             state: String,

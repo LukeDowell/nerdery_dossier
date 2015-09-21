@@ -2,17 +2,15 @@
     <div class="viewPersonContainer">
         <div class="paddingContainer" layout-sm="column" layout-gt-sm="row">
             <div>
-                <img src={{Person.bio.photo.url}} height="265" width="200"/>
+                <img src={{Person.bio.imageUrl}} height="265" width="200"/>
             </div>
             <div flex="80" class="contact">
                 <div>
-                    <h2 class="nameh2" editable-text="Person.contact.givenName">{{Person.contact.givenName || "empty"}} </h2>
-                    <h2 class="nameh2" editable-text="Person.contact.familyName">{{Person.contact.familyName || "empty"}}</h2>
+                    <h2 class="nameh2" editable-text="Person.contact.fullName">{{Person.contact.fullName || "empty"}}</h2>
                 </div>
-                <p editable-text="Person.contact.middleName">{{Person.contact.givenName}} {{Person.contact.middleName}} {{Person.contact.familyName}}</p>
                 <div class="positionDiv">
                     <h3 class="displayInline">{{currentEmployer.title}}</h3>
-                    <h3 class="displayInline"> at <a href={{currentEmployer.website}}>{{currentEmployer.name}}</a></h3>
+                    <h3 class="displayInline"> at {{currentEmployer.name}}</h3>
                 </div>
                 <div>
                     <p class="displayInline">from: {{currentEmployer.startDate}}</p>
@@ -20,6 +18,7 @@
                 </div>
                 <div layout="row" layout-sm="column">
                     <div flex="40">
+                        <!--add personal website?-->
                         <p editable-text="Person.contact.emailAddress">{{Person.contact.emailAddress || "empty"}}</p>
                         <p editable-text="Person.contact.phoneNumber">{{Person.contact.phoneNumber || "empty"}}</p>
                         <div>
@@ -29,6 +28,11 @@
                         <p class="editurl" editable-text="Person.contact.socialMedia.twitter.url">Edit URL</p>
                     </div>
                     <div class="rightSocialDiv" flex="40">
+                        <div>
+                            <p class="displayInline"><a href={{Person.contact.website}}>{{Person.contact.website}}</a></p>
+                            <p class="displayInline"> - Personal Website</p>
+                        </div>
+                        <p class="editurl" editable-text="Person.contact.website">Edit Personal Website</p>
                         <div>
                             <p class="displayInline"><a href={{Person.contact.socialMedia.linkedIn.url}}>{{Person.contact.socialMedia.linkedIn.id}}</a></p>
                             <p class="displayInline" editable-text="Person.contact.socialMedia.linkedIn.id"> on LinkedIn</p>
@@ -71,27 +75,21 @@
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Work History</h2>
-        <div ng-repeat="employer in Person.organizations">
+        <div ng-repeat="employer in Person.workHistory">
             <div class="positionDiv">
                 <h3 class="displayInline" editable-text="employer.title" e-form="empTitleForm" shown="true" e-placeholder="Employee Title" ng-click="empTitleForm.$show()" ng-show="!empTitleForm.$visible">{{employer.title}}</h3>
                 <form editable-form name="empTitleForm" shown="$last && employer.isNew" ng-show="empTitleForm.$visible">
                     <button type="submit">save</button>
                     <button type="button" ng-click="empTitleForm.$cancel()">cancel</button>
                 </form>
-                <h3 class="displayInline"> at <a href={{employer.website}}>{{employer.name}}</a></h3>
-            </div>
-                <p class="topediturl displayInline" editable-text="employer.name" e-form="empNameForm" shown="true" e-placeholder="Employer Name" ng-click="empNameForm.$show()" ng-show="!empNameForm.$visible">Edit Employer Name /</p>
+                <h3 class="displayInline" editable-text="employer.name" e-form="empNameForm" shown="true" e-placeholder="Employer Name" ng-click="empNameForm.$show()" ng-show="!empNameForm.$visible"> at {{employer.name}}</h3>
                 <form editable-form name="empNameForm" shown="$last && employer.isNew" ng-show="empNameForm.$visible">
                     <button type="submit">save</button>
                     <button type="button" ng-click="empNameForm.$cancel()">cancel</button>
                 </form>
-                <p class="topediturl displayInline" editable-text="employer.website" e-form="empWebsiteForm" shown="true" e-placeholder="Employer Website" ng-click="empWebsiteForm.$show()" ng-show="!empWebsiteForm.$visible">/ Edit Employer URL</p>
-                <form editable-form name="empWebsiteForm" shown="$last && employer.isNew" ng-show="empWebsiteForm.$visible">
-                    <button type="submit">save</button>
-                    <button type="button" ng-click="empWebsiteForm.$cancel()">cancel</button>
-                </form>
+            </div>
             <div>
-                <p class="displayInline" editable-text="employer.startDate" e-form="empStartDateForm" shown="true" e-placeholder="Emp Start Date" ng-click="empStartDateForm.$show()" ng-show="!empStartDateForm.$visible">from: {{employer.startDate}}</p>
+                <p class="displayInline" editable-text="employer.startDate" e-form="empStartDateForm" shown="true" e-placeholder="Emp Start Date" ng-click="empStartDateForm.$show()" ng-show="!empStartDateForm.$visible">From: {{employer.startDate}}</p>
                 <form editable-form name="empStartDateForm" shown="$last && employer.isNew" ng-show="empStartDateForm.$visible">
                     <button type="submit">save</button>
                     <button type="button" ng-click="empStartDateForm.$cancel()">cancel</button>
@@ -114,7 +112,7 @@
             <p class="displayInline" editable-text="Person.contact.age" e-placeholder="Age">{{Person.bio.age || "empty"}} years old, </p>
             <p class="displayInline" editable-text="Person.contact.gender" e-placeholder="Gender">{{Person.bio.gender || "empty"}}</p>
         </div>
-        <div ng-repeat="address in Person.contact.physicalAddresses">
+        <div ng-repeat="address in Person.contact.physicalAddress">
             <p class="displayInline" editable-text="address.street" e-form="streetForm" shown="true" e-placeholder="Enter Street" ng-click="streetForm.$show()" ng-show="!streetForm.$visible">{{address.street || "empty"}} </p>
             <form editable-form name="streetForm" shown="$last && address.isNew" ng-show="streetForm.$visible">
                 <button type="submit">save</button>
@@ -159,30 +157,25 @@
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Education</h2>
         <div ng-repeat="school in Person.education">
-            <p class="displayInline" editable-text="school.institution" e-form="institutionForm" shown="true" e-placeholder="Enter Institution" ng-click="institutionForm.$show()" ng-show="!institutionForm.$visible">{{Person.contact.givenName}} studied at {{school.institution || "empty"}} </p>
+            <p editable-text="school.institution" e-form="institutionForm" shown="true" e-placeholder="Enter Institution" ng-click="institutionForm.$show()" ng-show="!institutionForm.$visible">{{Person.contact.givenName}}Studied at: {{school.institution || "empty"}} </p>
             <form editable-form name="institutionForm" shown="$last && school.isNew" ng-show="institutionForm.$visible">
                 <button type="submit">save</button>
                 <button type="button" ng-click="institutionForm.$cancel()">cancel</button>
             </form>
-            <p class="displayInline" editable-text="school.startDate" e-form="startDateForm" shown="true" e-placeholder="Enter Start Date" ng-click="startDateForm.$show()" ng-show="!startDateForm.$visible">from {{school.startDate || "empty"}} to </p>
+            <p editable-text="school.startDate" e-form="startDateForm" shown="true" e-placeholder="Enter Start Date" ng-click="startDateForm.$show()" ng-show="!startDateForm.$visible">From: {{school.startDate || "empty"}}</p>
             <form editable-form name="startDateForm" shown="$last && school.isNew" ng-show="startDateForm.$visible">
                 <button type="submit">save</button>
                 <button type="button" ng-click="startDateForm.$cancel()">cancel</button>
             </form>
-            <p class="displayInline" editable-text="school.endDate" e-form="endDateForm" shown="true" e-placeholder="Enter End Date" ng-click="endDateForm.$show()" ng-show="!endDateForm.$visible">{{school.endDate || "empty"}} </p>
+            <p editable-text="school.endDate" e-form="endDateForm" shown="true" e-placeholder="Enter End Date" ng-click="endDateForm.$show()" ng-show="!endDateForm.$visible">To: {{school.endDate || "empty"}}</p>
             <form editable-form name="endDateForm" shown="$last && school.isNew" ng-show="endDateForm.$visible">
                 <button type="submit">save</button>
                 <button type="button" ng-click="endDateForm.$cancel()">cancel</button>
             </form>
-            <p class="displayInline" editable-text="school.type" e-form="typeForm" shown="true" e-placeholder="Enter Type of School" ng-click="typeForm.$show()" ng-show="!typeForm.$visible">in the School of {{school.type || "empty"}}, </p>
-            <form editable-form name="typeForm" shown="$last && school.isNew" ng-show="typeForm.$visible">
+            <p editable-text="school.summary" e-form="summaryForm" shown="true" e-placeholder="Enter Summary" ng-click="summaryForm.$show()" ng-show="!summaryForm.$visible">{{school.summary || "empty"}}</p>
+            <form editable-form name="summaryForm" shown="$last && school.isNew" ng-show="summaryForm.$visible">
                 <button type="submit">save</button>
-                <button type="button" ng-click="typeForm.$cancel()">cancel</button>
-            </form>
-            <p class="displayInline" editable-text="school.degree" e-form="degreeForm" shown="true" e-placeholder="Enter Degree" ng-click="degreeForm.$show()" ng-show="!degreeForm.$visible">where they earned a {{school.degree || "empty"}}.</p>
-            <form editable-form name="degreeForm" shown="$last && school.isNew" ng-show="degreeForm.$visible">
-                <button type="submit">save</button>
-                <button type="button" ng-click="degreeForm.$cancel()">cancel</button>
+                <button type="button" ng-click="summaryForm.$cancel()">cancel</button>
             </form>
         </div>
         <div class="centerAllTheButtons">
@@ -203,11 +196,6 @@
                     <button type="submit">save</button>
                     <button type="button" ng-click="affiliationNameForm.$cancel()">cancel</button>
                 </form>
-                <h3 class="displayInline" editable-text="affiliated.type" e-form="affiliationTypeForm" shown="true" e-placeholder="Enter Aff. Type" ng-click="affiliationTypeForm.$show()" ng-show="!affiliationTypeForm.$visible">, a {{affiliated.type || "empty"}}</h3>
-                <form editable-form name="affiliationTypeForm" shown="$last && affiliated.isNew" ng-show="affiliationTypeForm.$visible">
-                    <button type="submit">save</button>
-                    <button type="button" ng-click="affiliationTypeForm.$cancel()">cancel</button>
-                </form>
             </div>
             <p editable-text="affiliated.summary" e-form="affiliationSummaryForm" shown="true" e-placeholder="Enter Aff. Summary" ng-click="affiliationSummaryForm.$show()" ng-show="!affiliationSummaryForm.$visible">{{affiliated.summary || "empty"}}</p>
             <form editable-form name="affiliationSummaryForm" shown="$last && affiliated.isNew" ng-show="affiliationSummaryForm.$visible">
@@ -223,11 +211,6 @@
         <h2 class="sectionLabel">Recent News Coverage</h2>
         <div ng-repeat="article in Person.newsCoverage">
             <div>
-                <h3 editable-text="article.type" e-form="articleTypeForm" shown="true" e-placeholder="Enter Article Type" ng-click="articleTypeForm.$show()" ng-show="!articleTypeForm.$visible">{{article.type || "empty"}}</h3>
-                <form editable-form name="articleTypeForm" shown="$last && article.isNew" ng-show="articleTypeForm.$visible">
-                    <button type="submit">save</button>
-                    <button type="button" ng-click="articleTypeForm.$cancel()">cancel</button>
-                </form>
                 <p editable-text="article.summary" e-form="articleSummaryForm" shown="true" e-placeholder="Enter Article Summary" ng-click="articleSummaryForm.$show()" ng-show="!articleSummaryForm.$visible">{{article.summary || "empty"}}</p>
                 <form editable-form name="articleSummaryForm" shown="$last && article.isNew" ng-show="articleSummaryForm.$visible">
                     <button type="submit">save</button>
@@ -274,9 +257,7 @@
     </div>
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Medical</h2>
-        <h3 editable-text="Person.medical.summary">{{Person.medical.summary || "empty"}}</h3>
-        <p editable-text="Person.medical.physicalCharacteristics">{{Person.medical.physicalCharacteristics || "empty"}}</p>
-        <p editable-text="Person.medical.complications">{{Person.medical.complications || "empty"}}</p>
+        <p editable-text="Person.medical.complications">{{Person.medical || "empty"}}</p>
     </div>
     <div class="viewPersonContainer paddingContainer">
         <div class="centerAllTheButtons">

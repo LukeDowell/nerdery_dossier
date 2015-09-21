@@ -23,8 +23,9 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
     $scope.Person = {
     ///fakeperson start///////////////////////////////////////////
         bio: {
-            imageUrl:"http://www.ew.com/sites/default/files/i/imgs/080425/Stoner-Movies/Big-Lebowski-Dude_nl.jpg",
-            interests: ["Bowling", "White Russians"],
+            imageUrl: "http://www.ew.com/sites/default/files/i/imgs/080425/Stoner-Movies/Big-Lebowski-Dude_nl.jpg",
+            interests: [{name: "Bowling"},
+                        {name: "White Russians"}],
             summary: "Way out west there was this fella... fella I wanna tell ya about. Fella by the name of Jeff Lebowski. At least that was the handle his loving parents gave him, but he never had much use for it himself. Mr. Lebowski, he called himself The Dude. Now, Dude - that's a name no one would self-apply where I come from. But then there was a lot about the Dude that didn't make a whole lot of sense.",
             age: 42,
             birthday: "9-15-73",
@@ -40,9 +41,7 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
             },
             emailAddress: "newbelgium@gmail.com",
             phoneNumber: "950-555-5555",
-            givenName:    "Jeffrey",
-            middleName: "The Dude",
-            familyName:   "Lebowski",
+            fullName:   "Jeffrey The Dude Lebowski",
             website: "www.google.com"
         },
         workHistory: [{
@@ -87,8 +86,6 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
         }],
         medical: "Sucks"
         ///fakeperson end/////////////////////////////////////////////
-
-
     };
 
     //begin functions to allow xeditable functionality on current person object
@@ -107,43 +104,39 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
         var e = $scope.institutionForm;
         var f = $scope.startDateForm;
         var g = $scope.endDateForm;
-        var h = $scope.typeForm;
-        var i = $scope.degreeForm;
-        $scope.Person.education.push({ institution: e, startDate: f, endDate: g, type: h, degree: i, isNew: true })
+        var h = $scope.summaryForm;
+        $scope.Person.education.push({ institution: e, startDate: f, endDate: g, summary: h, isNew: true })
     };
     $scope.addRelationship = function() {
-        var j = $scope.nameForm;
-        var k = $scope.relationshipForm;
-        var l = $scope.summaryForm;
-        $scope.Person.relationships.push({ name: j, relationship: k, summary: l, isNew: true })
+        var i = $scope.nameForm;
+        var j = $scope.relationshipForm;
+        var k = $scope.summaryForm;
+        $scope.Person.relationships.push({ name: i, relationship: j, summary: k, isNew: true })
     };
     $scope.addArticle = function() {
-        var m = $scope.articleTypeForm;
-        var n = $scope.articleSummaryForm;
-        var o = $scope.articleurlForm;
-        $scope.Person.newsCoverage.push({ type: m, summary: n, url: o, isNew: true })
+        var l = $scope.articleSummaryForm;
+        var m = $scope.articleurlForm;
+        $scope.Person.newsCoverage.push({ summary: l, url: m, isNew: true })
     };
     $scope.addAffiliation = function() {
-        var p = $scope.affiliationTypeForm;
-        var q = $scope.affiliationNameForm;
-        var r = $scope.affiliationTitleForm;
-        var s = $scope.affiliationSummaryForm;
-        $scope.Person.affiliation.push({ type: p, name: q, title: r, summary: s, isNew: true })
+        var n = $scope.affiliationNameForm;
+        var o = $scope.affiliationTitleForm;
+        var p = $scope.affiliationSummaryForm;
+        $scope.Person.affiliation.push({ name: n, title: o, summary: p, isNew: true })
     };
     $scope.addAddress = function() {
         var t = $scope.streetForm;
         var u = $scope.cityForm;
         var v = $scope.stateForm;
         var w = $scope.zipCodeForm;
-        $scope.Person.contact.physicalAddresses.push({ street: t, city: u, state: v, zipCode: w, isNew: true })
+        $scope.Person.contact.physicalAddress.push({ street: t, city: u, state: v, zipCode: w, isNew: true })
     };
     $scope.addEmployer = function() {
         var x = $scope.empTitleForm;
         var y = $scope.empNameForm;
         var z = $scope.empStartDateForm;
         var aa = $scope.empEndDateForm;
-        var bb = $scope.empWebsiteForm;
-        $scope.Person.organizations.push({ title: x, name: y, startDate: z, endDate: aa, website: bb, isPrimary: false, current: false, isNew: true })
+        $scope.Person.workHistory.push({ title: x, name: y, startDate: z, endDate: aa, current: false, isNew: true })
     };
 
     // start client side data manipulation
@@ -155,7 +148,7 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
             }
         }
     };
-    findCurrentEmployer($scope.Person.organizations);
+    findCurrentEmployer($scope.Person.workHistory);
 
     ////start submit function, still needs to be routed, etc., PUT server call, passing in the current/edited Person object
     $scope.submitProfileChanges = function(){
