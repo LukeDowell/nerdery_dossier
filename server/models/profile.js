@@ -44,19 +44,15 @@ var ProfileSchema = new Schema({
         current:   {type: Boolean}
     }],
     affiliation: [{
-        charity: [{name: String, title: String, summary: String}],
-        NFP: [{name: String, title: String, summary: String}],
-        group: [{name: String, title: String, summary: String}]
+        name: String, title: String, summary: String, type: String
     }],
     meetings: [{type: Schema.Types.ObjectId, ref: 'Event'}],
-
     education: [{
         institution: String,
         startDate: String,
         endDate: String,
         type: String,
-        degree: String,
-        diplomaReceived: Boolean
+        degree: String
     }],
     relationships: [{
         Name: {},

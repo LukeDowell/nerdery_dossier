@@ -20,6 +20,7 @@ event.create = function(event) {
             }
         }
     });
+
     //Create profiles for attendees
     if(event.attendees.length > 0) {
         for(var i = 0; i < event.attendees.length; i++) {
@@ -29,14 +30,15 @@ event.create = function(event) {
                 else if(profile) {
                     profile.meetings.push(newEvent);
                     profile.save();
-                    newEvent.profiles.push({profile: profile._id, displayName: profile.contact.displayName});
+                    newEvent.profiles.push({profileId: profile._id, displayName: profile.contact.displayName, emailAddress: profile.contact.emailAddress});
                     newEvent.save();
                 }
             });
+
             var newProfile = profileModule.create(attendee);
             newProfile.meetings.push(newEvent);
             newProfile.save();
-            newEvent.profiles.push({profile: newProfile._id, displayName: newProfile.contact.displayName});
+            newEvent.profiles.push({profileId: newProfile._id, displayName: newProfile.contact.displayName, emailAddress: newProfile.contact.emailAddress});
             newEvent.save();
         }
     }

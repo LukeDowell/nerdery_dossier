@@ -14,7 +14,7 @@ router.get('/email', function(req, res) {
         console.log(err);
         res.send(profile);
     };
-})
+});
 
 router.post('/remove', function(req, res) {
     console.log("Hey we have post");
