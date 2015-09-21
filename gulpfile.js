@@ -18,7 +18,9 @@ var vendorSources = [
     "node_modules/angular-material/angular-material.min.js",
     "node_modules/angular-route/angular-route.min.js",
     "node_modules/angular-messages/angular-messages.min.js",
-    "node_modules/angular-route/angular-route.min.js.map"
+    "node_modules/angular-route/angular-route.min.js.map",
+    "node_modules/angular-xeditable-0.1.8/css/xeditable.css",
+    "node_modules/angular-xeditable-0.1.8/js/xeditable.min.js"
 ];
 
 //Place any client side sources here
