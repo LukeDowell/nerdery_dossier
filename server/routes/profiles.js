@@ -15,7 +15,7 @@ var calendarModules = require('../modules/calendar'),
 //Handles saving an uploaded image
 router.post('/image', multiparty, function(req, res){
     var file = req.files.file;
-
+    console.log(file.name);
     var is = fs.createReadStream(file.path);
     var os = fs.createWriteStream(path.join(__dirname, "../public/assets/images/uploads/", file.name));
     is.pipe(os);
@@ -24,6 +24,7 @@ router.post('/image', multiparty, function(req, res){
         if(err) {
             console.log(err);
         }
+        res.send(err);
     });
 
     is.on('end', function() {
