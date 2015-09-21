@@ -1,10 +1,34 @@
-app.controller("AddProfileController", ['$scope','$http', 'Upload', '$timeout', function($scope,$http, Upload, $timeout) {
+app.controller("AddProfileController", ['$scope','$http', 'FileUploader', function($scope, $http, FileUploader) {
     console.log("This is the Add User Controller Working");
 
-    $scope.cleanProfile = {
+    /**
+     * ====================
+     * == FILE UPLOADING ==
+     * ====================
+     */
+    $scope.uploader = new FileUploader();
+    $scope.uploader.url = "/profiles/image";
+    $scope.uploader.onAfterAddingFile = function(item) {
+        item.onSuccess = function(response, status, headers) {
+            console.log("Item upload success!");
+            console.log(response);
+            $scope.uploadedUrl = response;
+        };
 
+        item.onError = function(response, status, headers) {
+            console.log("Item upload failed...");
+            console.log("Response:" , response);
+            console.log("Status: " , status);
+            console.log("Headers: " , headers);
+        };
+
+        item.upload();
     };
 
+    //Empty profile for clearing form
+    $scope.cleanProfile = {};
+
+    //Test profile
     $scope.profile = {
         bio : {
             photo: {url:""},
@@ -83,15 +107,11 @@ app.controller("AddProfileController", ['$scope','$http', 'Upload', '$timeout', 
 
     $scope.uploadFiles = function(file) {
         file.upload = Upload.upload({
-            url: 'http://localhost:5000/profiles/image',
+            url: '/profiles/image',
             method: 'POST',
             file: file
         });
-        $scope.fileName = file.name;
         console.log(file.name);
     }
-
-
-
 }]);
 

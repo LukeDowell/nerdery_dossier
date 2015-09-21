@@ -2,61 +2,59 @@
 <form name="addProfileForm">
         <md-content flex-sm="100" flex-gt-sm="90" flex-gt-md="70" flex-gt-lg="50" class="md-whiteframe-z2" >
             <div layout="row" layout-align="center">
-                <md-card class="forminputs" id="photocard" flex="25">
-                    <h4>PHOTO UPLOAD:</h4>
-                    <button type="file" ngf-select="uploadFiles($file)"
-                            accept="image/*" ngf-max-height="1000" ngf-max-size="1MB">
-                        Select File
-                        <img class="imagePreview" ngf-thumbnail="file || '../public/assets/images/uploads/{{fileName}}'"/>
-                    </button>
+                <!-- FILE UPLOAD -->
+                <md-card class="forminputs" flex>
+                    <!-- CONTACT INFORMATION -->
+                    <h4>CONTACT INFORMATION:</h4>
+                     <md-input-container>
+                         <label>Full Name (First, Last):</label>
+                        <input type="text" ng-model="profile.contactInfo.fullName"/>
+                     </md-input-container>
+                    <md-input-container>
+                        <label>Email Address (required field)</label>
+                        <input ng-model="profile.contactInfo.emailAddress" required>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Phone Number</label>
+                        <input ng-model="profile.contactInfo.phoneNumber">
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Twitter Id:</label><input ng-model="profile.socialMedia.twitter" />
+                    </md-input-container>
+                    <md-input-container>
+                        <label> LinkedIn Id:</label><input ng-model="profile.contactInfo.socialMedia.linkedIn.id" />
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Facebook Id:</label><input ng-model="profile.contactInfo.socialMedia.facebook.id" />
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Instagram Id:</label><input ng-model="profile.contactInfo.socialMedia.instagram.id"/>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Personal or Company Website</label>
+                        <input ng-model="profile.contactInfo.website"/>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Street</label>
+                        <input type="text" ng-model="profile.physicalAddress.street"/>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>City</label>
+                        <input ng-model="profile.physicalAddress.city"/>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>State</label>
+                        <input ng-model="profile.physicalAddress.state"/>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Zip Code</label>
+                        <input ng-model="profile.physicalAddress.zipCode"/>
+                    </md-input-container>
                 </md-card>
-            <md-card class="forminputs" flex="71">
-                <h4>CONTACT INFORMATION:</h4>
-                 <md-input-container>
-                     <label>Full Name (First, Last):</label>
-                    <input type="text" ng-model="profile.contactInfo.fullName"/>
-                 </md-input-container>
-                <md-input-container>
-                    <label>Email Address (required field)</label>
-                    <input ng-model="profile.contactInfo.emailAddress" required>
-                </md-input-container>
-                <md-input-container>
-                    <label>Phone Number</label>
-                    <input ng-model="profile.contactInfo.phoneNumber">
-                </md-input-container>
-                <md-input-container>
-                    <label>Twitter Id:</label><input ng-model="profile.socialMedia.twitter" />
-                </md-input-container>
-                <md-input-container>
-                    <label> LinkedIn Id:</label><input ng-model="profile.contactInfo.socialMedia.linkedIn.id" />
-                </md-input-container>
-                <md-input-container>
-                    <label>Facebook Id:</label><input ng-model="profile.contactInfo.socialMedia.facebook.id" />
-                </md-input-container>
-                <md-input-container>
-                    <label>Instagram Id:</label><input ng-model="profile.contactInfo.socialMedia.instagram.id"/>
-                </md-input-container>
-                <md-input-container>
-                    <label>Personal or Company Website</label>
-                    <input ng-model="profile.contactInfo.website"/>
-                </md-input-container>
-                <md-input-container>
-                    <label>Street</label>
-                    <input type="text" ng-model="profile.physicalAddress.street"/>
-                </md-input-container>
-                <md-input-container>
-                    <label>City</label>
-                    <input ng-model="profile.physicalAddress.city"/>
-                </md-input-container>
-                <md-input-container>
-                    <label>State</label>
-                    <input ng-model="profile.physicalAddress.state"/>
-                </md-input-container>
-                <md-input-container>
-                    <label>Zip Code</label>
-                    <input ng-model="profile.physicalAddress.zipCode"/>
-                </md-input-container>
-            </md-card>
+                <md-card class="forminputs" flex="25">
+                    <img ng-src="{{uploadedUrl}}"></img>
+                    <input type="file" nv-file-select uploader="uploader"/><br/>
+                </md-card>
             </div>
 
             <!--This is the bio (interests, summary, demographics, age, birthday, gender) section-->

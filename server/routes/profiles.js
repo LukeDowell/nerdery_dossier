@@ -5,9 +5,6 @@ var fs = require('fs');
 
 router.post('/image', multiparty, function(req, res){
     var file = req.files.file;
-    console.log(file.name);
-    console.log(file.type);
-    console.log(file.path);
 
     var is = fs.createReadStream(file.path);
     var os = fs.createWriteStream(path.join(__dirname, "../public/assets/images/uploads/", file.name));
@@ -23,14 +20,13 @@ router.post('/image', multiparty, function(req, res){
         fs.unlink(file.path, function(err) {
             console.log(err);
         });
-        res.sendFile(path.join(__dirname, "../public/assets/images/uploads/", file.name));
+        res.send("assets/images/uploads/" + file.name);
     });
 });
 
 router.post('/new', function(req, res) {
     console.log("Hey we have post");
     res.send("Your new profile has successfully been created");
-
 });
 
 
