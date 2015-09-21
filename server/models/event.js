@@ -18,7 +18,7 @@ var EventSchema = new Schema({
         dateTime: String,
         timeZone: String
     },
-    profiles : [{ type: Schema.ObjectId, ref: 'Profile', unique : true}],
+    profiles : [{ profile: {type: Schema.ObjectId, ref: 'Profile', unique : true}, displayName: String}],
     end: {
         date: String,
         dateTime: String,

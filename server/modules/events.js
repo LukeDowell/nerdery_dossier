@@ -29,33 +29,18 @@ event.create = function(event) {
                 else if(profile) {
                     profile.meetings.push(newEvent);
                     profile.save();
-                    newEvent.profiles.push(profile._id);
+                    newEvent.profiles.push({profile: profile._id, displayName: profile.contact.displayName});
                     newEvent.save();
                 }
             });
             var newProfile = profileModule.create(attendee);
             newProfile.meetings.push(newEvent);
             newProfile.save();
-            newEvent.profiles.push(newProfile._id);
+            newEvent.profiles.push({profile: newProfile._id, displayName: newProfile.contact.displayName});
             newEvent.save();
         }
     }
     return newEvent;
 };
-
-//Return populated event from event id
-event.findEvent = function(id) {
-    return Event.findById(id)
-        .populate('attendees.profile');
-};
-
-//Edit an event
-event.editEvent = function(id) {
-    Event.findById(id)
-        .populate('attendees.profile')
-        .exec(function(err, event) {
-        })
-};
-
 
 module.exports = event;

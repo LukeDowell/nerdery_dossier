@@ -28,6 +28,9 @@ profile.findByEmail = function(emailAddress, callback) {
 
 //Remove a profile
 profile.Remove = function(id) {
+    //remove profile from all events
+
+    //remove profile
     Profile.findbyId(id).remove();
 };
 
