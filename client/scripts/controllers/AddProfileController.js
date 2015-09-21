@@ -6,39 +6,57 @@ app.controller("AddProfileController", ['$scope','$http', 'Upload', '$timeout', 
     };
 
     $scope.profile = {
-        //googleID: String,
-        //bio : {
-        //    photo: 'https://yt3.ggpht.com/-WyDn0ofyqFs/AAAAAAAAAAI/AAAAAAAAAAA/jJDYIxlkQb4/s150-c-k-no/photo.jpg',
-        //    interests: 'waterpolo',
-        //    summary: 'Blah blah blah',
-        //    demographics: 'what are demographics',
-        //    age: 42,
-        //    birthday: '10/02',
-        //    gender: 'Female'
-        //},
-        contactInfo: {
-            emailAddress: 'nerds@yahoo.com',
-            //givenName: 'Nerd Nerdiness',
-            //middleNames: 'Waldo',
-            //familyName: '',
-            fullName: 'Nerd Nerdiness'
-            //websites: '[www.nerds.com, www.nerdery.com]'
-            //},
-            //organizations: [{
-            //    title: {type: String},
-            //    name: {type: String},
-            //    startDate: {type: String},
-            //    endDate:  {type: String},
-            //    isPrimary: {type: Boolean},
-            //    current: {type: Boolean}
-            //}],
-            //meetings : [{
-            //    date : String,
-            //    time : String,
-            //    notes : String
-            //}],
-            //medicalSummary: String
-        }
+        bio : {
+            photo: {url:""},
+            interests: [{name:" "}],
+            summary: "",
+            demographics: "",
+            age: 42,
+            birthday: "",
+            gender: ""
+        },
+        contact: {
+            physicalAddress: [{street: "",city:"", state:"", zipCode: 55421, current: true}],
+            socialMedia: {
+                twitter: {handle:"", url: ""},
+                linkinIn: {id: "", url: ""},
+                facebook: {id:"", url: ""},
+                instagram: {id:"", url:""},
+                },
+            emailAddress: "",
+            phoneNumber: "",
+            fullName: "",
+            website: ""
+        },
+        workHistory: [{
+            title: "",
+            name: "",
+            startDate: "",
+            endDate:  "",
+            current: true
+        }],
+        affiliation: [
+            { name: "", title: "", summary:"" }
+        ],
+        events : [{
+            id : "",
+        }],
+        education: [{
+            institution: "",
+            startDate: "",
+            endDate:  "",
+            summary: ""
+        }],
+        relationships: [{
+            name: "",
+            relationship: "",
+            summary: ""
+        }],
+        newsCoverage: [
+            { summary: "", url:"" }
+        ],
+        medical: ""
+
     };
 
 //SUBMIT FORM TO SERVER
@@ -71,6 +89,8 @@ app.controller("AddProfileController", ['$scope','$http', 'Upload', '$timeout', 
             method: 'POST',
             file: file
         });
+        $scope.fileName = file.name;
+        console.log(file.name);
     }
 
 
