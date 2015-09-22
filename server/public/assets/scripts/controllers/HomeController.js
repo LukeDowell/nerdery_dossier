@@ -7,7 +7,7 @@ app.controller("HomeController", function($scope, $http, properties) {
 
     $scope.events = {};
 
-    $http.get('/events/all')
+    $http.get('/events/today')
         .then(function(response) {
             console.log(response);
             $scope.events = response.data;

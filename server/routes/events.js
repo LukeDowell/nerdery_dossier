@@ -26,9 +26,9 @@ router.get('/all', function(req, res) {
 router.get('/today', function(req, res) {
     Event.find(
         {
-            startDate: {
-                '$gte': new Date().setHours(0,0,0,0),
-                '$lt': new Date().setHours(23, 59, 59, 999)
+            "startDate": {
+                "$gte": new Date().setHours(0,0,0,0),
+                "$lt": new Date().setHours(23, 59, 59, 999)
             }
         }
     ).populate('profile.profileId')
