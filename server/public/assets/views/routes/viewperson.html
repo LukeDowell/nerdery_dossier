@@ -21,7 +21,7 @@
                 <div layout="row" layout-sm="column">
                     <div flex="40">
                         <!--add personal website?-->
-                        <p editable-text="Person.contact.emailAddress">{{Person.contact.emailAddress || "empty"}}</p>
+                        <p>{{Person.contact.emailAddress}}</p>
                         <p editable-text="Person.contact.phoneNumber">{{Person.contact.phoneNumber || "empty"}}</p>
                         <div>
                             <p class="displayInline"><a href={{Person.contact.socialMedia.twitter.url}}>{{Person.contact.socialMedia.twitter.handle}}</a></p>
@@ -29,7 +29,7 @@
                         </div>
                         <p class="editurl" editable-text="Person.contact.socialMedia.twitter.url">Edit URL</p>
                     </div>
-                    <div flex="40">
+                    <div flex="40" class="rightContactDiv">
                         <div>
                             <p class="displayInline"><a href={{Person.contact.website}}>{{Person.contact.website}}</a></p>
                             <p class="displayInline"> - Personal Website</p>
