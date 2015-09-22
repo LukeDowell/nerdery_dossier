@@ -1,16 +1,15 @@
-<div class="cardDiv">
-    <md-card class="personCards" ng-repeat="people in peopleArray">
-        <md-card-content>
-            <img src="/assets/images/kitten1.jpeg" height="250" width="220"/>
-            <h2>{{people.name}}</h2>
-            <h3>{{people.time}}</h3>
-        </md-card-content>
-        <!--<md-card-footer>-->
-        <!--Card footer-->
-        <!--</md-card-footer>-->
-    </md-card>
-<<<<<<< HEAD
+<div class="eventCard md-padding" ng-repeat="event in events" layout="column" layout-align="space-between start">
+    <h1 layout="row" class="md-title">
+        {{event.startDate | date:"h:mma"}}
+    </h1>
+    <md-button class="md-raised" ng-click="addPerson(event.startTime)">Add Person</md-button>
+    <div layout="row" flex layout-align="space-around center" layout-wrap>
+        <md-card class="personCards" ng-repeat="profile in event.attendees" ng-click="editPerson(profile)">
+            <md-card-content>
+                <img ng-src="{{profile.imageURL}}" height="250" width="220"/>
+                <h2>{{profile.name}}</h2>
+                <p>{{profile.email}}</p>
+            </md-card-content>
+        </md-card>
+    </div>
 </div>
-=======
-</div>
->>>>>>> ec7a7fa96fe137287dfe961823a27f9419fe9fcd

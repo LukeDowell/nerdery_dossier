@@ -1,82 +1,38 @@
 /**
  * Created by lukedowell on 9/9/15.
  */
-app.controller("HomeController", function($scope) {
-    $scope.peopleArray = [
-        {
-            name: "Grumps McGurt",
-            picture: src="/assets/images/kitten1.jpeg",
-            time: "8am"
-        },
-        {
-            name: "Caboose",
-            picture: "yarp",
-            time: "12pm"
-        },
-        {
-            name: "Church",
-            picture: "narp",
-            time: "2pm"
-        },
-        {
-            name: "Tucker",
-            picture: "yarp",
-            time: "12pm"
-        },
-        {
-            name: "Donut",
-            picture: "yarp",
-            time: "2pm"
-        },
-        {
-            name: "Grif",
-            picture: "yarp",
-            time: "1pm"
-        },
-        {
-            name: "Sarge",
-            picture: "maybe",
-            time: "1pm"
-        },
-        {
-            name: "Simmons",
-            picture: "narp",
-            time: "8am"
-        },
-        {
-            name: "Tex",
-            picture: "narp",
-            time: "9am"
-        },
-        {
-            name: "Lopez",
-            picture: "yarp",
-            time: "2pm"
-        },
-        {
-            name: "Washington",
-            picture: "yarp",
-            time: "10am"
-        },
-        {
-            name: "Dakota",
-            picture: "maybe",
-            time: "10am"
-        },
-        {
-            name: "Virginia",
-            picture: "maybe",
-            time: "10am"
-        },
-        {
-            name: "Vic",
-            picture: "yarp",
-            time: "8am"
-        },
-        {
-            name: "Mission Control",
-            picture: "narp",
-            time: "12pm"
-        }
-    ];
+app.controller("HomeController", function($scope, $http, properties) {
+    //Pull all the daily events in
+    $scope.isLoading = true;
+
+    $scope.events = {};
+
+    $http.get('/events/today')
+        .then(function(response) {
+            console.log(response);
+            $scope.events = response.data;
+        }, function(response) {
+           //Error
+            console.log(response);
+        });
+
+
+    /**
+     * Goes to the add new person page with a predefined start time
+     * @param startTime
+     *  The start time
+     */
+    $scope.addPerson = function(startTime) {
+        console.log("Adding person at time: " + startTime);
+    };
+
+    /**
+     * Moves to the edit person view
+     * @param person
+     *      The person we are going to edit
+     */
+    $scope.editPerson = function(person) {
+        console.log("Editing person: " + person.name);
+        properties.set("edit-person", person);
+    };
 });

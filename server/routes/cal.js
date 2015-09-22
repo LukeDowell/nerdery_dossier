@@ -22,9 +22,16 @@ router.get('/events', function(req, res){
                 res.redirect('/auth/login');
             }
             response.items.forEach(function(event) {
+                //Convert ISO strings to date objects
+                var startDate = Date.parse(event.start.dateTime);
+                event.startDate = startDate;
+
+                var endDate = Date.parse(event.end.dateTime);
+                event.endDate = endDate;
+
                 events.create(event);
             });
-            res.send(response.items);
+            res.redirect('/');
         });
     } else {
         //If not authenticated, send them to the login page

@@ -10,7 +10,8 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', function
     //this gets the data from the person profile in database
 
     $scope.submit=function(){
-        $http.get("/").then(function(response) {
+        $http.get("/")
+            .then(function(response) {
             if (response.status !== 200) {
                 throw new Error("Failed to load a person's info from DB");
             }

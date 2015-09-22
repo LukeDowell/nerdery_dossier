@@ -20,7 +20,25 @@ router.get('/all', function(req, res) {
     });
 });
 
-//todo: Returns all events occurring on date
-
+/**
+ * Returns all events occuring today
+ */
+router.get('/today', function(req, res) {
+    Event.find(
+        {
+            "startDate": {
+                "$gte": new Date().setHours(0,0,0,0),
+                "$lt": new Date().setHours(23, 59, 59, 999)
+            }
+        }
+    ).populate('profile.profileId')
+        .exec(function(err, events) {
+            if(err) {
+                console.log(err);
+            }
+            res.send(events);
+        }
+    );
+});
 
 module.exports = router;
