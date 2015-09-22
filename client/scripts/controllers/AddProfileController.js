@@ -1,44 +1,81 @@
-app.controller("AddProfileController", ['$scope','$http', function($scope,$http) {
-    console.log("This is the Add User Controller Working");
+app.controller("AddProfileController", ['$scope','$http', 'FileUploader', function($scope, $http, FileUploader) {
+    //Empty profile for clearing form
+    $scope.cleanProfile = {};
 
-    $scope.cleanProfile = {
+    //Profile Model
+    $scope.profile = {
+        bio : {
+            imageUrl: '',
+            interests: [{name:" "}],
+            summary: "",
+            demographics: "",
+            age: 0,
+            birthday: "",
+            gender: ""
+        },
+        contact: {
+            physicalAddress: [{street: "",city:"", state:"", zipCode: 55421, current: true}],
+            socialMedia: {
+                twitter: {handle:"", url: ""},
+                linkinIn: {id: "", url: ""},
+                facebook: {id:"", url: ""},
+                instagram: {id:"", url:""},
+            },
+            emailAddress: "",
+            phoneNumber: "",
+            fullName: "",
+            website: ""
+        },
+        workHistory: [{
+            title: "",
+            name: "",
+            startDate: "",
+            endDate:  "",
+            current: true
+        }],
+        affiliation: [
+            { name: "", title: "", summary:"" }
+        ],
+        meetingTimes: [" "],
+        education: [{
+            institution: "",
+            startDate: "",
+            endDate:  "",
+            summary: ""
+        }],
+        relationships: [{
+            name: "",
+            relationship: "",
+            summary: ""
+        }],
+        newsCoverage: [
+            { summary: "", url:"" }
+        ],
+        medical: ""
 
     };
 
-    $scope.profile = {
-        //googleID: String,
-        //bio : {
-        //    photo: 'https://yt3.ggpht.com/-WyDn0ofyqFs/AAAAAAAAAAI/AAAAAAAAAAA/jJDYIxlkQb4/s150-c-k-no/photo.jpg',
-        //    interests: 'waterpolo',
-        //    summary: 'Blah blah blah',
-        //    demographics: 'what are demographics',
-        //    age: 42,
-        //    birthday: '10/02',
-        //    gender: 'Female'
-        //},
-        contactInfo: {
-            emailAddress: 'nerds@yahoo.com',
-            //givenName: 'Nerd Nerdiness',
-            //middleNames: 'Waldo',
-            //familyName: '',
-            fullName: 'Nerd Nerdiness'
-            //websites: '[www.nerds.com, www.nerdery.com]'
-            //},
-            //organizations: [{
-            //    title: {type: String},
-            //    name: {type: String},
-            //    startDate: {type: String},
-            //    endDate:  {type: String},
-            //    isPrimary: {type: Boolean},
-            //    current: {type: Boolean}
-            //}],
-            //meetings : [{
-            //    date : String,
-            //    time : String,
-            //    notes : String
-            //}],
-            //medicalSummary: String
-        }
+    /**
+     * ====================
+     * == FILE UPLOADING ==
+     * ====================
+     */
+    $scope.uploader = new FileUploader();
+    $scope.uploader.url = "/profiles/image";
+    $scope.uploader.onAfterAddingFile = function(item) {
+        item.onSuccess = function(response, status, headers) {
+            console.log("Item upload success!");
+            console.log(response);
+            $scope.uploadedUrl = response;
+        };
+
+        item.onError = function(response, status, headers) {
+            console.log("Item upload failed...");
+            console.log("Response:" , response);
+            console.log("Status: " , status);
+            console.log("Headers: " , headers);
+        };
+        item.upload();
     };
 
 //SUBMIT FORM TO SERVER
@@ -59,4 +96,16 @@ $scope.submit = function() {
         $scope.profile = angular.copy(cleanProfile);
         $scope.addProfileForm.$setPristine();
     };
+
+//PHOTO UPLOAD SECTION
+
+    $scope.uploadFiles = function(file) {
+        file.upload = Upload.upload({
+            url: '/profiles/image',
+            method: 'POST',
+            file: file
+        });
+        console.log(file.name);
+    }
 }]);
+

@@ -3,7 +3,12 @@
  */
 
 var router = require('express').Router();
-var calendar = require('../modules/calendar');
+
+
+//Modules
+var calendar = require('../modules/calendar'),
+    events = require('../modules/events'),
+    profiles = require('../modules/profiles');
 
 /**
  * Requests all calendar events from the current logged in
@@ -16,6 +21,9 @@ router.get('/events', function(req, res){
             if(err) {
                 res.redirect('/auth/login');
             }
+            response.items.forEach(function(event) {
+                events.create(event);
+            });
             res.send(response.items);
         });
     } else {

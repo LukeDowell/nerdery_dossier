@@ -11,8 +11,7 @@ var UserSchema = new Schema({
     auth: {
         accessToken: String,
         refreshToken: String
-    },
-    profile: {type: Schema.Types.ObjectId, ref: 'Profile'}
+    }
 });
 
 /**

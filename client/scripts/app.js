@@ -1,7 +1,8 @@
 /**
  * Created by lukedowell on 9/9/15.
  */
-var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages', 'xeditable'])
+
+var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages','angularFileUpload','xeditable'])
     .config(function($routeProvider) {
         $routeProvider
             .when('/home', {

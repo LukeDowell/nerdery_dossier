@@ -34,6 +34,10 @@ p {
     background-color: #8a9b92;
 }
 
+.cardDiv {
+    text-align: center;
+}
+
 md-toolbar img {
     margin: 0 auto 0 auto;
 }
@@ -43,7 +47,16 @@ md-toolbar img {
 }
 
 .ngviewbackground {
-        background-image: url(../images/background.jpg);
+    background-image: url(../images/background.jpg);
+}
+
+
+html {
+    background: url(../images/background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .navButton {
@@ -196,4 +209,37 @@ h3.editable-click, h4.editable-click, h5.editable-click, p.editable-click, li.ed
 .md-secondary  {
     margin-top: 30px;
     background-color:#423e34;
+}
+
+hr {
+    border-color: #605a4c;
+}
+
+.thumb {
+    width: 24px;
+    height: 24px;
+    float: none;
+    position: relative;
+    top: 7px;
+}
+
+form .progress {
+    line-height: 15px;
+}
+
+.progress {
+    display: inline-block;
+    width: 100px;
+    border: 3px groove #CCC;
+}
+
+.progress div {
+    font-size: smaller;
+    background: rgb(63,81,181);
+    width: 0;
+}
+
+.imagePreview {
+    height: 100px;
+    width: 100px;
 }

@@ -3,4 +3,4 @@
 node_modules/
 npm-debug.log
 server/config.js
-
+server/public/assets/images/uploads
