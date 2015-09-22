@@ -66,7 +66,6 @@ function getCalendarEvents(user, callback, options) {
             auth: oauthClient,
             calendarId: params.calendarId,
             timeMin: params.timeMin,
-            timeMax: params.timeMax,
             maxResults: params.maxResults,
             singleEvents: params.singleEvents,
             orderBy: params.orderBy
