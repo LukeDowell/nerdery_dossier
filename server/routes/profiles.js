@@ -29,16 +29,32 @@ router.get('/get/:emailAddress', function(req, res) {
 
 //Creates a profile req.body.user.contact.emailAddress is required
 router.post('/create', function(req, res) {
-    var newProfile = profileModules.create(req.body.user);
-    newProfile.save();
+    //Check profile exists for email
+    profileModules.findByEmail(req.body.contact.email, function(err, profile) {
+        if(profile) {
+            res.send("profile already exists with email");
+        }
+        else {
+            var newProfile = profileModules.build(req.body);
+            newProfile.meetings.forEach(function(meeting) {
+                //if meeting time does exist
+                //add profile to event
+                //add event to profile
 
-    //does an event exist?
+                //if meeting time does not exist
+                //create event
+                //add profile to event
+                //add event to profile
+                newProfile.save();
+            });
+        }
+    });
+});
 
-    //yes - add profile to event
+//Update an existing profile
+router.post('/update', function(req, res) {
+    profileModules.modify(req.body)
 
-    //no - create event, add profile, add to event
-
-    res.send(newProfile);
 });
 
 //Removes profile with email address

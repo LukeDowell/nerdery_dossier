@@ -49,7 +49,12 @@ router.get('/attendees', function(req, res) {
             if(err) {
                 res.redirect('/auth/login');
             }
-            res.send(response.items);
+            else if(response.items) {
+                res.send(response.items);
+            }
+            else {
+                res.send("error");
+            }
         });
     } else {
         //If not authenticated, send them to the login page

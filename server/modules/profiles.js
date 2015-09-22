@@ -5,31 +5,33 @@ var Profile = require('../models/profile'),
     Event = require('../models/event'),
     profile = {};
 
-//Create Profile
+//Create Profile from event object
 profile.create = function(user) {
-    //for each meeting time create an event
-    newProfile = new Profile({
+    var newProfile = new Profile({
         contact: {
             emailAddress: user.email,
             fullName: user.fullName
         }
     });
-
-    newProfile.push
-
     return newProfile;
 };
 
-//Edit profile
-profile.editByEmail = function(emailAddress, user) {
-    Profile.findone({'contact.emailAddress' : emailAddress}, function(err, profile) {
-        if(err) console.log(err);
-        else if (profile) {
-            console.log("Trying to edit profile by email - found email");
+//Build profile from json data
+profile.build = function(data) {
+    var newProfile = new Profile({
+        contact: {
+            emailAddress: data.contact.emailAddress,
+            displayName: data.contact.displayName
         }
-        else {
-            console.log("profile not found")
-        }
+    });
+    return newProfile;
+};
+
+//Update profile
+profile.modify = function(updatedProfile) {
+    this.findByEmail(profile.contact.emailAddress, function(err, storedProfile) {
+        storedProfile = updatedProfile;
+        storedProfile.save();
     })
 };
 

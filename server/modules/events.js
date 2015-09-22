@@ -49,6 +49,9 @@ event.create = function(event) {
             }
         }
     }
+    else {
+        newEvent.save();
+    }
     return newEvent;
 };
 
