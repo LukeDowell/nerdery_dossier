@@ -37,15 +37,18 @@ router.post('/create', function(req, res) {
         else {
             var newProfile = profileModules.build(req.body);
             newProfile.meetings.forEach(function(meeting) {
-                //if meeting time does exist
-                //add profile to event
-                //add event to profile
-
-                //if meeting time does not exist
-                //create event
-                //add profile to event
-                //add event to profile
-                newProfile.save();
+                Event.find({startDate : meeting}, function(error, event) { //todo: <-This
+                    if(event){
+                        //add profile to event
+                        //add event to profile
+                    }
+                    else{
+                        //create event
+                        //add profile to event
+                        //add event to profile
+                    }
+                    newProfile.save();
+                })
             });
         }
     });
@@ -53,8 +56,7 @@ router.post('/create', function(req, res) {
 
 //Update an existing profile
 router.post('/update', function(req, res) {
-    profileModules.modify(req.body)
-
+    profileModules.modify(req.body);
 });
 
 //Removes profile with email address
