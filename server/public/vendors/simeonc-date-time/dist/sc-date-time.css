@@ -466,3 +466,10 @@
     float: left;
   }
 }
+.switch-control.md-button.md-default-theme{
+  background-color: #202020;
+
+}
+.centerDatePicker{
+  margin: auto;
+}
