@@ -13,16 +13,8 @@ var EventSchema = new Schema({
     updated: String,
     summary: String,
     location: String,
-    start: {
-        date: String,
-        dateTime: String,
-        timeZone: String
-    },
-    end: {
-        date: String,
-        dateTime: String,
-        timeZone: String
-    },
+    startDate: Date,
+    endDate: Date,
     creator: {
         id: String,
         email: String,

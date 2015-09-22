@@ -14,7 +14,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', functi
             gender: ""
         },
         contact: {
-            physicalAddress: [{street: "",city:"", state:"", zipCode: 55421, current: true}],
+            physicalAddress: [{street: "",city:"", state:"", zipCode: "", current: true}],
             socialMedia: {
                 twitter: {handle:"", url: ""},
                 linkinIn: {id: "", url: ""},
@@ -31,7 +31,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', functi
             name: "",
             startDate: "",
             endDate:  "",
-            current: true
+            current: false
         }],
         affiliation: [
             { name: "", title: "", summary:"" }

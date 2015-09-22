@@ -5,31 +5,16 @@ app.controller("HomeController", function($scope, $http, properties) {
     //Pull all the daily events in
     $scope.isLoading = true;
 
-    $http.get('/events/today')
-        .then(function(response) {
+    $scope.events = {};
 
+    $http.get('/events/all')
+        .then(function(response) {
+            console.log(response);
+            $scope.events = response.data;
         }, function(response) {
            //Error
+            console.log(response);
         });
-
-    $scope.events =
-        {
-            startTime: "15:00",
-            attendees: {
-                a: {
-                    name: "Maria S",
-                    email: "lukedowell@gmail.com",
-                    imageURL: "http://www.westdean.org.uk/images/profile-placeholder.jpg",
-                    id: "1"
-                },
-                b: {
-                    name: "Mikel S",
-                    email: "lukedowell@gmail.com",
-                    imageURL: "http://www.westdean.org.uk/images/profile-placeholder.jpg",
-                    id: "2"
-                }
-            }
-        };
 
 
     /**
