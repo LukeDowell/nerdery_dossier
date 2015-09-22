@@ -28,7 +28,7 @@ profile.editByEmail = function(emailAddress, user) {
         else {
             console.log("profile not found")
         }
-    })
+    });
 };
 
 //Returns all profiles

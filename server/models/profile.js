@@ -68,8 +68,25 @@ var ProfileSchema = new Schema({
     medical: String
 });
 
+/**
+ * Finds or creates a profile based on a given email address
+ * @param email
+ *      The email address
+ * @param callback
+ *      The response callback
+ */
 ProfileSchema.statics.findOrCreate = function(email, callback) {
-
+    this.findOne({"contact.emailAddress": email}, function(err, profile) {
+        if(err) {
+            //o shit
+            console.log(err);
+        }
+        if(!profile) {
+            //Profile does not exist
+            profile = new Profile({"contact.emailAddress": email});
+        }
+        callback(err, profile);
+    })
 };
 
 var Profile = mongoose.model('Profile', ProfileSchema);

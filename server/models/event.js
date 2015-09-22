@@ -37,7 +37,8 @@ var EventSchema = new Schema({
         optional: Boolean,
         responseStatus: String,
         comment: String,
-        additionalGuests: Number
+        additionalGuests: Number,
+        imageUrl: String
     }]
 });
 
@@ -53,8 +54,15 @@ EventSchema.statics.findOrCreate = function(googleEvent, callback) {
 
         //Set attendee data, imageUrl and name. Associate profile ID with attendee.
         for(var i = 0, length = event.attendees.length; i < length; i++) {
-            
+            Profile.findOrCreate(event.attendees.email, function(err, profile) {
+                if(profile.bio.imageUrl) {
+                    event.attendees.imageUrl = profile.bio.imageUrl;
+                }
+            });
         }
+
+        //Return our event
+        callback(event);
     });
 
     ////Create profiles for attendees
