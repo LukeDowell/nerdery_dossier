@@ -1,9 +1,9 @@
 <div layout="row" flex layout-align="space-around center" layout-wrap>
-    <md-card class="personCards" ng-repeat="profile in event.attendees" ng-click="editPerson(profile)">
+    <md-card class="personCards" ng-repeat="profile in allProfiles" ng-click="editPerson(profile)">
         <md-card-content>
-            <img ng-src="{{profile.imageURL}}" height="250" width="220"/>
-            <h2>{{profile.name}}</h2>
-            <p>{{profile.email}}</p>
+            <img ng-src="{{profile.bio.imageURL}}" height="250" width="220"/>
+            <h2>{{profile.contact.fullName}}</h2>
+            <p>{{profile.contact.emailAddress}}</p>
         </md-card-content>
     </md-card>
 </div>
