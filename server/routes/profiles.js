@@ -9,7 +9,6 @@ var Event = require('../models/event'),
 
 //Modules
 var calendarModules = require('../modules/calendar'),
-    eventModules = require('../modules/events'),
     profileModules = require('../modules/profiles');
 
 

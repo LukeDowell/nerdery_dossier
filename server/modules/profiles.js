@@ -15,8 +15,6 @@ profile.create = function(user) {
         }
     });
 
-    newProfile.push
-
     return newProfile;
 };
 

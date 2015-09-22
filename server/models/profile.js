@@ -68,4 +68,9 @@ var ProfileSchema = new Schema({
     medical: String
 });
 
-module.exports = mongoose.model('Profile', ProfileSchema);
+ProfileSchema.statics.findOrCreate = function(email, callback) {
+
+};
+
+var Profile = mongoose.model('Profile', ProfileSchema);
+module.exports = Profile;
