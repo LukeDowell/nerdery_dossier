@@ -42,7 +42,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', functi
                 twitter: {handle:"", url: ""},
                 linkinIn: {id: "", url: ""},
                 facebook: {id:"", url: ""},
-                instagram: {id:"", url:""},
+                instagram: {id:"", url:""}
                 },
             emailAddress: "",
             phoneNumber: "",
@@ -59,7 +59,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', functi
         affiliation: [
             { name: "", title: "", summary:"" }
         ],
-        meetingTimes: [" "],
+        meeting: {time: ""},
         education: [{
             institution: "",
             startDate: "",

@@ -209,3 +209,7 @@ form .progress {
 .rightContactDiv {
     margin: 15px 0 0 0;
 }
+
+.dateTimeCenter {
+    align: center;
+}
