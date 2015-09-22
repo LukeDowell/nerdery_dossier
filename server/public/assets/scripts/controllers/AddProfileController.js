@@ -7,7 +7,6 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', functi
     $scope.uploader = new FileUploader();
     $scope.uploader.url = "/profiles/image";
     $scope.uploader.onAfterAddingFile = function(item) {
-        item.upload();
         item.onSuccess = function(response, status, headers) {
             console.log("Item upload success!");
             console.log(response);
@@ -20,6 +19,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', functi
             console.log("Status: " , status);
             console.log("Headers: " , headers);
         };
+        item.upload();
     };
 
     //Empty profile for clearing form

@@ -1,7 +1,7 @@
 var router = require('express').Router(),
     path = require('path'),
     fs = require('fs'),
-    multiparty = require('connect-multiparty');
+    multiparty = require('connect-multiparty')();
 
 //Models
 var Event = require('../models/event'),
@@ -12,28 +12,6 @@ var calendarModules = require('../modules/calendar'),
     eventModules = require('../modules/events'),
     profileModules = require('../modules/profiles');
 
-//Handles saving an uploaded image
-router.post('/image', multiparty, function(req, res){
-    var file = req.files.file;
-    console.log(file.name);
-    var is = fs.createReadStream(file.path);
-    var os = fs.createWriteStream(path.join(__dirname, "../public/assets/images/uploads/", file.name));
-    is.pipe(os);
-
-    is.on('error', function(err) {
-        if(err) {
-            console.log(err);
-        }
-        res.send(err);
-    });
-
-    is.on('end', function() {
-        fs.unlink(file.path, function(err) {
-            console.log(err);
-        });
-        res.send("assets/images/uploads/" + file.name);
-    });
-});
 
 //Returns all profile objects with populated meeting information
 router.get('/get', function(req, res) {
@@ -75,6 +53,26 @@ router.get('/remove/:emailAddress', function(req, res) {
     });
 });
 
+//Handles saving an uploaded image
+router.post('/image', multiparty, function(req, res){
+    var file = req.files.file;
+    var is = fs.createReadStream(file.path);
+    var os = fs.createWriteStream(path.join(__dirname, "../public/assets/images/uploads/", file.name));
+    is.pipe(os);
 
+    is.on('error', function(err) {
+        if(err) {
+            console.log(err);
+        }
+        res.send(err);
+    });
+
+    is.on('end', function() {
+        fs.unlink(file.path, function(err) {
+            console.log(err);
+        });
+        res.send("assets/images/uploads/" + file.name);
+    });
+});
 
 module.exports = router;
