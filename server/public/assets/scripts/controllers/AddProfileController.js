@@ -80,22 +80,11 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', functi
 
 //SUBMIT FORM TO SERVER
 $scope.submit = function() {
-<<<<<<< HEAD
-    $http.post('/profiles/create', $scope.profile).then(function (response) {
-        if (response.status !== 200) {
-            //ngDialog.open({template: '<div class="ngdialog-message"> \
-            //An error occurred while creating a new profile. Please try again.</div>',
-            //    plain: 'true'
-            //});
-            console.log("there was an error", response);
-        }
-=======
     $http({
         method: 'POST',
         url: '/profiles/create',
         data: {profile: $scope.profile}
     }).then(function (response) {
->>>>>>> master
         console.log(response);
 
         //ngDialog.open({template: '<div class="ngdialog-message"> \
