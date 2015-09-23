@@ -5,7 +5,7 @@
     </md-input-container>
 
 
-    <md-card class="personCards" ng-repeat="profile in allProfiles | filter:searchProfile" ng-click="editPerson(profile)">
+    <md-card class="personCards" ng-repeat="profile in allProfiles | filter:searchProfile" ng-click="editPerson(profile.contact.emailAddress)">
         <md-card-content>
             <img ng-src="{{profile.bio.imageUrl}}" height="250" width="220"/>
             <h2>{{profile.contact.fullName}}</h2>
