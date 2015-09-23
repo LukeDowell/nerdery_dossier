@@ -82,9 +82,18 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', functi
 $scope.submit = function() {
     $http.post('/profiles/create', $scope.profile).then(function (response) {
         if (response.status !== 200) {
-            throw new Error("Failed to pull data from the API");
+            //ngDialog.open({template: '<div class="ngdialog-message"> \
+            //An error occurred while creating a new profile. Please try again.</div>',
+            //    plain: 'true'
+            //});
+            console.log("there was an error", response);
         }
         console.log(response);
+
+        //ngDialog.open({template: '<div class="ngdialog-message"> \
+			//Your profile has successfully been saved.</div>',
+        //        plain: 'true'
+        //});
     });
 };
 

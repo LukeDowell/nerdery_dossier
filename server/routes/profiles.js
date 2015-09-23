@@ -35,6 +35,7 @@ router.post('/create', function(req, res) {
             res.send("profile already exists with email");
         }
         else {
+            console.log(req.body);
             var newProfile = profileModules.build(req.body);
             if(newProfile.meeting) {
                 newProfile.meeting.forEach(function(meeting) {

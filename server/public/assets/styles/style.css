@@ -251,3 +251,7 @@ form .progress {
 md-content {
     background-color: transparent;
 }
+
+.datePicker {
+    margin: auto;
+}
