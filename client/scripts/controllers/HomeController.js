@@ -38,12 +38,12 @@ app.controller("HomeController", ['$scope', '$http', '$location', 'PropertiesSer
                 headers: {"Content-Type": "application/json;charset=utf-8"}
             }).then(function(res) {
                 //console.log($scope.profilies);
-                PropertiesService.set('currentProfile', res.data);
+                PropertiesService.set('currentProfile', res.data);  //setting the currentProfile in service equal to the clicked Profile
                 //console.log(PropertiesService.get('currentProfile'));
+                $location.path("view");  //Redirecting after data has been updated in ProfilesService
             }, function(error) {
                 console.log(error);
         });
-        $location.path("view");
     };
 
 }]);

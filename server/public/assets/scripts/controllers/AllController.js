@@ -1,7 +1,7 @@
 /**
  * Created by PR on 9/22/15.
  */
-app.controller("AllController", ['$scope', '$http', function($scope, $http){
+app.controller("AllController", ['$scope', '$http', '$location', 'PropertiesService', function($scope, $http, $location, PropertiesService) {
     console.log("All Controller working! We control all...");
     $scope.allProfiles = [];
 
@@ -18,4 +18,20 @@ app.controller("AllController", ['$scope', '$http', function($scope, $http){
     };
     $scope.getAllPeeps();
 
+    $scope.editPerson = function(email){
+        //console.log("Clicked", email);
+
+        $http({ url: '/profiles/get/' + email,
+            method: 'GET',
+            data: email,
+            headers: {"Content-Type": "application/json;charset=utf-8"}
+        }).then(function(res) {
+            //console.log($scope.profilies);
+            PropertiesService.set('currentProfile', res.data); //setting the currentProfile in service equal to the clicked Profile
+            //console.log(PropertiesService.get('currentProfile'));
+            $location.path("view"); //Redirecting after data has been updated in ProfilesService
+        }, function(error) {
+            console.log(error);
+        });
+    };
 }]);
