@@ -12,7 +12,6 @@ var calendarModules = require('../modules/calendar'),
     eventModules = require('../modules/events'),
     profileModules = require('../modules/profiles');
 
-
 //Returns all profile objects with populated meeting information
 router.get('/get', function(req, res) {
     Profile.find({}).populate('events').exec(function(err, profiles) {
@@ -32,29 +31,36 @@ router.post('/create', function(req, res) {
     //Check profile exists for email
     profileModules.findByEmail(req.body.contact.email, function(err, profile) {
         if(profile) {
+            console.log("already exists");
             res.send("profile already exists with email");
         }
         else {
             var newProfile = profileModules.build(req.body);
-            newProfile.meetings.forEach(function(meeting) {
-                Event.find({startDate : meeting}, function(error, event) { //todo: <-This
-                    if(event){
-                        //add profile to event
-                        //add event to profile
-                    }
-                    else{
-                        //create event
-                        //add profile to event
-                        //add event to profile
-                    }
-                    newProfile.save();
-                })
-            });
+            if(newProfile.meeting) {
+                newProfile.meeting.forEach(function(meeting) {
+                    Event.find({startDate : meeting.time}, function(error, event) {
+                        if(event.length >= 1){ //if the query returned any events
+                            //add profile to event
+                            //add event to profile
+                        }
+                        else{
+                            console.log("no event found, adding event at " + meeting.time);
+                            var newEvent = new Event({id: newProfile.contact.emailAddress, startDate : Date.parse(meeting.time)});
+                            newEvent.profiles.push({profileId : newProfile._id});
+                            newEvent.attendees.push({displayName: newProfile.contact.fullName, emailAddress: newProfile.contact.emailAddress});
+                            newProfile.events.push(newEvent._id);
+                            newEvent.save();
+                        }
+                        newProfile.save();
+                    })
+                });
+            }
+            newProfile.save();
         }
     });
 });
 
-//Update an existing profile
+//Update an existing profile //todo: this will replace an existing profile's properties but will maintain
 router.post('/update', function(req, res) {
     profileModules.modify(req.body);
 });
@@ -79,9 +85,7 @@ router.post('/image', multiparty, function(req, res){
     is.pipe(os);
 
     is.on('error', function(err) {
-        if(err) {
-            console.log(err);
-        }
+        if(err) console.log(err);
         res.send(err);
     });
 

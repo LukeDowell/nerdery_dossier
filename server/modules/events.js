@@ -40,7 +40,6 @@ event.create = function(event) {
                         newEvent.save();
                     }
                 });
-
                 var newProfile = profileModule.create(attendee);
                 newProfile.events.push(newEvent);
                 newProfile.save();

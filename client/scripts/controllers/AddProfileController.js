@@ -17,11 +17,11 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', functi
             physicalAddress: [{street: "",city:"", state:"", zipCode: "", current: true}],
             socialMedia: {
                 twitter: {handle:"", url: ""},
-                linkinIn: {id: "", url: ""},
+                linkedIn: {id: "", url: ""},
                 facebook: {id:"", url: ""},
                 instagram: {id:"", url:""}
             },
-            emailAddress: "",
+            emailAddress: "test",
             phoneNumber: "",
             fullName: "",
             website: ""
@@ -80,7 +80,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', functi
 
 //SUBMIT FORM TO SERVER
 $scope.submit = function() {
-    $http.post('/profiles/new').then(function (response) {
+    $http.post('/profiles/create', $scope.profile).then(function (response) {
         if (response.status !== 200) {
             throw new Error("Failed to pull data from the API");
         }
