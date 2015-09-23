@@ -7,7 +7,7 @@ app.controller("AllController", ['$scope', '$http', '$location', 'PropertiesServ
 
     /// time to make the call, for all... profiles, crap.
     $scope.getAllPeeps=function(){
-        $http.get('/profiles/get').then(function(response){
+        $http.get('/profiles/').then(function(response){
             if (response.status !== 200) {
                 console.log("error");
                 throw new Error("Failed to load a person's info from DB");
