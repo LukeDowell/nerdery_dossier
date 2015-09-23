@@ -38,7 +38,8 @@ var EventSchema = new Schema({
         responseStatus: String,
         comment: String,
         additionalGuests: Number,
-        imageUrl: String
+        imageUrl: String,
+        profileId: String
     }]
 });
 
@@ -56,8 +57,9 @@ EventSchema.statics.findOrCreate = function(googleEvent, callback) {
         for(var i = 0, length = event.attendees.length; i < length; i++) {
             Profile.findOrCreate(event.attendees[i].email, function(err, profile) {
                 if(profile.bio.imageUrl) {
-                    event.attendees.imageUrl = profile.bio.imageUrl;
+                    event.attendees[i].imageUrl = profile.bio.imageUrl;
                 }
+                event.attendees[i].profileId = profile._id;
 
                 //Save if this is the last profile
                 if(i == length) {
@@ -71,30 +73,6 @@ EventSchema.statics.findOrCreate = function(googleEvent, callback) {
             });
         }
     });
-
-    ////Create profiles for attendees
-    //if(event.attendees) {
-    //    if(event.attendees.length > 0) {
-    //        for(var i = 0; i < event.attendees.length; i++) {
-    //            var attendee = event.attendees[i];
-    //            profileModule.findByEmail(attendee.email, function(err, profile) {
-    //                if(err) console.log(err);
-    //                else if(profile) {
-    //                    profile.events.push(newEvent);
-    //                    profile.save();
-    //                    newEvent.profiles.push({profileId: profile._id, fullName: profile.contact.fullName, emailAddress: profile.contact.emailAddress});
-    //                    newEvent.save();
-    //                }
-    //            });
-    //
-    //            var newProfile = profileModule.create(attendee);
-    //            newProfile.events.push(newEvent);
-    //            newProfile.save();
-    //            newEvent.profiles.push({profileId: newProfile._id, fullName: newProfile.contact.fullName, emailAddress: newProfile.contact.emailAddress});
-    //            newEvent.save();
-    //        }
-    //    }
-    //}
 };
 
 var Event = mongoose.model('Event', EventSchema);

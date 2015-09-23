@@ -7,10 +7,6 @@ var router = require('express').Router(),
 var Event = require('../models/event'),
     Profile = require('../models/profile');
 
-//Modules
-var calendarModules = require('../modules/calendar'),
-    profileModules = require('../modules/profiles');
-
 
 //Returns all profile objects with populated meeting information
 router.get('/get', function(req, res) {
@@ -21,9 +17,10 @@ router.get('/get', function(req, res) {
 
 //Returns profile associated to email
 router.get('/get/:emailAddress', function(req, res) {
-    profileModules.findByEmail(req.params.emailAddress, function (err, profile) {
+    Profile.findOne({'contact.emailAddress': req.params.emailAddress}, function(err, profile) {
+        if(err) console.log(err);
         res.send(profile);
-    });
+    })
 });
 
 //Creates a profile req.body.user.contact.emailAddress is required
@@ -42,14 +39,10 @@ router.post('/create', function(req, res) {
 
 //Removes profile with email address
 router.get('/remove/:emailAddress', function(req, res) {
-   profileModules.findByEmail(req.params.emailAddress, function(err, profile) {
-       if(profile) {
-           profile.remove();
-           res.send("profile removed");
-       } else {
-           res.send("Profile not found with email: " + req.params.emailAddress);
-       }
-    });
+    Profile.findOne({'contact.emailAddress': req.params.emailAddress}, function(err, profile) {
+        if(err) console.log(err);
+        profile.remove();
+    })
 });
 
 //Handles saving an uploaded image
