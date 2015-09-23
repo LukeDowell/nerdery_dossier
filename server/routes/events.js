@@ -3,16 +3,18 @@
  */
 var router = require('express').Router(),
     path = require('path');
-
-//Models
+/**
+ * Models
+ */
 var Event = require('../models/event'),
     Profile = require('../models/profile');
 
-//Returns all events
 router.get('/all', function(req, res) {
-    Event.find({}).populate('profiles.profileId').exec(function(err, events) {
-       res.send(events);
-    });
+    Event.find({})
+        .populate('profiles.profileId')
+        .exec(function(err, events) {
+            res.send(events);
+        });
 });
 
 /**
@@ -28,9 +30,7 @@ router.get('/today', function(req, res) {
         }
     ).populate('profile.profileId')
         .exec(function(err, events) {
-            if(err) {
-                console.log(err);
-            }
+            if(err) console.log(err);
             res.send(events);
         }
     );

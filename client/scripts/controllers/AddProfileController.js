@@ -17,11 +17,11 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', functi
             physicalAddress: [{street: "",city:"", state:"", zipCode: "", current: true}],
             socialMedia: {
                 twitter: {handle:"", url: ""},
-                linkinIn: {id: "", url: ""},
+                linkedIn: {id: "", url: ""},
                 facebook: {id:"", url: ""},
                 instagram: {id:"", url:""}
             },
-            emailAddress: "",
+            emailAddress: "test",
             phoneNumber: "",
             fullName: "",
             website: ""

@@ -28,7 +28,7 @@ var ProfileSchema = new Schema({
             facebook: {id: String, url: String},
             instagram: {id: String, url: String}
         },
-        emailAddress: {type : String, unique: true},
+        emailAddress: {type: String, unique: true},
         phoneNumber: String,
         fullName: String,
         website: String

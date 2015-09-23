@@ -1,5 +1,5 @@
 <form name="addProfileForm">
-        <md-content flex-sm="100" flex-gt-sm="90" flex-gt-md="70" flex-gt-lg="50" class="md-whiteframe-z2" >
+        <md-content flex-sm="100" flex-gt-sm="90" flex-gt-md="70" flex-gt-lg="50" >
             <div layout="row" layout-align="center">
                 <!-- FILE UPLOAD -->
                 <md-card class="forminputs" flex>
@@ -7,31 +7,31 @@
                     <h4>CONTACT INFORMATION:</h4>
                      <md-input-container>
                          <label>Full Name (First, Last):</label>
-                        <input type="text" ng-model="profile.contactInfo.fullName"/>
+                        <input type="text" ng-model="profile.contact.fullName"/>
                      </md-input-container>
                     <md-input-container>
                         <label>Email Address (required field)</label>
-                        <input ng-model="profile.contactInfo.emailAddress" required>
+                        <input ng-model="profile.contact.emailAddress" required>
                     </md-input-container>
                     <md-input-container>
                         <label>Phone Number</label>
-                        <input ng-model="profile.contactInfo.phoneNumber">
+                        <input ng-model="profile.contact.phoneNumber">
                     </md-input-container>
                     <md-input-container>
                         <label>Twitter Id:</label><input ng-model="profile.socialMedia.twitter" />
                     </md-input-container>
                     <md-input-container>
-                        <label> LinkedIn Id:</label><input ng-model="profile.contactInfo.socialMedia.linkedIn.id" />
+                        <label> LinkedIn Id:</label><input ng-model="profile.contact.socialMedia.linkedIn.id" />
                     </md-input-container>
                     <md-input-container>
-                        <label>Facebook Id:</label><input ng-model="profile.contactInfo.socialMedia.facebook.id" />
+                        <label>Facebook Id:</label><input ng-model="profile.contact.socialMedia.facebook.id" />
                     </md-input-container>
                     <md-input-container>
-                        <label>Instagram Id:</label><input ng-model="profile.contactInfo.socialMedia.instagram.id"/>
+                        <label>Instagram Id:</label><input ng-model="profile.contact.socialMedia.instagram.id"/>
                     </md-input-container>
                     <md-input-container>
                         <label>Personal or Company Website</label>
-                        <input ng-model="profile.contactInfo.website"/>
+                        <input ng-model="profile.contact.website"/>
                     </md-input-container>
                     <md-input-container>
                         <label>Street</label>
