@@ -21,7 +21,7 @@ app.controller("AllController", ['$scope', '$http', '$location', 'PropertiesServ
     $scope.editPerson = function(email){
         //console.log("Clicked", email);
 
-        $http({ url: '/profiles/get/' + email,
+        $http({ url: '/profiles/find/' + email,
             method: 'GET',
             data: email,
             headers: {"Content-Type": "application/json;charset=utf-8"}
