@@ -82,7 +82,24 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', 'Propert
     };
     findCurrentEmployer($scope.Person.workHistory);
 
-    ////start submit function, still needs to be routed, etc., PUT server call, passing in the current/edited Person object
+    ////start submit changes function
     $scope.submitProfileChanges = function(){
+        console.log("Submit Changes Hit");
+
+        PropertiesService.set('currentProfile', $scope.Person);
+
+        $http({ url: '/profiles/update',
+            method: 'PUT',
+            data: $scope.Person,
+            headers: {"Content-Type": "application/json;charset=utf-8"}
+        }).then(function(res) {
+            if (res.status = !200) {
+                console.log("Error, did not update DB");
+            }
+            $location.path("view");
+        }, function(error) {
+            console.log(error);
+        });
+
     };
 }]);
