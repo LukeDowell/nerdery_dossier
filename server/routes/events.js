@@ -8,16 +8,7 @@ var router = require('express').Router(),
  */
 var Event = require('../models/event'),
     Profile = require('../models/profile');
-/**
- * Modules
- */
-var calendarModules = require('../modules/calendar'),
-    eventModules = require('../modules/events'),
-    profileModules = require('../modules/profiles');
 
-/**
- * Returns all events
- */
 router.get('/all', function(req, res) {
     Event.find({})
         .populate('profiles.profileId')

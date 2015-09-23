@@ -1,7 +1,7 @@
 /**
  * Created by lukedowell on 9/9/15.
  */
-app.controller("HomeController", function($scope, $http, properties) {
+app.controller("HomeController", ['$scope', '$http', '$location', 'PropertiesService', function($scope, $http, $location, PropertiesService) {
     //Pull all the daily events in
     $scope.isLoading = true;
 
@@ -26,13 +26,24 @@ app.controller("HomeController", function($scope, $http, properties) {
         console.log("Adding person at time: " + startTime);
     };
 
-    /**
-     * Moves to the edit person view
-     * @param person
-     *      The person we are going to edit
-     */
-    $scope.editPerson = function(person) {
-        console.log("Editing person: " + person.name);
-        properties.set("edit-person", person);
+    //begin play time with getting a specific profile, setting it to the current profile
+    //in the service, and redirecting to the view/edit module
+
+    $scope.editPerson = function(email){
+        //console.log("Clicked", email);
+
+        $http({ url: '/profiles/find/' + email,
+                method: 'GET',
+                data: email,
+                headers: {"Content-Type": "application/json;charset=utf-8"}
+            }).then(function(res) {
+                //console.log($scope.profilies);
+                PropertiesService.set('currentProfile', res.data);  //setting the currentProfile in service equal to the clicked Profile
+                //console.log(PropertiesService.get('currentProfile'));
+                $location.path("view");  //Redirecting after data has been updated in ProfilesService
+            }, function(error) {
+                console.log(error);
+        });
     };
-});
+
+}]);

@@ -6,6 +6,8 @@ var mongoose = require('mongoose'),
     Profile = require('./profile'),
     Schema = mongoose.Schema;
 
+var async = require('async');
+
 var EventSchema = new Schema({
     id: {type : String, unique: true},
     htmlLink: String,
@@ -38,10 +40,41 @@ var EventSchema = new Schema({
         responseStatus: String,
         comment: String,
         additionalGuests: Number,
-    }],
-    profiles : [{ profileId: {type: Schema.ObjectId, ref: 'Profile', unique : true}, displayName: String, img_url: String, emailAddress: String}],
+        imageUrl: String,
+        profileId: String
+    }]
 });
 
 
+EventSchema.statics.findOrCreateFromGoogle = function(googleEvent, callback) {
+    //Remove any events have have changes
+    this.findOne({id : googleEvent.id}, function(err, event) {
+        if(err) console.log(err);
+        if(!event) {
+            //Event does not exist
+            event = new Event(googleEvent);
+        }
 
-module.exports = mongoose.model('Event', EventSchema);
+        console.log(event.id);
+        async.eachSeries(event.attendees, function(attendee, callback) {
+            Profile.findOrCreate(attendee.email, function(err, profile) {
+                if(profile.bio.imageUrl) {
+                    attendee.imageUrl = profile.bio.imageUrl;
+                } else {
+                    attendee.imageUrl = 'assets/images/profile.jpg';
+                }
+
+                if(profile.contact.fullName) {
+                    attendee.displayName = profile.contact.fullName;
+                }
+                attendee.profileId = profile._id;
+                callback();
+            })
+        }, function(err) {
+            callback(event);
+        });
+    });
+};
+
+var Event = mongoose.model('Event', EventSchema);
+module.exports = Event;

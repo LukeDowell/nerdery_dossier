@@ -2,7 +2,8 @@
  * Created by mikelseverson on 9/14/15.
  */
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    async = require('async');
 
 var ProfileSchema = new Schema({
     bio: {
@@ -68,4 +69,28 @@ var ProfileSchema = new Schema({
     medical: String
 });
 
-module.exports = mongoose.model('Profile', ProfileSchema);
+/**
+ * Finds or creates a profile based on a given email address
+ * @param email
+ *      The email address
+ * @param callback
+ *      The response callback
+ */
+ProfileSchema.statics.findOrCreate = function(email, callback) {
+    this.findOne({"contact.emailAddress": email}, function(err, profile) {
+        if(err) {
+            //o shit
+            console.log(err);
+        }
+        if(!profile) {
+            //Profile does not exist
+            profile = new Profile({"contact.emailAddress": email});
+        }
+        profile.save(function(err) {
+            callback(err, profile);
+        })
+    })
+};
+
+var Profile = mongoose.model('Profile', ProfileSchema);
+module.exports = Profile;

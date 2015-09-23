@@ -34,10 +34,16 @@ var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages','angularF
             })
     });
 
-app.factory('properties', function() {
-    var props = {};
+app.factory('PropertiesService', function() {
+
+    var props = {
+        currentProfile : {
+            //currentProfile Object always set to the currently selected profile
+        }
+    };
     return {
         get: function(key) {
+            //console.log(" GET props hit, sending " + key);
             return props[key];
         },
         set: function(key, value) {
@@ -46,5 +52,6 @@ app.factory('properties', function() {
         remove: function(key) {
             delete props[key];
         }
-    }
+    };
+
 });
