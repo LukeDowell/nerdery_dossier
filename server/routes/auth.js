@@ -4,6 +4,8 @@
 var router = require('express').Router();
 var passport = require('passport');
 var path = require('path');
+var calendar = require('../modules/calendar');
+var Events = require('../models/event');
 
 /**
  * Our login page
@@ -34,9 +36,13 @@ router.get('/login',
  */
 router.get('/callback',
     passport.authenticate('google', {
-        failureRedirect: '/auth',
-        successRedirect: '/cal/events'
-    })
+        failureRedirect: '/auth'
+    }), function(req, res) {
+        //Success
+        //Populate events
+        calendar.populateEvents(req.user);
+        res.redirect('/');
+    }
 );
 
 /**

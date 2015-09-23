@@ -6,7 +6,7 @@ var google = require('googleapis');
 var config = require('../config');
 var oauthClient = new google.auth.OAuth2(config.CLIENT_ID, config.CLIENT_SECRET, config.CALLBACK);
 var calendar = google.calendar('v3');
-
+var Event = require('../models/event');
 
 /**
  * Contains Date objects referring to
@@ -24,6 +24,23 @@ var time = {
     //The end of today
     today_end: (new Date().setHours(23, 59, 59, 999))
 };
+
+/**
+ * Populates all events for a given user. Called each time the user logs in
+ * @param user
+ */
+function populateEvents(user) {
+    getCalendarEvents(user, function(err, response) {
+        response.items.forEach(function (googleEvent) {
+            googleEvent.startDate = Date.parse(googleEvent.start.dateTime);
+            googleEvent.endDate = Date.parse(googleEvent.end.dateTime);
+
+            Event.findOrCreateFromGoogle(googleEvent, function (event) {
+                event.save();
+            });
+        });
+    });
+}
 
 /**
  *
@@ -97,5 +114,6 @@ function getAttendees(user, date, callback) {
 module.exports = {
     getCalendarEvents : getCalendarEvents,
     getAttendees : getAttendees,
+    populateEvents: populateEvents,
     time : time
 };

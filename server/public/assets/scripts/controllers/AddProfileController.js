@@ -80,10 +80,11 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', functi
 
 //SUBMIT FORM TO SERVER
 $scope.submit = function() {
-    $http.post('/profiles/create', $scope.profile).then(function (response) {
-        if (response.status !== 200) {
-            throw new Error("Failed to pull data from the API");
-        }
+    $http({
+        method: 'POST',
+        url: '/profiles/create',
+        data: {profile: $scope.profile}
+    }).then(function (response) {
         console.log(response);
     });
 };
