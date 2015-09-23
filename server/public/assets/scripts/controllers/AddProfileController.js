@@ -81,9 +81,12 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', functi
 //SUBMIT FORM TO SERVER
 $scope.submit = function() {
     $http({
+        method: 'POST',
         url: '/profiles/create',
-
-    })
+        data: {profile: $scope.profile}
+    }).then(function (response) {
+        console.log(response);
+    });
 };
 
 //CLEAR FORM DATA FUNCTION

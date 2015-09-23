@@ -34,7 +34,7 @@ app.controller("HomeController", function($scope, $http, properties) {
     $scope.editPerson = function(person) {
         console.log("Editing person: " , person);
         $http({
-            url: '/profiles/get',
+            url: '/profiles/find',
             method: 'GET',
             params: {emailAddress: person.email}
         }).then(function(response) {

@@ -8,40 +8,22 @@ var Event = require('../models/event'),
     Profile = require('../models/profile');
 
 
-//Returns all profile objects with populated meeting information
-router.get('/get', function(req, res) {
-    Profile.find({}).populate('events').exec(function(err, profiles) {
-        res.send(profiles);
-    })
-});
-
-//Returns profile associated to email
-router.get('/get/:emailAddress', function(req, res) {
-    Profile.findOne({'contact.emailAddress': req.params.emailAddress}, function(err, profile) {
-        if(err) console.log(err);
-        res.send(profile);
-    })
-});
-
-//Creates a profile req.body.user.contact.emailAddress is required
-router.post('/create', function(req, res) {
-    var newProfile = profileModules.create(req.body.user);
-    newProfile.save();
-
-    //does an event exist?
-
-    //yes - add profile to event
-
-    //no - create event, add profile, add to event
-
-    res.send(newProfile);
-});
-
 //Removes profile with email address
 router.get('/remove/:emailAddress', function(req, res) {
     Profile.findOne({'contact.emailAddress': req.params.emailAddress}, function(err, profile) {
         if(err) console.log(err);
         profile.remove();
+    })
+});
+
+//Returns profile associated to email
+router.get('/get/:emailAddress', function(req, res) {
+    var email = req.params.emailAddress;
+    console.log(email);
+    Profile.findOne({'contact.emailAddress': email}, function(err, profile) {
+        if(err) console.log(err);
+        console.log(profile.contact.emailAddress);
+        res.send(profile);
     })
 });
 
@@ -65,6 +47,27 @@ router.post('/image', multiparty, function(req, res){
         });
         res.send("assets/images/uploads/" + file.name);
     });
+});
+
+//Creates a profile req.body.user.contact.emailAddress is required
+router.post('/create', function(req, res) {
+    var newProfile = profileModules.create(req.body.user);
+    newProfile.save();
+
+    //does an event exist?
+
+    //yes - add profile to event
+
+    //no - create event, add profile, add to event
+
+    res.send(newProfile);
+});
+
+//Returns all profile objects with populated meeting information
+router.get('/', function(req, res) {
+    Profile.find({}).populate('events').exec(function(err, profiles) {
+        res.send(profiles);
+    })
 });
 
 module.exports = router;

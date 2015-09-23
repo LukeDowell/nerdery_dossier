@@ -6,6 +6,8 @@ var mongoose = require('mongoose'),
     Profile = require('./profile'),
     Schema = mongoose.Schema;
 
+var async = require('async');
+
 var EventSchema = new Schema({
     id: {type : String, unique: true},
     htmlLink: String,
@@ -44,7 +46,7 @@ var EventSchema = new Schema({
 });
 
 
-EventSchema.statics.findOrCreate = function(googleEvent, callback) {
+EventSchema.statics.findOrCreateFromGoogle = function(googleEvent, callback) {
     //Remove any events have have changes
     this.findOne({id : googleEvent.id}, function(err, event) {
         if(err) console.log(err);
@@ -53,25 +55,24 @@ EventSchema.statics.findOrCreate = function(googleEvent, callback) {
             event = new Event(googleEvent);
         }
 
-        //Set attendee data, imageUrl and name. Associate profile ID with attendee.
-        for(var i = 0, length = event.attendees.length; i < length; i++) {
-            Profile.findOrCreate(event.attendees[i].email, function(err, profile) {
+        console.log(event.id);
+        async.eachSeries(event.attendees, function(attendee, callback) {
+            Profile.findOrCreate(attendee.email, function(err, profile) {
                 if(profile.bio.imageUrl) {
-                    event.attendees[i].imageUrl = profile.bio.imageUrl;
+                    attendee.imageUrl = profile.bio.imageUrl;
+                } else {
+                    attendee.imageUrl = 'assets/images/profile.jpg';
                 }
-                event.attendees[i].profileId = profile._id;
 
-                //Save if this is the last profile
-                if(i == length) {
-                    console.log('boop');
-                    //Save our event
-                    event.save(function(err) {
-                        if(err) console.log(err);
-                        callback(event);
-                    });
+                if(profile.contact.fullName) {
+                    attendee.displayName = profile.contact.fullName;
                 }
-            });
-        }
+                attendee.profileId = profile._id;
+                callback();
+            })
+        }, function(err) {
+            callback(event);
+        });
     });
 };
 
