@@ -54,15 +54,22 @@ EventSchema.statics.findOrCreate = function(googleEvent, callback) {
 
         //Set attendee data, imageUrl and name. Associate profile ID with attendee.
         for(var i = 0, length = event.attendees.length; i < length; i++) {
-            Profile.findOrCreate(event.attendees.email, function(err, profile) {
+            Profile.findOrCreate(event.attendees[i].email, function(err, profile) {
                 if(profile.bio.imageUrl) {
                     event.attendees.imageUrl = profile.bio.imageUrl;
                 }
+
+                //Save if this is the last profile
+                if(i == length) {
+                    console.log('boop');
+                    //Save our event
+                    event.save(function(err) {
+                        if(err) console.log(err);
+                        callback(event);
+                    });
+                }
             });
         }
-
-        //Return our event
-        callback(event);
     });
 
     ////Create profiles for attendees

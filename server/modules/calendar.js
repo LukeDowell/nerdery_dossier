@@ -35,7 +35,7 @@ function populateEvents(user) {
             googleEvent.startDate = Date.parse(googleEvent.start.dateTime);
             googleEvent.endDate = Date.parse(googleEvent.end.dateTime);
 
-            Event.findOrCreate(googleEvent, function (err, event) {
+            Event.findOrCreate(googleEvent, function (event) {
                 console.log(event);
             });
         });
