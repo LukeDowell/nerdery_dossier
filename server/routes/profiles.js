@@ -47,7 +47,7 @@ router.post('/create', function(req, res) {
                             console.log("no event found, adding event at " + meeting.time);
                             var newEvent = new Event({id: meeting.time, startDate : Date.parse(meeting.time)});
                             newEvent.profiles.push({profileId : newProfile._id});
-                            newEvent.attendees.push({displayName: newProfile.contact.fullName, emailAddress: newProfile.contact.emailAddress});
+                            newEvent.attendees.push({displayName: newProfile.contact.fullName, email: newProfile.contact.emailAddress});
                             newProfile.events.push(newEvent._id);
                             newEvent.save();
                         }
