@@ -76,5 +76,19 @@ EventSchema.statics.findOrCreateFromGoogle = function(googleEvent, callback) {
     });
 };
 
+EventSchema.statics.findOrCreateFromMeeting = function(meeting, callback) {
+    //Remove any events have have changes
+    this.findOne({startTime : meeting.time}, function(err, event) {
+        if(err) console.log(err);
+        if(!event) {
+            //Event does not exist
+            event = new Event({startDate:meeting.time, id:meeting.time});
+        }
+        event.save(function(err) {
+            callback(err, event);
+        })
+    });
+};
+
 var Event = mongoose.model('Event', EventSchema);
 module.exports = Event;
