@@ -7,23 +7,25 @@ var router = require('express').Router(),
 var Event = require('../models/event'),
     Profile = require('../models/profile');
 
-
-//Removes profile with email address
-router.get('/remove/:emailAddress', function(req, res) {
-    Profile.findOne({'contact.emailAddress': req.params.emailAddress}, function(err, profile) {
+//Returns profile associated to email
+router.get('/find/:email', function(req, res) {
+    var email = req.params.email;
+    Profile.findOne({'contact.emailAddress': email}, function(err, profile) {
         if(err) console.log(err);
-        profile.remove();
+        if(profile) {
+            console.log(profile);
+            res.send(profile);
+        } else {
+            res.status('404').send("Profile not found");
+        }
     })
 });
 
-//Returns profile associated to email
-router.get('/get/:emailAddress', function(req, res) {
-    var email = req.params.emailAddress;
-    console.log(email);
-    Profile.findOne({'contact.emailAddress': email}, function(err, profile) {
+//Removes profile with email address
+router.get('/remove/:email', function(req, res) {
+    Profile.findOne({'contact.emailAddress': req.params.emailAddress}, function(err, profile) {
         if(err) console.log(err);
-        console.log(profile.contact.emailAddress);
-        res.send(profile);
+        profile.remove();
     })
 });
 

@@ -86,7 +86,9 @@ ProfileSchema.statics.findOrCreate = function(email, callback) {
             //Profile does not exist
             profile = new Profile({"contact.emailAddress": email});
         }
-        callback(err, profile);
+        profile.save(function(err) {
+            callback(err, profile);
+        })
     })
 };
 

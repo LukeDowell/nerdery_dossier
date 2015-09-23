@@ -32,11 +32,9 @@ app.controller("HomeController", function($scope, $http, properties) {
      *      The person we are going to edit
      */
     $scope.editPerson = function(person) {
-        console.log("Editing person: " , person);
         $http({
-            url: '/profiles/find',
-            method: 'GET',
-            params: {emailAddress: person.email}
+            url: '/profiles/find/' + person.email,
+            method: 'GET'
         }).then(function(response) {
             console.log(response);
         })
