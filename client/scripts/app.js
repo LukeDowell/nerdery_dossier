@@ -25,6 +25,10 @@ var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages','angularF
                 templateUrl: "/assets/views/routes/searchprofiles.html",
                 controller: "SearchProfileController"
             })
+            .when('/all', {
+                templateUrl: "/assets/views/routes/all.html",
+                controller: "AllController"
+            })
             .otherwise({
                 redirectTo: '/home'
             })
