@@ -54,22 +54,20 @@ router.post('/create', function(req, res) {
     var newProfile = req.body.profile;
     Profile.findOrCreate(newProfile.contact.emailAddress, function(err, profile) {
         if(err) console.log(err);
-
-        Event.findOrCreateFromMeeting(newProfile.meeting, function(err, event) {
-            event.attendees.push({displayName: newProfile.contact.fullName, email: newProfile.contact.emailAddress, profileId: newProfile._id})
-            console.log(event);
-            event.save();
-        })
+        else if(newProfile.meeting) {
+            Event.findOrCreateFromMeeting(newProfile.meeting, function(err, event) {
+                event.attendees.push({
+                    displayName: newProfile.contact.fullName,
+                    email: newProfile.contact.emailAddress,
+                    profileId: newProfile._id});
+                event.save();
+                res.send(profile);
+            });
+        }
+        else {
+            res.send(profile);
+        }
     });
-    //Event.findOrCreateFromMeeting(req.body.user.mee)
-
-    //does an event exist?
-
-    //yes - add profile to event
-
-    //no - create event, add profile, add to event
-
-    res.send("hi");
 });
 
 //Returns all profile objects with populated meeting information

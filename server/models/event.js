@@ -71,6 +71,7 @@ EventSchema.statics.findOrCreateFromGoogle = function(googleEvent, callback) {
                 callback();
             })
         }, function(err) {
+            if(err) console.log(err);
             callback(event);
         });
     });
@@ -85,6 +86,7 @@ EventSchema.statics.findOrCreateFromMeeting = function(meeting, callback) {
             event = new Event({startDate:meeting.time, id:meeting.time});
         }
         event.save(function(err) {
+            if(err) console.log(err);
             callback(err, event);
         })
     });
