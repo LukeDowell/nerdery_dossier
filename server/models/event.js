@@ -54,8 +54,6 @@ EventSchema.statics.findOrCreateFromGoogle = function(googleEvent, callback) {
             //Event does not exist
             event = new Event(googleEvent);
         }
-
-        console.log(event.id);
         async.eachSeries(event.attendees, function(attendee, callback) {
             Profile.findOrCreate(attendee.email, function(err, profile) {
                 if(profile.bio.imageUrl) {
