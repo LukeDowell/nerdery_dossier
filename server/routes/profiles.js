@@ -29,6 +29,14 @@ router.get('/remove/:email', function(req, res) {
     })
 });
 
+//
+router.put('/update', function(req, res) {
+    Profile.findByIdAndUpdate(req.body._id, req.body, function(err, profile) {
+        if(err) console.log(err);
+        res.send(profile);
+    })
+});
+
 //Handles saving an uploaded image
 router.post('/image', multiparty, function(req, res){
     var file = req.files.file;
@@ -52,7 +60,8 @@ router.post('/image', multiparty, function(req, res){
 //Creates a profile req.body.user.contact.emailAddress is required
 router.post('/create', function(req, res) {
     var newProfile = req.body.profile;
-    Profile.findOrCreate(newProfile.contact.emailAddress, function(err, profile) {
+    console.log(newProfile);
+    Profile.findOrCreate(newProfile, function(err, profile) {
         if(err) console.log(err);
         else if(newProfile.meeting) {
             Event.findOrCreateFromMeeting(newProfile.meeting, function(err, event) {

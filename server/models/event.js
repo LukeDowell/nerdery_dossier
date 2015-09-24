@@ -55,7 +55,14 @@ EventSchema.statics.findOrCreateFromGoogle = function(googleEvent, callback) {
             event = new Event(googleEvent);
         }
         async.eachSeries(event.attendees, function(attendee, callback) {
-            Profile.findOrCreate(attendee.email, function(err, profile) {
+            console.log(event.attendees)
+            var profile = {
+                contact : {
+                    emailAddress : attendee.email,
+                    fullName : attendee.displayName
+                }
+            };
+            Profile.findOrCreate(profile, function(err, profile) {
                 if(profile.bio.imageUrl) {
                     attendee.imageUrl = profile.bio.imageUrl;
                 } else {
@@ -77,10 +84,14 @@ EventSchema.statics.findOrCreateFromGoogle = function(googleEvent, callback) {
 
 EventSchema.statics.findOrCreateFromMeeting = function(meeting, callback) {
     //Remove any events have have changes
-    this.findOne({startTime : meeting.time}, function(err, event) {
+    console.log(new Date(meeting.time));
+    this.findOne({startTime : new Date(meeting.time)}, function(err, event) {
+        console.log("event:", event);
         if(err) console.log(err);
+
         if(!event) {
             //Event does not exist
+            console.log("creating new event");
             event = new Event({startDate:meeting.time, id:meeting.time});
         }
         event.save(function(err) {
