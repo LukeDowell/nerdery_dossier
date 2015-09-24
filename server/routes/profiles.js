@@ -31,11 +31,9 @@ router.get('/remove/:email', function(req, res) {
 
 //
 router.put('/update', function(req, res) {
-    console.log(req.body.contact.fullName);
-    Profile.findByIdAndUpdate(req.params.id,{
-        'contact.fullName': req.body.contact.fullName
-    }, function(err) {
+    Profile.findByIdAndUpdate(req.body._id, req.body, function(err, profile) {
         if(err) console.log(err);
+        res.send(profile);
     })
 });
 
