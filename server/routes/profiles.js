@@ -51,16 +51,23 @@ router.post('/image', multiparty, function(req, res){
 
 //Creates a profile req.body.user.contact.emailAddress is required
 router.post('/create', function(req, res) {
-    var newProfile = profileModules.create(req.body.user);
-    newProfile.save();
-
-    //does an event exist?
-
-    //yes - add profile to event
-
-    //no - create event, add profile, add to event
-
-    res.send(newProfile);
+    var newProfile = req.body.profile;
+    Profile.findOrCreate(newProfile.contact.emailAddress, function(err, profile) {
+        if(err) console.log(err);
+        else if(newProfile.meeting) {
+            Event.findOrCreateFromMeeting(newProfile.meeting, function(err, event) {
+                event.attendees.push({
+                    displayName: newProfile.contact.fullName,
+                    email: newProfile.contact.emailAddress,
+                    profileId: newProfile._id});
+                event.save();
+                res.send(profile);
+            });
+        }
+        else {
+            res.send(profile);
+        }
+    });
 });
 
 //Returns all profile objects with populated meeting information
