@@ -14,7 +14,8 @@ app.controller("HomeController", ['$scope', '$http', '$location', 'PropertiesSer
         }, function(response) {
            //Error
             console.log(response);
-        });
+        }
+    );
 
 
     /**
