@@ -2,7 +2,7 @@
     <h1 layout="row" class="md-title">
         {{event.startDate | date:"h:mma"}} - {{event.summary}}
     </h1>
-    <md-button class="md-raised" ng-click="addPerson(event.startTime)">Add Person</md-button>
+    <md-button class="md-raised" ng-click="addPerson(event.startDate)">Add Person</md-button>
     <div layout="row" flex layout-align="space-around center" layout-wrap>
         <md-card class="personCards" ng-repeat="profile in event.attendees" ng-click="editPerson(profile.email)">
             <md-card-content>

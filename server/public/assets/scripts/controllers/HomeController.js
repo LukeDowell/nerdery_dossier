@@ -24,6 +24,9 @@ app.controller("HomeController", ['$scope', '$http', '$location', 'PropertiesSer
      */
     $scope.addPerson = function(startTime) {
         console.log("Adding person at time: " + startTime);
+        $location.path("addprofile");
+        PropertiesService.set('addedProfileStartTime', startTime);
+        console.log(PropertiesService.get('addedProfileStartTime'));
     };
 
     //begin play time with getting a specific profile, setting it to the current profile

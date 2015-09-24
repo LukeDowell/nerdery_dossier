@@ -1,4 +1,4 @@
-app.controller("AddProfileController", ['$scope','$http', 'FileUploader', function($scope, $http, FileUploader) {
+app.controller("AddProfileController", ['$scope','$http', 'FileUploader', 'PropertiesService', function($scope, $http, FileUploader, PropertiesService) {
     //Empty profile for clearing form
     $scope.cleanProfile = {};
 
@@ -79,26 +79,32 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', functi
     };
 
 //SUBMIT FORM TO SERVER
-$scope.submit = function() {
-    $http({
-        method: 'POST',
-        url: '/profiles/create',
-        data: {profile: $scope.profile}
-    }).then(function (response) {
-        console.log(response);
+    $scope.submit = function() {
+        if (PropertiesService.get('addedProfileStartTime').length > 2) {
+            $scope.profile.meeting.time = PropertiesService.get('addedProfileStartTime');
+        }
+        console.log("date/time just before the POST" + $scope.profile.meeting.time);
+        $http({
+            method: 'POST',
+            url: '/profiles/create',
+            data: {profile: $scope.profile}
+        }).then(function (response) {
+            console.log(response);
 
-        //ngDialog.open({template: '<div class="ngdialog-message"> \
-			//Your profile has successfully been saved.</div>',
-        //        plain: 'true'
-        //});
-    });
-};
+            //ngDialog.open({template: '<div class="ngdialog-message"> \
+                //Your profile has successfully been saved.</div>',
+            //        plain: 'true'
+            //});
+
+            PropertiesService.set('addedProfileStartTime', "");
+            console.log(PropertiesService.get('addedProfileStartTime'));
+        });
+    };
 
 //CLEAR FORM DATA FUNCTION
     var cleanProfile = angular.copy($scope.cleanProfile);
 
-    $scope.resetForm = function ()
-    {
+    $scope.resetForm = function () {
         $scope.profile = angular.copy(cleanProfile);
         $scope.addProfileForm.$setPristine();
     };

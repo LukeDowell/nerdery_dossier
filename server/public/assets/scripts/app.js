@@ -39,6 +39,9 @@ app.factory('PropertiesService', function() {
     var props = {
         currentProfile : {
             //currentProfile Object always set to the currently selected profile
+        },
+        addedProfileStartTime : {
+            //placeholder for dateTime object inserted into an addedProfile
         }
     };
     return {
