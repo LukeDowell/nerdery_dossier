@@ -6,10 +6,10 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
     $scope.profile = {
         bio : {
             imageUrl: '',
-            interests: [{name:" "}],
+            interests: [{name: ""}],
             summary: "",
             demographics: "",
-            age: 0,
+            age: "",
             birthday: "",
             gender: ""
         },
@@ -21,7 +21,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
                 facebook: {id:"", url: ""},
                 instagram: {id:"", url:""}
             },
-            emailAddress: "test",
+            emailAddress: "",
             phoneNumber: "",
             fullName: "",
             website: ""

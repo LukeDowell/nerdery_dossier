@@ -5,7 +5,6 @@ var router = require('express').Router();
 var passport = require('passport');
 var path = require('path');
 var calendar = require('../modules/calendar');
-var Events = require('../models/event');
 
 /**
  * Our login page
@@ -44,19 +43,5 @@ router.get('/callback',
         res.redirect('/');
     }
 );
-
-/**
- * Our route for failed authorization attempts
- */
-router.get('/failed', function(req, res) {
-    res.send("Failed!");
-});
-
-/**
- * Our temporary route for successful login
- */
-router.get('/success', function(req, res) {
-    res.send("Success! Welcome, " + req.user.googleID);
-});
 
 module.exports = router;

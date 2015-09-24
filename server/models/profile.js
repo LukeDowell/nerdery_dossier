@@ -2,8 +2,7 @@
  * Created by mikelseverson on 9/14/15.
  */
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    async = require('async');
+    Schema = mongoose.Schema;
 
 var ProfileSchema = new Schema({
     bio: {
@@ -76,15 +75,15 @@ var ProfileSchema = new Schema({
  * @param callback
  *      The response callback
  */
-ProfileSchema.statics.findOrCreate = function(email, callback) {
-    this.findOne({"contact.emailAddress": email}, function(err, profile) {
+ProfileSchema.statics.findOrCreate = function(profileData, callback) {
+    this.findOne({"contact.emailAddress": profileData.contact.email}, function(err, profile) {
         if(err) {
             //o shit
             console.log(err);
         }
         if(!profile) {
             //Profile does not exist
-            profile = new Profile({"contact.emailAddress": email});
+            profile = new Profile(profileData);
         }
         profile.save(function(err) {
             callback(err, profile);

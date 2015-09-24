@@ -13,7 +13,6 @@ router.get('/find/:email', function(req, res) {
     Profile.findOne({'contact.emailAddress': email}, function(err, profile) {
         if(err) console.log(err);
         if(profile) {
-            console.log(profile);
             res.send(profile);
         } else {
             res.status('404').send("Profile not found");
@@ -26,6 +25,14 @@ router.get('/remove/:email', function(req, res) {
     Profile.findOne({'contact.emailAddress': req.params.emailAddress}, function(err, profile) {
         if(err) console.log(err);
         profile.remove();
+    })
+});
+
+//
+router.put('/update', function(req, res) {
+    Profile.findByIdAndUpdate(req.body._id, req.body, function(err, profile) {
+        if(err) console.log(err);
+        res.send(profile);
     })
 });
 
@@ -52,7 +59,7 @@ router.post('/image', multiparty, function(req, res){
 //Creates a profile req.body.user.contact.emailAddress is required
 router.post('/create', function(req, res) {
     var newProfile = req.body.profile;
-    Profile.findOrCreate(newProfile.contact.emailAddress, function(err, profile) {
+    Profile.findOrCreate(newProfile, function(err, profile) {
         if(err) console.log(err);
         else if(newProfile.meeting) {
             Event.findOrCreateFromMeeting(newProfile.meeting, function(err, event) {
