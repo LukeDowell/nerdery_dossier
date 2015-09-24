@@ -84,14 +84,16 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
             $scope.profile.meeting.time = PropertiesService.get('addedProfileStartTime');
         }
         console.log("date/time just before the POST" + $scope.profile.meeting.time);
-        $http({
-            method: 'POST',
-            url: '/profiles/create',
-            data: {profile: $scope.profile}
-        }).then(function (response) {
-            console.log(response);
 
-            $scope.status = '  ';
+        if ($scope.profile.contact.emailAddress.length > 4){
+            $http({
+                method: 'POST',
+                url: '/profiles/create',
+                data: {profile: $scope.profile}
+            }).then(function (response) {
+                console.log(response);
+
+                $scope.status = '  ';
 
                 $mdDialog.show(
                     $mdDialog.alert()
@@ -102,9 +104,9 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
                         .ariaLabel('Alert Dialog')
                         .ok('Submit')
                         .targetEvent(ev)
-                    );
-                });
-
+                );
+            });
+        }
 
             PropertiesService.set('addedProfileStartTime', "");
             console.log(PropertiesService.get('addedProfileStartTime'));
