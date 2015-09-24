@@ -88,10 +88,10 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', 'Propert
 
         PropertiesService.set('currentProfile', $scope.Person);
 
-        $http({ url: '/profiles/update',
+        $http({
+            url: '/profiles/update',
             method: 'PUT',
-            data: $scope.Person,
-            headers: {"Content-Type": "application/json;charset=utf-8"}
+            data: $scope.Person
         }).then(function(res) {
             if (res.status = !200) {
                 console.log("Error, did not update DB");
@@ -100,6 +100,5 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', 'Propert
         }, function(error) {
             console.log(error);
         });
-
     };
 }]);

@@ -29,6 +29,16 @@ router.get('/remove/:email', function(req, res) {
     })
 });
 
+//
+router.put('/update', function(req, res) {
+    console.log(req.body.contact.fullName);
+    Profile.findByIdAndUpdate(req.params.id,{
+        'contact.fullName': req.body.contact.fullName
+    }, function(err) {
+        if(err) console.log(err);
+    })
+});
+
 //Handles saving an uploaded image
 router.post('/image', multiparty, function(req, res){
     var file = req.files.file;
