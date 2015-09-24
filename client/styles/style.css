@@ -200,6 +200,8 @@ h3.editable-click, h4.editable-click, h5.editable-click, p.editable-click, li.ed
 
 .forminputs {
     background-color: #8a9b92;
+    text-align: left;
+    padding-left: 10px;
 }
 
 .forminputs label{

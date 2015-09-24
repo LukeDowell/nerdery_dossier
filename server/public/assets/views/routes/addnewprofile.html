@@ -1,167 +1,177 @@
 <form name="addProfileForm">
-        <md-content flex-sm="100" flex-gt-sm="90" flex-gt-md="70" flex-gt-lg="50" >
-            <div layout="row" layout-align="center">
-                <!-- FILE UPLOAD -->
-                <md-card class="forminputs" flex>
-                    <!-- CONTACT INFORMATION -->
-                    <h4>CONTACT INFORMATION:</h4>
-                     <md-input-container>
-                         <label>Full Name (First, Last):</label>
+    <md-content flex-sm="100" flex-gt-sm="90" flex-gt-md="70" flex-gt-lg="50" >
+        <div layout="row" layout-align="center">
+            <!-- FILE UPLOAD -->
+            <md-card class="forminputs" flex>
+                <!-- CONTACT INFORMATION -->
+                <h4>Contact Information:</h4>
+                <div layout="row">
+                    <md-input-container flex="40">
+                        <label>Full Name</label>
                         <input type="text" ng-model="profile.contact.fullName"/>
-                     </md-input-container>
-                    <md-input-container>
+                    </md-input-container>
+                    <md-input-container flex>
                         <label>Email Address (required field)</label>
                         <input ng-model="profile.contact.emailAddress" required>
                     </md-input-container>
-                    <md-input-container>
-                        <label>Phone Number</label>
-                        <input ng-model="profile.contact.phoneNumber">
-                    </md-input-container>
-                    <md-input-container>
+                </div>
+                <md-input-container>
+                    <label>Phone Number</label>
+                    <input ng-model="profile.contact.phoneNumber">
+                </md-input-container>
+                <h4>Social Media:</h4>
+                <div layout="row">
+                    <md-input-container flex="25">
                         <label>Twitter Id:</label><input ng-model="profile.socialMedia.twitter" />
                     </md-input-container>
-                    <md-input-container>
+                    <md-input-container flex="25">
                         <label> LinkedIn Id:</label><input ng-model="profile.contact.socialMedia.linkedIn.id" />
                     </md-input-container>
-                    <md-input-container>
+                    <md-input-container flex="25">
                         <label>Facebook Id:</label><input ng-model="profile.contact.socialMedia.facebook.id" />
                     </md-input-container>
-                    <md-input-container>
+                    <md-input-container flex="25">
                         <label>Instagram Id:</label><input ng-model="profile.contact.socialMedia.instagram.id"/>
                     </md-input-container>
-                    <md-input-container>
-                        <label>Personal or Company Website</label>
-                        <input ng-model="profile.contact.website"/>
-                    </md-input-container>
-                    <md-input-container>
+                </div>
+                <md-input-container>
+                    <label>Personal or Company Website</label>
+                    <input ng-model="profile.contact.website"/>
+                </md-input-container>
+                <h4>Address:</h4>
+                <div layout="row">
+                    <md-input-container flex="50">
                         <label>Street</label>
                         <input type="text" ng-model="profile.physicalAddress.street"/>
                     </md-input-container>
-                    <md-input-container>
+                    <md-input-container flex="25">
                         <label>City</label>
                         <input ng-model="profile.physicalAddress.city"/>
                     </md-input-container>
-                    <md-input-container>
+                    <md-input-container flex="15">
                         <label>State</label>
                         <input ng-model="profile.physicalAddress.state"/>
                     </md-input-container>
-                    <md-input-container>
+                    <md-input-container flex="10">
                         <label>Zip Code</label>
-                        <input ng-model="profile.physicalAddress.zipCode"/>
+                        <input type="number" ng-model="profile.physicalAddress.zipCode"/>
                     </md-input-container>
-                </md-card>
-                <md-card class="forminputs" flex="25">
-                    <img ng-src="{{uploadedUrl}}"></img>
-                    <input type="file" name="photo" nv-file-select uploader="uploader"/><br/>
-                </md-card>
-            </div>
-
-            <!--This is the bio (interests, summary, demographics, age, birthday, gender) section-->
-
-            <md-card class="forminputs">
-                <h4>CONNECTING POINTS:</h4>
-                <md-input-container>
-                <label>Summary</label>
-                <input ng-model="profile.bio.summary"/>
-                </md-input-container>
-
-                <md-input-container>
-                <label>Interests</label>
-                <input ng-model="profile.bio.interests.name"/>
-                </md-input-container>
-
-                <md-input-container>
-                <label>Age</label>
-                <input ng-model="profile.bio.age"/>
-                </md-input-container>
-
-                <md-input-container>
-                <label>Birthday</label>
-                <input ng-model="profile.birthday"/>
-                </md-input-container>
-
-            <md-radio-group ng-model="profile.bio.gender"/>
-                <md-radio-button value="Female" aria-label="Label 1">Female</md-radio-button>
-                <md-radio-button value="Male" aria-label="Label 2">Male</md-radio-button>
-            </md-radio-group>
-            </md-card>
-
-
-            <!--This is the organizations (title, name, startDate, endDate, isPrimary, current) section -->
-
-            <md-card class="forminputs">
-                <h4>WORK HISTORY AND ORGANIZATIONS:</h4>
-                <md-input-container>
-                <label>Title</label>
-                <input ng-model="profile.workHistory.title"/>
-                </md-input-container>
-
-                <md-input-container>
-                <label>Organization Name</label>
-                <input ng-model="profile.workHistory.name"/>
-                </md-input-container>
-
-                <md-input-container>
-                <label>Start Date</label>
-                <input ng-model="profile.workHistory.startDate"/>
-                </md-input-container>
-
-                <md-input-container>
-                <label>End Date</label>
-                <input ng-model="profile.workHistory.endDate"/>
-                </md-input-container>
-
-
-                 <h5>IS THIS THE INDIVIDUAL'S CURRENT OCCUPATION?</h5>
-                <md-radio-group ng-model="profile.organizations.isCurrent">
-                <md-radio-button value="Yes" aria-label="yes">Yes</md-radio-button>
-                <md-radio-button value="No" aria-label="no">No</md-radio-button>
-                </md-radio-group>
                 </div>
             </md-card>
-
-
-            <!--This is the affiliations  section -->
-
-
-            <md-card class="forminputs">
-                <h4>AFFILIATIONS, NON-PROFIT AND VOLUNTEER WORK</h4>
-                <md-input-container>
-                    <label>Name of Organization</label>
-                    <input ng-model="profile.affiliation.name"/>
-                </md-input-container>
-
-                <md-input-container>
-                    <label>Role within the Organization</label>
-                        <input ng-model="profile.affiliation.title"/>
-                </md-input-container>
-
-                <md-input-container>
-                    <label>Summary:</label>
-                    <input ng-model="profile.affiliation.summary"/>
-                </md-input-container>
+            <md-card class="forminputs" flex="25">
+                <img ng-src="{{uploadedUrl}}"></img>
+                <input type="file" name="photo" nv-file-select uploader="uploader"/><br/>
             </md-card>
+        </div>
 
+        <!--This is the bio (interests, summary, demographics, age, birthday, gender) section-->
 
+        <md-card class="forminputs">
+            <h4>CONNECTING POINTS:</h4>
+            <md-input-container>
+                <label>Summary</label>
+                <input ng-model="profile.bio.summary"/>
+            </md-input-container>
+            <md-input-container>
+                <label>Interests</label>
+                <input ng-model="profile.bio.interests.name"/>
+            </md-input-container>
 
-            <!--This is the meetings (date, time, notes) section -->
-
-
-            <md-card class="forminputs">
-                <h4>UPCOMING MEETINGS:</h4>
-                    <time-date-picker class="datePicker" ng-model="profile.meeting.time"></time-date-picker>
-            </md-card>
-
-            <!--This is the education section -->
-
-
-            <md-card class="forminputs">
-                <h4>EDUCATIONAL BACKGROUND</h4>
-                <md-input-container>
-                    <label>Institution</label>
-                    <input ng-model="profile.education.institution"/>
+            <div layout="row">
+                <md-input-container flex="10">
+                    <label>Age</label>
+                    <input ng-model="profile.bio.age"/>
                 </md-input-container>
 
+                <md-input-container flex="20">
+                    <label>Birthday</label>
+                    <input ng-model="profile.birthday"/>
+                </md-input-container>
+
+                <md-radio-group ng-model="profile.bio.gender" layout="row"/>
+                <md-radio-button value="Female" aria-label="Label 1">Female</md-radio-button>
+                <md-radio-button value="Male" aria-label="Label 2">Male</md-radio-button>
+                </md-radio-group>
+            </div>
+        </md-card>
+
+
+        <!--This is the organizations (title, name, startDate, endDate, isPrimary, current) section -->
+
+        <md-card class="forminputs">
+            <h4>WORK HISTORY AND ORGANIZATIONS:</h4>
+            <md-input-container>
+                <label>Title</label>
+                <input ng-model="profile.workHistory.title"/>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Organization Name</label>
+                <input ng-model="profile.workHistory.name"/>
+            </md-input-container>
+            <div layout="row">
+                <md-input-container>
+                    <label>Start Date</label>
+                    <input ng-model="profile.workHistory.startDate"/>
+                </md-input-container>
+
+                <md-input-container>
+                    <label>End Date</label>
+                    <input ng-model="profile.workHistory.endDate"/>
+                </md-input-container>
+            </div>
+
+
+            <h4>Current Occupation?</h4>
+            <md-radio-group ng-model="profile.organizations.isCurrent" layout="row">
+                <md-radio-button value="Yes" aria-label="yes">Yes</md-radio-button>
+                <md-radio-button value="No" aria-label="no">No</md-radio-button>
+            </md-radio-group>
+            </div>
+        </md-card>
+
+
+        <!--This is the affiliations section -->
+
+
+        <md-card class="forminputs">
+            <h4>AFFILIATIONS, NON-PROFIT AND VOLUNTEER WORK</h4>
+            <md-input-container>
+                <label>Name of Organization</label>
+                <input ng-model="profile.affiliation.name"/>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Role within the Organization</label>
+                <input ng-model="profile.affiliation.title"/>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Summary:</label>
+                <input ng-model="profile.affiliation.summary"/>
+            </md-input-container>
+        </md-card>
+
+
+
+        <!--This is the meetings (date, time, notes) section -->
+
+
+        <md-card class="forminputs">
+            <h4>UPCOMING MEETINGS:</h4>
+            <time-date-picker class="datePicker" ng-model="profile.meeting.time"></time-date-picker>
+        </md-card>
+
+        <!--This is the education section -->
+
+
+        <md-card class="forminputs">
+            <h4>EDUCATIONAL BACKGROUND</h4>
+            <md-input-container>
+                <label>Institution</label>
+                <input ng-model="profile.education.institution"/>
+            </md-input-container>
+            <div layout="row">
                 <md-input-container>
                     <label>Start Date</label>
                     <input ng-model="profile.education.startDate"/>
@@ -171,62 +181,63 @@
                     <label>End Date</label>
                     <input ng-model="profile.education.endDate"/>
                 </md-input-container>
+            </div>
 
-                <md-input-container>
-                    <label>Summary</label>
-                    <input ng-model="profile.education.summary"/>
-                </md-input-container>
-
-
-
-            </md-card>
-
-            <!--This is the relationships section -->
-            <md-card class="forminputs">
-                <h4>RELATIONSHIPS </h4>
-                <md-input-container>
-                    <label>Name of Significant Other</label>
-                    <input ng-model="profile.relationships.name"/>
-                </md-input-container>
-
-                <md-input-container>
-                    <label>Relationship</label>
-                    <input ng-model="profile.relationship.relationship"/>
-                </md-input-container>
+            <md-input-container>
+                <label>Summary</label>
+                <input ng-model="profile.education.summary"/>
+            </md-input-container>
 
 
-                <md-input-container>
-                    <label>Details Regarding Significant Other </label>
-                    <input ng-model="profile.relationship.summary"/>
-                </md-input-container>
-            </md-card>
+
+        </md-card>
+
+        <!--This is the relationships section -->
+        <md-card class="forminputs">
+            <h4>RELATIONSHIPS </h4>
+            <md-input-container>
+                <label>Name of Significant Other</label>
+                <input ng-model="profile.relationships.name"/>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Relationship</label>
+                <input ng-model="profile.relationship.relationship"/>
+            </md-input-container>
 
 
-            <!--This is the newsCoveragesection -->
-            <md-card class="forminputs">
-                <h4>NEWS COVERAGE </h4>
-
-                <md-input-container>
-                    <label>Summary</label>
-                    <input ng-model="profile.newsCoverage.summary"/>
-                </md-input-container>
-
-                <md-input-container>
-                    <label>Type of Organization</label>
-                    <input ng-model="profile.newsCoverage.url"/>
-                </md-input-container>
-            </md-card>
+            <md-input-container>
+                <label>Details Regarding Significant Other </label>
+                <input ng-model="profile.relationship.summary"/>
+            </md-input-container>
+        </md-card>
 
 
-            <!--This is the medicalSummary (medicalSummary) section -->
-            <md-card class="forminputs">
-                <h4>MEDICAL INFORMATION:</h4>
-              <md-input-container>
+        <!--This is the newsCoveragesection -->
+        <md-card class="forminputs">
+            <h4>NEWS COVERAGE </h4>
+
+            <md-input-container>
+                <label>Summary</label>
+                <input ng-model="profile.newsCoverage.summary"/>
+            </md-input-container>
+
+            <md-input-container>
+                <label>Type of Organization</label>
+                <input ng-model="profile.newsCoverage.url"/>
+            </md-input-container>
+        </md-card>
+
+
+        <!--This is the medicalSummary (medicalSummary) section -->
+        <md-card class="forminputs">
+            <h4>MEDICAL INFORMATION:</h4>
+            <md-input-container>
                 <label>Medical Summary</label>
                 <input ng-model="profile.medical"/>
-                </md-input-container>
-             </md-card>
-            <md-button class="md-primary navButton" ng-click="submit()"> Submit New Person</md-button>
-            <md-button class="md-primary navButton" ng-click="resetForm()"> Clear Form Data</md-button>
-        </md-content>
-    </form>
+            </md-input-container>
+        </md-card>
+        <md-button class="md-primary navButton" ng-click="submit()"> Submit New Person</md-button>
+        <md-button class="md-primary navButton" ng-click="resetForm()"> Clear Form Data</md-button>
+    </md-content>
+</form>
