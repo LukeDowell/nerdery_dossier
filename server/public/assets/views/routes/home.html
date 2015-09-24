@@ -1,4 +1,4 @@
-<div class="eventCard md-padding" ng-repeat="event in events" layout="column" layout-align="space-between start">
+<div class="eventCard md-padding" ng-repeat="event in events | orderBy: 'startDate'" layout="column" layout-align="space-between start">
     <h1 layout="row" class="md-title">
         {{event.startDate | date:"h:mma"}} - {{event.summary}}
     </h1>
