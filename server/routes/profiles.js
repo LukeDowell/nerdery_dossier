@@ -62,7 +62,8 @@ router.post('/image', multiparty, function(req, res){
 //Creates a profile req.body.user.contact.emailAddress is required
 router.post('/create', function(req, res) {
     var newProfile = req.body.profile;
-    Profile.findOrCreate(newProfile.contact.emailAddress, function(err, profile) {
+    console.log(newProfile);
+    Profile.findOrCreate(newProfile, function(err, profile) {
         if(err) console.log(err);
         else if(newProfile.meeting) {
             Event.findOrCreateFromMeeting(newProfile.meeting, function(err, event) {
