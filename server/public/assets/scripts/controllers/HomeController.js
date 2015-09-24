@@ -48,5 +48,4 @@ app.controller("HomeController", ['$scope', '$http', '$location', 'PropertiesSer
                 console.log(error);
         });
     };
-
 }]);
