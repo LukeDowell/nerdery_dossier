@@ -134,52 +134,51 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
 
     $scope.addAff = function() {
         $scope.newAffiliation = {};
-        console.log($scope.profile.affiliation);
         $scope.profile.affiliation.push($scope.newAffiliation);
     };
     $scope.removeAff = function(index) {
         $scope.profile.affiliation.splice(index,1);
-        console.log($scope.profile.affiliation);
     };
 
     $scope.addEdu = function() {
         $scope.newEducation = {};
-        console.log($scope.profile.education);
         $scope.profile.education.push($scope.newEducation);
     };
     $scope.removeEdu = function(index) {
         $scope.profile.education.splice(index,1);
-        console.log($scope.profile.education);
     };
 
     $scope.addRel = function() {
         $scope.newRelationship = {};
-        console.log($scope.profile.relationships);
         $scope.profile.relationships.push($scope.newRelationship);
     };
     $scope.removeRel = function(index) {
         $scope.profile.relationships.splice(index,1);
-        console.log($scope.profile.relationships);
     };
 
     $scope.addNews = function() {
         $scope.newNews = {};
-        console.log($scope.profile.newsCoverage);
         $scope.profile.newsCoverage.push($scope.newNews);
     };
     $scope.removeNews = function(index) {
         $scope.profile.newsCoverage.splice(index,1);
-        console.log($scope.profile.newsCoverage);
     };
 
     $scope.addWork = function() {
         $scope.newWork = {};
-        console.log($scope.profile.workHistory);
         $scope.profile.workHistory.push($scope.newWork);
     };
     $scope.removeWork = function(index) {
         $scope.profile.workHistory.splice(index,1);
-        console.log($scope.profile.workHistory);
     };
-}]);
 
+    // removes ghost item from each array on page load
+    $scope.removeGhosts = function(){
+        $scope.profile.affiliation.shift();
+        $scope.profile.education.shift();
+        $scope.profile.relationships.shift();
+        $scope.profile.newsCoverage.shift();
+        $scope.profile.workHistory.shift();
+    };
+    $scope.removeGhosts();
+}]);
