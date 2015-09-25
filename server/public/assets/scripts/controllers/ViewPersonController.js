@@ -1,5 +1,5 @@
 //This is the name of our controller for changing the view when user clicks on a person and getting data for person
-app.controller("ViewPersonController", ['$scope', '$http', '$location', 'PropertiesService', function($scope, $http, $location, PropertiesService){
+app.controller("ViewPersonController", ['$scope', '$http', '$location', 'PropertiesService', '$mdDialog', function($scope, $http, $location, PropertiesService, $mdDialog){
 
     $scope.Person = PropertiesService.get('currentProfile');
 
@@ -81,7 +81,7 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', 'Propert
     findCurrentEmployer($scope.Person.workHistory);
 
     ////start submit changes function
-    $scope.submitProfileChanges = function(){
+    $scope.submitProfileChanges = function(ev){
         console.log("Submit Changes Hit");
 
         PropertiesService.set('currentProfile', $scope.Person);
@@ -94,7 +94,16 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', 'Propert
             if (res.status = !200) {
                 console.log("Error, did not update DB");
             }
-            $location.path("view");
+            $mdDialog.show(
+                $mdDialog.alert()
+                    .parent(angular.element(document.querySelector('#popupContainer')))
+                    .clickOutsideToClose(true)
+                    .title('Your Profile Changes Have Been Successfully Saved!')
+                    .content('Your Profile Changes Have Successfully Been Saved')
+                    .ariaLabel('Alert Dialog')
+                    .ok('Submit')
+                    .targetEvent(ev)
+            );
         }, function(error) {
             console.log(error);
         });

@@ -6,7 +6,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
     $scope.profile = {
         bio : {
             imageUrl: '',
-            interests: [{name: ""}],
+            interests: [],
             summary: "",
             demographics: "",
             age: "",
@@ -105,18 +105,29 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
                         .targetEvent(ev)
                 );
             });
+        } else {
+            $mdDialog.show(
+                $mdDialog.alert()
+                    .parent(angular.element(document.querySelector('#popupContainer')))
+                    .clickOutsideToClose(true)
+                    .title('Email Address is required!')
+                    .content('Email Address is required!')
+                    .ariaLabel('Alert Dialog')
+                    .ok('Fiiiine...')
+                    .targetEvent(ev)
+            );
         }
 
-            PropertiesService.set('addedProfileStartTime', "");
+        PropertiesService.set('addedProfileStartTime', "");
     };
 
 //CLEAR FORM DATA FUNCTION
-    var cleanProfile = angular.copy($scope.cleanProfile);
-
-    $scope.resetForm = function () {
-        $scope.profile = angular.copy(cleanProfile);
-        $scope.addProfileForm.$setPristine();
-    };
+//    var cleanProfile = angular.copy($scope.cleanProfile);
+//
+//    $scope.resetForm = function () {
+//        $scope.profile = angular.copy(cleanProfile);
+//        $scope.addProfileForm.$setPristine();
+//    };
 
 //PHOTO UPLOAD SECTION
 
@@ -167,13 +178,21 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
     $scope.removeWork = function(index) {
         $scope.profile.workHistory.splice(index,1);
     };
-    $scope.addInt = function() {
+
+    //----------------------
+
+    $scope.newInterest = {};
+    $scope.addInt = function(cat) {
+        $scope.profile.bio.interests.push(cat);
         $scope.newInterest = {};
-        $scope.profile.bio.interests.push($scope.newInterest);
+        console.log($scope.profile.bio.interests);
     };
     $scope.removeInt = function(index) {
         $scope.profile.bio.interests.splice(index,1);
+        console.log($scope.profile.bio.interests);
     };
+
+    //-----------------------
 
     // removes ghost item from each array on page load
     $scope.removeGhosts = function(){

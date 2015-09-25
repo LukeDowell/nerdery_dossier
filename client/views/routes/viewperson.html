@@ -2,7 +2,7 @@
     <div class="viewPersonContainer">
         <div class="paddingContainer" layout-sm="column" layout-gt-sm="row">
             <div>
-                <img src={{Person.bio.imageUrl}} height="265" width="200"/>
+                <img src={{Person.bio.imageUrl}} height="265" width="auto"/>
             </div>
             <div flex="70" class="contact">
                 <div>
@@ -281,7 +281,7 @@
     </div>
     <div class="viewPersonContainer paddingContainer">
         <div class="centerAllTheButtons">
-            <md-button class="centeredViewButton" ng-click="submitProfileChanges()">Submit Changes</md-button>
+            <md-button class="centeredViewButton" ng-click="submitProfileChanges($event)">Submit Changes</md-button>
         </div>
     </div>
 </section>
