@@ -78,7 +78,7 @@ UserSchema.statics.findOrCreate = function(access, refresh, googleData, done) {
                             accessToken: access,
                             refreshToken: refresh
                         },
-                        managingCalendar: 'lukedowell@gmail.com',
+                        managingCalendar: 'primary',
                         emailsToIgnore: [userProfile.contact.emailAddress]
                     });
                     //Save the user
