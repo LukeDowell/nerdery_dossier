@@ -10,6 +10,7 @@ var async = require('async');
 
 var EventSchema = new Schema({
     id: {type : String, unique: true},
+    parentCalendar: String,
     htmlLink: String,
     created: String,
     updated: String,
@@ -56,7 +57,6 @@ EventSchema.statics.findOrCreateFromGoogle = function(googleEvent, callback) {
         }
 
         //Check to see if there are additions to the event
-
         async.eachSeries(event.attendees, function(attendee, callback) {
             var profile = {
                 contact : {

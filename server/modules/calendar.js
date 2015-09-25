@@ -19,13 +19,18 @@ function populateEvents(user) {
             return;
         }
         response.items.forEach(function (googleEvent) {
-
             googleEvent.startDate = googleEvent.start.dateTime;
             googleEvent.endDate = googleEvent.end.dateTime;
 
 
             Event.findOrCreateFromGoogle(googleEvent, function (event) {
-                event.save();
+                //Add the owner of the event
+                event.parentCalendar = user.managingCalendar;
+                event.save(function (err) {
+                    if(err) {
+                        console.log(err);
+                    }
+                });
             });
         });
     });

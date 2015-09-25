@@ -40,7 +40,8 @@ router.get('/today', function(req, res) {
                 "startDate": {
                     "$gte": new Date().setHours(0,0,0,0),
                     "$lt": new Date().setHours(23, 59, 59, 999)
-                }
+                },
+                "parentCalendar" : req.user.managingCalendar
             }
         ).populate('profile.profileId')
             .exec(function(err, events) {

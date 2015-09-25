@@ -1,5 +1,5 @@
 //Index controller, controls left navbar --PR 9-14-15
-app.controller("IndexController", function($scope, $timeout, $mdSidenav, $mdUtil) {
+app.controller("IndexController", ['$scope', '$timeout', '$mdSidenav', '$mdUtil', function($scope, $timeout, $mdSidenav, $mdUtil) {
     $scope.toggleLeft = buildToggler('left');
     function buildToggler(navID) {
         var debounceFn =  $mdUtil.debounce(function(){
@@ -11,4 +11,4 @@ app.controller("IndexController", function($scope, $timeout, $mdSidenav, $mdUtil
     $scope.close = function () {
         $mdSidenav('left').close();
     };
-});
+}]);
