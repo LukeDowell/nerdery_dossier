@@ -23,7 +23,10 @@ var vendorSources = [
     "node_modules/angular-xeditable-0.1.8/css/xeditable.css",
     "node_modules/angular-xeditable-0.1.8/js/xeditable.min.js",
     "node_modules/ng-dialog/js/ngDialog.min.js",
-    "node_modules/ng-dialog/css/ngDialog.min.css"
+    "node_modules/ng-dialog/css/ngDialog.min.css",
+    "node_modules/ng-dialog/css/ngDialog-custom-width.css",
+    "node_modules/ng-dialog/css/ngDialog-theme-default.css"
+
 ];
 
 //Place any client side sources here
