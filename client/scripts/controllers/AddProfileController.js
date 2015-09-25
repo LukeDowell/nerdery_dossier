@@ -129,6 +129,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', 'Prope
         $scope.profile.affiliation.splice(index,1);
         console.log($scope.profile.affiliation);
     };
+
     $scope.addEdu = function() {
         $scope.newEducation = {};
         console.log($scope.profile.education);
@@ -138,6 +139,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', 'Prope
         $scope.profile.education.splice(index,1);
         console.log($scope.profile.education);
     };
+
     $scope.addRel = function() {
         $scope.newRelationship = {};
         console.log($scope.profile.relationships);
@@ -147,6 +149,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', 'Prope
         $scope.profile.relationships.splice(index,1);
         console.log($scope.profile.relationships);
     };
+
     $scope.addNews = function() {
         $scope.newNews = {};
         console.log($scope.profile.newsCoverage);
@@ -156,6 +159,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', 'Prope
         $scope.profile.newsCoverage.splice(index,1);
         console.log($scope.profile.newsCoverage);
     };
+
     $scope.addWork = function() {
         $scope.newWork = {};
         console.log($scope.profile.workHistory);
