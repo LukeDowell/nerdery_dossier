@@ -3,8 +3,7 @@
  */
 
 var google = require('googleapis');
-var config = require('../config');
-var oauthClient = new google.auth.OAuth2(config.CLIENT_ID, config.CLIENT_SECRET, config.CALLBACK);
+var oauthClient = new google.auth.OAuth2(process.env.client_id, process.env.client_secret, process.env.callback);
 var calendar = google.calendar('v3');
 var Event = require('../models/event');
 

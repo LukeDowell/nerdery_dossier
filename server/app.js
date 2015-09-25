@@ -3,7 +3,6 @@
  */
 var app = require('express')();
 var bodyParser = require('body-parser');
-var config = require('./config');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
@@ -28,9 +27,9 @@ database.once('open', function() {
 ////////////////////
 
 passport.use(new GoogleStrategy({
-        clientID: config.CLIENT_ID,
-        clientSecret: config.CLIENT_SECRET,
-        callbackURL: config.CALLBACK
+        clientID: process.env.client_id,
+        clientSecret: process.env.client_secret,
+        callbackURL: process.env.callback
     },
     function(accessToken, refreshToken, profile, done) {
         User.findOrCreate(accessToken, refreshToken, profile, done);
@@ -55,7 +54,7 @@ app.set('port', (process.env.PORT || 5000));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({
-    secret: config.SESSION_SECRET,
+    secret: process.env.session_secret,
     resave: true,
     saveUninitialized: true,
     cookie: {
