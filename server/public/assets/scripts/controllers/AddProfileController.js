@@ -70,6 +70,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
             $scope.uploadedUrl = response;
         };
 
+
         item.onError = function(response, status, headers) {
             console.log("Item upload failed...");
             console.log("Response:" , response);
@@ -120,13 +121,13 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
 
 //PHOTO UPLOAD SECTION
 
-    $scope.uploadFiles = function(file) {
-        file.upload = Upload.upload({
-            url: '/profiles/image',
-            method: 'POST',
-            file: file
-        });
-    };
+    //$scope.uploadFiles = function(file) {
+    //    file.upload = Upload.upload({
+    //        url: '/profiles/image',
+    //        method: 'POST',
+    //        file: file
+    //    });
+    //};
 
     $scope.addAff = function() {
         $scope.newAffiliation = {};
@@ -185,4 +186,5 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
         $scope.profile.bio.interests.shift();
     };
     $scope.removeGhosts();
+
 }]);

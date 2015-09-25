@@ -4,7 +4,7 @@
             <!-- FILE UPLOAD -->
             <md-card class="forminputs" flex>
                 <!-- CONTACT INFORMATION -->
-                <h4>Contact Information:</h4>
+                <h4>CONTACT INFORMATION</h4>
                 <div layout="row">
                     <md-input-container flex="40">
                         <label>Full Name</label>
@@ -59,7 +59,11 @@
                 </div>
             </md-card>
             <md-card class="forminputs" flex="25">
-                <img ng-src="{{uploadedUrl}}"></img>
+                <img id="addPersonImage" ng-src="{{profile.bio.imageUrl}}"/>
+                <img id="addPersonImage" ng-src="{{uploadedUrl}}"/>
+                <label> Add An Image From The Web:</label>
+                <input id="photoInput" type="text" ng-model="profile.bio.imageUrl"/>
+
                 <input type="file" name="photo" nv-file-select uploader="uploader"/><br/>
             </md-card>
         </div>
@@ -67,7 +71,7 @@
         <!--This is the bio (interests, summary, demographics, age, birthday, gender) section-->
 
         <md-card class="forminputs">
-            <h4>CONNECTING POINTS:</h4>
+            <h4>CONNECTING POINTS</h4>
             <md-input-container>
                 <label>Summary</label>
                 <input ng-model="profile.bio.summary"/>
@@ -117,7 +121,7 @@
 
         <div layout="row" layout-align="center">
             <md-card class="forminputs" flex>
-                <h4>WORK HISTORY AND ORGANIZATIONS:</h4>
+                <h4>WORK HISTORY AND ORGANIZATIONS</h4>
                 <md-input-container>
                     <label>Title</label>
                     <input ng-model="newWork.title"/>
@@ -196,7 +200,7 @@
 
 
         <md-card class="forminputs">
-            <h4>UPCOMING MEETINGS:</h4>
+            <h4>UPCOMING MEETINGS</h4>
             <time-date-picker class="datePicker" ng-model="profile.meeting.time"></time-date-picker>
         </md-card>
 
@@ -221,7 +225,7 @@
                     </md-input-container>
                 </div>
                 <md-input-container>
-                    <label>Summary</label>
+                    <label>SUMMARY</label>
                     <input ng-model="newEducation.summary"/>
                 </md-input-container>
             </md-card>
@@ -296,7 +300,7 @@
 
         <!--This is the notes section-->
         <md-card class="forminputs">
-            <h4>NOTES:</h4>
+            <h4>NOTES</h4>
             <md-input-container>
                 <label>Note</label>
                 <input ng-model="profile.notes"/>
@@ -306,7 +310,7 @@
 
         <!--This is the medicalSummary (medicalSummary) section -->
         <md-card class="forminputs">
-            <h4>MEDICAL INFORMATION:</h4>
+            <h4>MEDICAL INFORMATION</h4>
             <md-input-container>
                 <label>Medical Summary</label>
                 <input ng-model="profile.medical"/>
