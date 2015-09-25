@@ -114,7 +114,6 @@
         </div>
 
         <!--This is the organizations (title, name, startDate, endDate, isPrimary, current) section -->
-
         <div layout="row" layout-align="center">
             <md-card class="forminputs" flex>
                 <h4>WORK HISTORY AND ORGANIZATIONS:</h4>
@@ -145,7 +144,7 @@
                 </md-radio-group>
             </md-card>
             <md-card class="forminputs" flex="30">
-                <md-button class="md-primary addInfoButton" ng-click="addWork()">Add Job</md-button>
+                <md-button class="md-primary addInfoButton" ng-click="addWork(newWork)">Add Job</md-button>
                 <div layout="row" layout-align="center" ng-repeat="work in profile.workHistory">
                     <md-card class="forminputs" flex>
                         <h5>{{work.name}}</h5>

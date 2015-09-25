@@ -26,13 +26,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
             fullName: "",
             website: ""
         },
-        workHistory: [{
-            title: "",
-            name: "",
-            startDate: "",
-            endDate:  "",
-            current: false
-        }],
+        workHistory: [],
         affiliation: [
             { name: "", title: "", summary:"" }
         ],
@@ -139,6 +133,8 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
         });
     };
 
+    //Affiliation Array Functions
+
     $scope.addAff = function() {
         $scope.newAffiliation = {};
         $scope.profile.affiliation.push($scope.newAffiliation);
@@ -146,6 +142,8 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
     $scope.removeAff = function(index) {
         $scope.profile.affiliation.splice(index,1);
     };
+
+    //Education Array Functions
 
     $scope.addEdu = function() {
         $scope.newEducation = {};
@@ -155,6 +153,8 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
         $scope.profile.education.splice(index,1);
     };
 
+    //Relation Array Functions
+
     $scope.addRel = function() {
         $scope.newRelationship = {};
         $scope.profile.relationships.push($scope.newRelationship);
@@ -162,6 +162,8 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
     $scope.removeRel = function(index) {
         $scope.profile.relationships.splice(index,1);
     };
+
+    //News Array Functions
 
     $scope.addNews = function() {
         $scope.newNews = {};
@@ -171,19 +173,22 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
         $scope.profile.newsCoverage.splice(index,1);
     };
 
-    $scope.addWork = function() {
+    //Work Array Functions
+    $scope.newWork = {};
+    $scope.addWork = function(work) {
+        $scope.profile.workHistory.push(work);
         $scope.newWork = {};
-        $scope.profile.workHistory.push($scope.newWork);
+        console.log($scope.profile.workHistory);
     };
     $scope.removeWork = function(index) {
         $scope.profile.workHistory.splice(index,1);
+        console.log($scope.profile.workHistory);
     };
 
-    //----------------------
-
+    //Interests Array Functions
     $scope.newInterest = {};
-    $scope.addInt = function(cat) {
-        $scope.profile.bio.interests.push(cat);
+    $scope.addInt = function(int) {
+        $scope.profile.bio.interests.push(int);
         $scope.newInterest = {};
         console.log($scope.profile.bio.interests);
     };
@@ -192,16 +197,4 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
         console.log($scope.profile.bio.interests);
     };
 
-    //-----------------------
-
-    // removes ghost item from each array on page load
-    $scope.removeGhosts = function(){
-        $scope.profile.affiliation.shift();
-        $scope.profile.education.shift();
-        $scope.profile.relationships.shift();
-        $scope.profile.newsCoverage.shift();
-        $scope.profile.workHistory.shift();
-        $scope.profile.bio.interests.shift();
-    };
-    $scope.removeGhosts();
 }]);
