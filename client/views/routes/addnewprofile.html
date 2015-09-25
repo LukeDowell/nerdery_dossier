@@ -294,23 +294,29 @@
         </div>
 
         <!--This is the notes section-->
-        <md-card class="forminputs">
-            <h4>NOTES:</h4>
-            <md-input-container>
-                <label>Note</label>
-                <input ng-model="profile.notes"/>
-            </md-input-container>
-        </md-card>
+        <div layout="row" layout-align="center">
+            <md-card class="forminputs" flex>
+                <h4>NOTES:</h4>
+                <md-input-container>
+                    <label>Note</label>
+                    <input ng-model="profile.notes"/>
+                </md-input-container>
+            </md-card>
+        </div>
 
 
         <!--This is the medicalSummary (medicalSummary) section -->
-        <md-card class="forminputs">
-            <h4>MEDICAL INFORMATION:</h4>
-            <md-input-container>
-                <label>Medical Summary</label>
-                <input ng-model="profile.medical"/>
-            </md-input-container>
-        </md-card>
+        <div layout="row" layout-align="center">
+            <md-card class="forminputs" flex>
+                <h4>MEDICAL INFORMATION:</h4>
+                <md-input-container>
+                    <label>Medical Summary</label>
+                    <input ng-model="profile.medical"/>
+                </md-input-container>
+            </md-card>
+        </div>
+
+
         <md-button id="dialogButton" class="md-primary navButton  md-raised" ng-click="showAlert($event)" flex="" flex-md="100">
             Submit Profile
         </md-button>
