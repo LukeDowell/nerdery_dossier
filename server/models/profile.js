@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 
 var ProfileSchema = new Schema({
     bio: {
-        imageUrl: String,
+        imageUrl: {type: String, default: 'assets/images/profile.jpg'},
         interests: [{name: String}],
         summary: String,
         age: Number,

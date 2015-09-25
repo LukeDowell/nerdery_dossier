@@ -1,9 +1,10 @@
+<md-input-container>
+    <label>SEARCH FOR PROFILE: </label>
+    <input type="search" ng-model="searchProfile"/>
+</md-input-container>
+
 <div layout="row" flex layout-align="space-around center" layout-wrap>
     <!--search for profile within all profiles-->
-    <md-input-container>
-        <aria-label>SEARCH FOR PROFILE: <input type="search" ng-model="searchProfile"/></aria-label>
-    </md-input-container>
-
 
     <md-card class="personCards" ng-repeat="profile in allProfiles | filter:searchProfile" ng-click="editPerson(profile.contact.emailAddress)">
         <md-card-content>
