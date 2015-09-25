@@ -44,4 +44,19 @@ router.get('/callback',
     }
 );
 
+router.get('/user', function(req, res) {
+    if(req.isAuthenticated()) {
+        res.send(req.user);
+    } else {
+        res.send("Not allowed  8^)");
+    }
+});
+
+router.put('/user', function(req, res) {
+    if(req.isAuthenticated()) {
+        console.log("")
+    } else {
+        res.send("Not allowed 8^)")
+    }
+})
 module.exports = router;

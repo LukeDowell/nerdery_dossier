@@ -1,6 +1,19 @@
 <section id="usersettings">
-    <div>
-        <h2>Your Settings</h2>
-        <h4>YOUR USER ID IS:  {{userId}} </h4>
+    <h1>- Your Settings -</h1>
+    <div layout="column" layout-align="space-around start">
+        <div layout-wrap>
+            <md-input-container>
+                <label>Calendar ID:</label>
+                <input ng-model="options.calendarId"/>
+            </md-input-container>
+            <p>Your calendar id is what determines which calendar your events are pulled from. It can be found in your google calendar settings.</p>
+        </div>
+        <div layout-wrap>
+            <md-input-container>
+                <label>Emails to ignore:</label>
+                <input ng-model="options.ignoreEmails"/>
+            </md-input-container>
+            <p>This is a comma-delimited list containing emails that will not appear in your daily schedule. Your personal email is added by default.</p>
+        </div>
     </div>
 </section>

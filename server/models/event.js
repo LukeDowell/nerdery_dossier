@@ -54,8 +54,10 @@ EventSchema.statics.findOrCreateFromGoogle = function(googleEvent, callback) {
             //Event does not exist
             event = new Event(googleEvent);
         }
+
+        //Check to see if there are additions to the event
+
         async.eachSeries(event.attendees, function(attendee, callback) {
-            console.log(event.attendees)
             var profile = {
                 contact : {
                     emailAddress : attendee.email,
@@ -83,15 +85,10 @@ EventSchema.statics.findOrCreateFromGoogle = function(googleEvent, callback) {
 };
 
 EventSchema.statics.findOrCreateFromMeeting = function(meeting, callback) {
-    //Remove any events have have changes
-    console.log(new Date(meeting.time));
     this.findOne({startTime : new Date(meeting.time)}, function(err, event) {
-        console.log("event:", event);
         if(err) console.log(err);
 
         if(!event) {
-            //Event does not exist
-            console.log("creating new event");
             event = new Event({startDate:meeting.time, id:meeting.time});
         }
         event.save(function(err) {

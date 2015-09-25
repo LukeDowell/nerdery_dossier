@@ -17,6 +17,13 @@ app.controller("HomeController", ['$scope', '$http', '$location', 'PropertiesSer
         }
     );
 
+    $http.get('/auth/user')
+        .then(function(response) {
+            console.log(response);
+            PropertiesService.set('user', response.data);
+        }
+    );
+
 
     /**
      * Goes to the add new person page with a predefined start time

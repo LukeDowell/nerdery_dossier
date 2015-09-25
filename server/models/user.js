@@ -8,6 +8,8 @@ var mongoose = require('mongoose'),
 var UserSchema = new Schema({
     googleID: String,
     profileID: String,
+    managingCalendar: String,
+    emailsToIgnore: [String],
     auth: {
         accessToken: String,
         refreshToken: String
@@ -69,21 +71,23 @@ UserSchema.statics.findOrCreate = function(access, refresh, googleData, done) {
                         console.log(err);
                     }
                     //Create the user
-                    result = new User({
+                    var newUser = new User({
                         googleID: googleData.id,
                         profileID: userProfile._id,
                         auth: {
                             accessToken: access,
                             refreshToken: refresh
-                        }
+                        },
+                        managingCalendar: 'lukedowell@gmail.com',
+                        emailsToIgnore: [userProfile.contact.emailAddress]
                     });
                     //Save the user
-                    result.save(function(err) {
+                    newUser.save(function(err) {
                         if(err) {
                             console.log(err);
                         }
                         //Done
-                        return done(err, result);
+                        return done(err, newUser);
                     });
                 });
             }

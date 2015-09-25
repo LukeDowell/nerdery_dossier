@@ -38,29 +38,12 @@ function populateEvents(user) {
  * @param callback
  *      The results callback. Takes in an error and a response, the events are located
  *      in response.items
- * @param options
- *      calendarID: The id of the calendar you want to access
- *      maxResults: The amount of results you want back
- *      singleEvents: Also not sure what this is.
- *      orderBy: Sorting options. The only one I know is 'startTime'
  */
-function getCalendarEvents(user, callback, options) {
+function getCalendarEvents(user, callback) {
     var date = new Date();
     date.setHours(0,0,0,0);
     var todayStartISO = date.toISOString();
 
-    var params = {};
-    if(options) {
-        params.calendarId = options.calendarId ? options.calendarId : 'primary';
-        params.maxResults = options.maxResults ? options.maxResults : 50;
-        params.singleEvents = options.singleEvents ? options.singleEvents : true;
-        params.orderBy = options.orderBy ? options.orderBy : 'startTime';
-    } else {
-        params.calendarId = 'primary';
-        params.maxResults = 50;
-        params.singleEvents = true;
-        params.orderBy = 'startTime';
-    }
     oauthClient.setCredentials({
          access_token: user.auth.accessToken,
          refresh_token: user.auth.refreshToken
@@ -68,11 +51,11 @@ function getCalendarEvents(user, callback, options) {
     return calendar.events.list(
         {
             auth: oauthClient,
-            calendarId: params.calendarId,
+            calendarId: user.managingCalendar,
             timeMin: todayStartISO,
-            maxResults: params.maxResults,
-            singleEvents: params.singleEvents,
-            orderBy: params.orderBy
+            maxResults: 50,
+            singleEvents: true,
+            orderBy: "startTime"
         },
         callback
     );
