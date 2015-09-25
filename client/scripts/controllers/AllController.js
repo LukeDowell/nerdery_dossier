@@ -12,7 +12,6 @@ app.controller("AllController", ['$scope', '$http', '$location', 'PropertiesServ
                 console.log("error");
                 throw new Error("Failed to load a person's info from DB");
             }
-            console.log(response.data);
             $scope.allProfiles = response.data;
         });
     };
