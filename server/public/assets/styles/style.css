@@ -263,7 +263,6 @@ md-content {
     margin: auto;
 }
 
-<<<<<<< HEAD
 .addInfoButton {
     color: #FFFFFF !important;
     background-color: #423e34;
@@ -277,9 +276,9 @@ md-content {
 h5 {
     font-size: 16px;
     margin: 5px 0 0 0;
-=======
+}
+
 #dialogButton{
     background-color: #8a9b92;
     color: #423e34;
->>>>>>> dc7592afab06cd9877afc8f508c135583a88d100
 }
