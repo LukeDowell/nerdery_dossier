@@ -267,9 +267,17 @@
             <md-input-container>
                 <label>Medical Summary</label>
                 <input ng-model="profile.medical"/>
-            </md-input-container>
-        </md-card>
-        <md-button class="md-primary navButton" ng-click="submit()"> Submit New Person</md-button>
-        <md-button class="md-primary navButton" ng-click="resetForm()"> Clear Form Data</md-button>
-    </md-content>
-</form>
+
+                </md-input-container>
+             </md-card>
+            <md-button id="dialogButton" class="md-primary navButton  md-raised" ng-click="showAlert($event)" flex="" flex-md="100">
+               Submit Profile
+            </md-button>
+            <md-button id="dialogButton"  class="md-primary navButton md-raised" ng-click="resetForm()"> Clear Form Data</md-button>
+
+                </div>
+            </md-toolbar>
+
+        </md-content>
+    </form>
+
