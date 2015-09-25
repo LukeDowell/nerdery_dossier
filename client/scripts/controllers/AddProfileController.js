@@ -27,24 +27,11 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
             website: ""
         },
         workHistory: [],
-        affiliation: [
-            { name: "", title: "", summary:"" }
-        ],
+        affiliation: [],
         meeting: {time: ""},
-        education: [{
-            institution: "",
-            startDate: "",
-            endDate:  "",
-            summary: ""
-        }],
-        relationships: [{
-            name: "",
-            relationship: "",
-            summary: ""
-        }],
-        newsCoverage: [
-            { summary: "", url:"" }
-        ],
+        education: [],
+        relationships: [],
+        newsCoverage: [],
         medical: "",
         notes: ""
 
@@ -134,40 +121,40 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
     };
 
     //Affiliation Array Functions
-
-    $scope.addAff = function() {
+    $scope.newAffiliation = {};
+    $scope.addAff = function(affs) {
+        $scope.profile.affiliation.push(affs);
         $scope.newAffiliation = {};
-        $scope.profile.affiliation.push($scope.newAffiliation);
     };
     $scope.removeAff = function(index) {
         $scope.profile.affiliation.splice(index,1);
     };
 
     //Education Array Functions
-
-    $scope.addEdu = function() {
+    $scope.newEducation = {};
+    $scope.addEdu = function(edus) {
+        $scope.profile.education.push(edus);
         $scope.newEducation = {};
-        $scope.profile.education.push($scope.newEducation);
     };
     $scope.removeEdu = function(index) {
         $scope.profile.education.splice(index,1);
     };
 
     //Relation Array Functions
-
-    $scope.addRel = function() {
+    $scope.newRelationship = {};
+    $scope.addRel = function(relates) {
+        $scope.profile.relationships.push(relates);
         $scope.newRelationship = {};
-        $scope.profile.relationships.push($scope.newRelationship);
     };
     $scope.removeRel = function(index) {
         $scope.profile.relationships.splice(index,1);
     };
 
     //News Array Functions
-
-    $scope.addNews = function() {
+    $scope.newNews = {};
+    $scope.addNews = function(newsies) {
+        $scope.profile.newsCoverage.push(newsies);
         $scope.newNews = {};
-        $scope.profile.newsCoverage.push($scope.newNews);
     };
     $scope.removeNews = function(index) {
         $scope.profile.newsCoverage.splice(index,1);
@@ -178,11 +165,9 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
     $scope.addWork = function(work) {
         $scope.profile.workHistory.push(work);
         $scope.newWork = {};
-        console.log($scope.profile.workHistory);
     };
     $scope.removeWork = function(index) {
         $scope.profile.workHistory.splice(index,1);
-        console.log($scope.profile.workHistory);
     };
 
     //Interests Array Functions
@@ -190,11 +175,9 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
     $scope.addInt = function(int) {
         $scope.profile.bio.interests.push(int);
         $scope.newInterest = {};
-        console.log($scope.profile.bio.interests);
     };
     $scope.removeInt = function(index) {
         $scope.profile.bio.interests.splice(index,1);
-        console.log($scope.profile.bio.interests);
     };
 
 }]);

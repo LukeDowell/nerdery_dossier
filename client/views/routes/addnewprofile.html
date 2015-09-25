@@ -178,7 +178,7 @@
                 </md-input-container>
             </md-card>
             <md-card class="forminputs" flex="30">
-                <md-button class="md-primary addInfoButton" ng-click="addAff()">Add Aff.</md-button>
+                <md-button class="md-primary addInfoButton" ng-click="addAff(newAffiliation)">Add Aff.</md-button>
                 <div layout="row" layout-align="center" ng-repeat="affiliated in profile.affiliation">
                     <md-card class="forminputs" flex>
                         <h5>{{affiliated.name}}</h5>
@@ -225,7 +225,7 @@
                 </md-input-container>
             </md-card>
             <md-card class="forminputs" flex="30">
-                <md-button class="md-primary addInfoButton" ng-click="addEdu()">Add Edu.</md-button>
+                <md-button class="md-primary addInfoButton" ng-click="addEdu(newEducation)">Add Edu.</md-button>
                 <div layout="row" layout-align="center" ng-repeat="institute in profile.education">
                     <md-card class="forminputs" flex>
                         <h5>{{institute.institution}}</h5>
@@ -256,7 +256,7 @@
                 </md-input-container>
             </md-card>
             <md-card class="forminputs" flex="30">
-                <md-button class="md-primary addInfoButton" ng-click="addRel()">Add Rel.</md-button>
+                <md-button class="md-primary addInfoButton" ng-click="addRel(newRelationship)">Add Rel.</md-button>
                 <div layout="row" layout-align="center" ng-repeat="relationship in profile.relationships">
                     <md-card class="forminputs" flex>
                         <h5>{{relationship.name}}</h5>
@@ -282,7 +282,7 @@
                 </md-input-container>
             </md-card>
             <md-card class="forminputs" flex="30">
-                <md-button class="md-primary addInfoButton" ng-click="addNews()">Add News</md-button>
+                <md-button class="md-primary addInfoButton" ng-click="addNews(newNews)">Add News</md-button>
                 <div layout="row" layout-align="center" ng-repeat="news in profile.newsCoverage">
                     <md-card class="forminputs" flex>
                         <h5>{{news.summary}}</h5>
