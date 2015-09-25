@@ -62,6 +62,7 @@ html {
 .navButton {
     background-color: #8a9b92;
     color: #FFFFFF !important;
+    border: 1px solid #8a9b92;
 }
 
 .md-fab {
@@ -281,6 +282,7 @@ md-content {
 .addInfoButton {
     color: #FFFFFF !important;
     background-color: #423e34;
+    border: 1px solid #423e34;
 }
 
 .addInfoButton:hover {
@@ -296,4 +298,14 @@ h5 {
 #dialogButton{
     background-color: #8a9b92;
     color: #423e34;
+}
+
+.removeButton {
+    background-color: #f2836b;
+}
+
+.navButton:hover {
+    background-color: #423e34;
+    color: #FFFFFF !important;
+    border: 1px solid #FFFFFF;
 }

@@ -128,11 +128,15 @@
                 </md-radio-group>
             </md-card>
             <md-card class="forminputs" flex="30">
-                <div ng-repeat="work in profile.workHistory">
-                    <h5>{{work.name}}</h5>
-                    <md-button class="md-primary addInfoButton" ng-click="removeWork($index)">remove</md-button>
-                </div>
                 <md-button class="md-primary addInfoButton" ng-click="addWork()">Add Job</md-button>
+                <div layout="row" layout-align="center" ng-repeat="work in profile.workHistory">
+                    <md-card class="forminputs" flex>
+                        <h5>{{work.name}}</h5>
+                    </md-card>
+                    <md-card class="forminputs removeButton" flex="10" ng-click="removeWork($index)">
+                    </md-card>
+                </div>
+
             </md-card>
         </div>
 
@@ -158,11 +162,14 @@
                 </md-input-container>
             </md-card>
             <md-card class="forminputs" flex="30">
-                <div ng-repeat="affiliated in profile.affiliation">
-                    <h5>{{affiliated.name}}</h5>
-                    <md-button class="md-primary addInfoButton" ng-click="removeAff($index)">remove</md-button>
-                </div>
                 <md-button class="md-primary addInfoButton" ng-click="addAff()">Add Aff.</md-button>
+                <div layout="row" layout-align="center" ng-repeat="affiliated in profile.affiliation">
+                    <md-card class="forminputs" flex>
+                        <h5>{{affiliated.name}}</h5>
+                    </md-card>
+                    <md-card class="forminputs removeButton" flex="10" ng-click="removeAff($index)">
+                    </md-card>
+                </div>
             </md-card>
         </div>
 
@@ -202,11 +209,15 @@
                 </md-input-container>
             </md-card>
             <md-card class="forminputs" flex="30">
-                <div ng-repeat="institute in profile.education">
-                    <h5>{{institute.institution}}</h5>
-                    <md-button class="md-primary addInfoButton" ng-click="removeEdu($index)">remove</md-button>
-                </div>
                 <md-button class="md-primary addInfoButton" ng-click="addEdu()">Add Edu.</md-button>
+                <div layout="row" layout-align="center" ng-repeat="institute in profile.education">
+                    <md-card class="forminputs" flex>
+                        <h5>{{institute.institution}}</h5>
+                    </md-card>
+                    <md-card class="forminputs removeButton" flex="10" ng-click="removeEdu($index)">
+                    </md-card>
+                </div>
+
             </md-card>
         </div>
 
@@ -229,11 +240,15 @@
                 </md-input-container>
             </md-card>
             <md-card class="forminputs" flex="30">
-                <div ng-repeat="relationship in profile.relationships">
-                    <h5>{{relationship.name}}</h5>
-                    <md-button class="md-primary addInfoButton" ng-click="removeRel($index)">remove</md-button>
-                </div>
                 <md-button class="md-primary addInfoButton" ng-click="addRel()">Add Rel.</md-button>
+                <div layout="row" layout-align="center" ng-repeat="relationship in profile.relationships">
+                    <md-card class="forminputs" flex>
+                        <h5>{{relationship.name}}</h5>
+                    </md-card>
+                    <md-card class="forminputs removeButton" flex="10" ng-click="removeRel($index)">
+                    </md-card>
+                </div>
+
             </md-card>
         </div>
 
@@ -252,11 +267,14 @@
                 </md-input-container>
             </md-card>
             <md-card class="forminputs" flex="30">
-                <div ng-repeat="news in profile.newsCoverage">
-                    <h5>{{news.summary}}</h5>
-                    <md-button class="md-primary addInfoButton" ng-click="removeNews($index)">remove</md-button>
-                </div>
                 <md-button class="md-primary addInfoButton" ng-click="addNews()">Add News</md-button>
+                <div layout="row" layout-align="center" ng-repeat="news in profile.newsCoverage">
+                    <md-card class="forminputs" flex>
+                        <h5>{{news.summary}}</h5>
+                    </md-card>
+                    <md-card class="forminputs removeButton" flex="10" ng-click="removeNews($index)">
+                    </md-card>
+                </div>
             </md-card>
         </div>
 
