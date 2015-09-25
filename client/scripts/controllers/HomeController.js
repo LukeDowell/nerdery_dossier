@@ -18,11 +18,14 @@ app.controller("HomeController", ['$scope', '$http', '$location', 'PropertiesSer
     );
 
     $http.get('/auth/user')
-        .then(function(response) {
-            console.log(response);
-            PropertiesService.set('user', response.data);
-        }
-    );
+        .then(
+            function(response) {
+                PropertiesService.set('user', response.data);
+            },
+            function(response) {
+                console.log("Error setting user profile. Line ~26 HomeController.js");
+            }
+        );
 
 
     /**

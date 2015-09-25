@@ -95,5 +95,24 @@ UserSchema.statics.findOrCreate = function(access, refresh, googleData, done) {
     );
 };
 
+/**
+ * Updates settings based on input from the 'your settings' view
+ * @param user
+ *      The passport user we are updating
+ * @param settings
+ *      The settings we are updating
+ * @param callback
+ *      The status callback
+ */
+UserSchema.statics.updateSettings = function(user, settings, callback) {
+    this.findOne(user.googleID, function(err, user) {
+        user.managingCalendar = settings.managingCalendar;
+        user.emailsToIgnore = settings.emailsToIgnore;
+        user.save(function(err) {
+            callback(err);
+        });
+    });
+};
+
 var User = mongoose.model('User', UserSchema);
 module.exports = User;

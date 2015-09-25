@@ -5,6 +5,7 @@ var router = require('express').Router();
 var passport = require('passport');
 var path = require('path');
 var calendar = require('../modules/calendar');
+var User = require('../models/user');
 
 /**
  * Our login page
@@ -54,9 +55,13 @@ router.get('/user', function(req, res) {
 
 router.put('/user', function(req, res) {
     if(req.isAuthenticated()) {
-        console.log("")
+        User.updateSettings(req.user, req.body, function(err) {
+            if(err) res.status(500).send(err);
+            res.status(200).send("Update successful");
+            calendar.populateEvents(req.user);
+        });
     } else {
-        res.send("Not allowed 8^)")
+        res.status(403).send("Not allowed 8^)");
     }
-})
+});
 module.exports = router;

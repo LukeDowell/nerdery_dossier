@@ -115,6 +115,21 @@ md-card h3 {
     margin-top: 0;
     display: inline;
 }
+
+/*
+---------------
+    SETTINGS
+---------------
+*/
+
+#successIcon {
+    color: green;
+}
+
+#failIcon {
+    color: red;
+}
+
 /*
 ---------------
     VIEW
