@@ -275,6 +275,11 @@
         <p editable-text="Person.medical">{{Person.medical || "Medical Summary"}}</p>
     </div>
     <div class="viewPersonContainer paddingContainer">
+        <h2 class="sectionLabel">Notes</h2>
+        <hr>
+        <p editable-text="Person.notes">{{Person.notes || "Note"}}</p>
+    </div>
+    <div class="viewPersonContainer paddingContainer">
         <div class="centerAllTheButtons">
             <md-button class="centeredViewButton" ng-click="submitProfileChanges()">Submit Changes</md-button>
         </div>

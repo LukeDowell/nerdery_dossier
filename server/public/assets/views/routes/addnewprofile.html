@@ -159,7 +159,7 @@
             </md-card>
             <md-card class="forminputs" flex="30">
                 <div ng-repeat="affiliated in profile.affiliation">
-                    <h5>{{affiliated.summary}}</h5>
+                    <h5>{{affiliated.name}}</h5>
                     <md-button class="md-primary addInfoButton" ng-click="removeAff($index)">remove</md-button>
                 </div>
                 <md-button class="md-primary addInfoButton" ng-click="addAff()">Add Aff.</md-button>
@@ -203,7 +203,7 @@
             </md-card>
             <md-card class="forminputs" flex="30">
                 <div ng-repeat="institute in profile.education">
-                    <h5>{{institute.name}}</h5>
+                    <h5>{{institute.institution}}</h5>
                     <md-button class="md-primary addInfoButton" ng-click="removeEdu($index)">remove</md-button>
                 </div>
                 <md-button class="md-primary addInfoButton" ng-click="addEdu()">Add Edu.</md-button>
@@ -259,6 +259,15 @@
                 <md-button class="md-primary addInfoButton" ng-click="addNews()">Add News</md-button>
             </md-card>
         </div>
+
+        <!--This is the notes section-->
+        <md-card class="forminputs">
+            <h4>NOTES:</h4>
+            <md-input-container>
+                <label>Note</label>
+                <input ng-model="profile.notes"/>
+            </md-input-container>
+        </md-card>
 
 
         <!--This is the medicalSummary (medicalSummary) section -->

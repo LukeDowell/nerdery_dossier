@@ -51,7 +51,8 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
         newsCoverage: [
             { summary: "", url:"" }
         ],
-        medical: ""
+        medical: "",
+        notes: ""
 
     };
 
