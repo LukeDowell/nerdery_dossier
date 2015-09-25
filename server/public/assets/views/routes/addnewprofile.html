@@ -72,10 +72,6 @@
                 <label>Summary</label>
                 <input ng-model="profile.bio.summary"/>
             </md-input-container>
-            <md-input-container>
-                <label>Interests</label>
-                <input ng-model="profile.bio.interests.name"/>
-            </md-input-container>
 
             <div layout="row">
                 <md-input-container flex="10">
@@ -93,8 +89,29 @@
                 <md-radio-button value="Male" aria-label="Label 2">Male</md-radio-button>
                 </md-radio-group>
             </div>
+
         </md-card>
 
+        <!--this is the beginning of interests-->
+        <div layout="row" layout-align="center">
+            <md-card class="forminputs" flex>
+                <h4>INTERESTS</h4>
+                <md-input-container>
+                    <label>Interests</label>
+                    <input ng-model="newInterest.name"/>
+                </md-input-container>
+            </md-card>
+            <md-card class="forminputs" flex="30">
+                <md-button class="md-primary addInfoButton" ng-click="addInt()">Add Int.</md-button>
+                <div layout="row" layout-align="center" ng-repeat="activity in profile.bio.interests">
+                    <md-card class="forminputs" flex>
+                        <h5>{{activity.name}}</h5>
+                    </md-card>
+                    <md-card class="forminputs removeButton" flex="10" ng-click="removeInt($index)">
+                    </md-card>
+                </div>
+            </md-card>
+        </div>
 
         <!--This is the organizations (title, name, startDate, endDate, isPrimary, current) section -->
 
@@ -248,7 +265,6 @@
                     <md-card class="forminputs removeButton" flex="10" ng-click="removeRel($index)">
                     </md-card>
                 </div>
-
             </md-card>
         </div>
 

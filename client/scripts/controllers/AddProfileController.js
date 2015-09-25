@@ -171,6 +171,13 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
     $scope.removeWork = function(index) {
         $scope.profile.workHistory.splice(index,1);
     };
+    $scope.addInt = function() {
+        $scope.newInterest = {};
+        $scope.profile.bio.interests.push($scope.newInterest);
+    };
+    $scope.removeInt = function(index) {
+        $scope.profile.bio.interests.splice(index,1);
+    };
 
     // removes ghost item from each array on page load
     $scope.removeGhosts = function(){
@@ -179,6 +186,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
         $scope.profile.relationships.shift();
         $scope.profile.newsCoverage.shift();
         $scope.profile.workHistory.shift();
+        $scope.profile.bio.interests.shift();
     };
     $scope.removeGhosts();
 }]);
