@@ -1,9 +1,7 @@
 //This is the name of our controller for changing the view when user clicks on a person and getting data for person
 app.controller("ViewPersonController", ['$scope', '$http', '$location', 'PropertiesService', function($scope, $http, $location, PropertiesService){
-    console.log("This is the View Person Controller Working");
 
     $scope.Person = PropertiesService.get('currentProfile');
-    console.log($scope.Person);
 
     $scope.changeRoute = function (/*"name of routeChange parameter on html view"*/) {
         $location.path(/*"name of routeChange parameter on html view"*/);

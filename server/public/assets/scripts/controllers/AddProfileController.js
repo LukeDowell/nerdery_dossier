@@ -84,7 +84,6 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
         if (PropertiesService.get('addedProfileStartTime').length > 2) {
             $scope.profile.meeting.time = PropertiesService.get('addedProfileStartTime');
         }
-        console.log("date/time just before the POST" + $scope.profile.meeting.time);
 
         if ($scope.profile.contact.emailAddress.length > 4){
             $http({
@@ -92,7 +91,6 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
                 url: '/profiles/create',
                 data: {profile: $scope.profile}
             }).then(function (response) {
-                console.log(response);
 
                 $scope.status = '  ';
 
@@ -110,7 +108,6 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
         }
 
             PropertiesService.set('addedProfileStartTime', "");
-            console.log(PropertiesService.get('addedProfileStartTime'));
     };
 
 //CLEAR FORM DATA FUNCTION
@@ -129,7 +126,6 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
             method: 'POST',
             file: file
         });
-        console.log(file.name);
     };
 
     $scope.addAff = function() {

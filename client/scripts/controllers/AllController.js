@@ -2,7 +2,7 @@
  * Created by PR on 9/22/15.
  */
 app.controller("AllController", ['$scope', '$http', '$location', 'PropertiesService', function($scope, $http, $location, PropertiesService) {
-    console.log("All Controller working! We control all...");
+
     $scope.allProfiles = [];
 
     /// time to make the call, for all... profiles, crap.

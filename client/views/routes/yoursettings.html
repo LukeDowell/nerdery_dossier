@@ -1,6 +1,32 @@
 <section id="usersettings">
-    <div>
-        <h2>Your Settings</h2>
-        <h4>YOUR USER ID IS:  {{userId}} </h4>
+    <h1>- Your Settings -</h1>
+    <div layout="column" layout-align="space-around start">
+        <div layout-wrap>
+            <div layout="row">
+                <md-input-container flex="50">
+                    <label>Calendar ID:</label>
+                    <input ng-model="options.calendarId"/>
+                </md-input-container>
+            </div>
+            <p>Your calendar id is what determines which calendar your events are pulled from. It can be found in your google calendar settings.</p>
+        </div>
+        <div layout-wrap>
+            <md-input-container>
+                <label>Emails to ignore:</label>
+                <input ng-model="options.ignoreEmails"/>
+            </md-input-container>
+            <p>This is a comma-delimited list containing emails that will not appear in your daily schedule. Your personal email is added by default.</p>
+        </div>
+        <div layout-wrap>
+            <div layout="row">
+                <md-button class="md-raised" ng-click="saveSettings()">Save Settings</md-button>
+                <div>
+                    <!-- Status -->
+                    <img id="successIcon" ng-show="status == 'success'" src="assets/images/icons/check.png"/>
+                    <img id="failIcon" ng-show="status == 'failed'" src="assets/images/icons/cross.png"/>
+                </div>
+            </div>
+            <p>This button will save your calendar settings. It will also refresh calendar events.</p>
+        </div>
     </div>
 </section>

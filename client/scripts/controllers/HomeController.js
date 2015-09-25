@@ -17,6 +17,16 @@ app.controller("HomeController", ['$scope', '$http', '$location', 'PropertiesSer
         }
     );
 
+    $http.get('/auth/user')
+        .then(
+            function(response) {
+                PropertiesService.set('user', response.data);
+            },
+            function(response) {
+                console.log("Error setting user profile. Line ~26 HomeController.js");
+            }
+        );
+
 
     /**
      * Goes to the add new person page with a predefined start time
@@ -27,7 +37,6 @@ app.controller("HomeController", ['$scope', '$http', '$location', 'PropertiesSer
         console.log("Adding person at time: " + startTime);
         $location.path("addprofile");
         PropertiesService.set('addedProfileStartTime', startTime);
-        console.log(PropertiesService.get('addedProfileStartTime'));
     };
 
     //begin play time with getting a specific profile, setting it to the current profile

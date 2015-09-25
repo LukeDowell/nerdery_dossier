@@ -1,8 +1,7 @@
 /**
  * Created by lukedowell on 9/15/15.
  */
-loginApp.controller('LoginController', function($scope, $window) {
-    console.log("Controller hit");
+loginApp.controller('LoginController', ['$scope', '$window', function($scope, $window) {
 
     $scope.isLoggingIn = false;
 
@@ -10,4 +9,4 @@ loginApp.controller('LoginController', function($scope, $window) {
         $scope.isLoggingIn = true;
         $window.location.href = "/auth/login";
     };
-});
+}]);

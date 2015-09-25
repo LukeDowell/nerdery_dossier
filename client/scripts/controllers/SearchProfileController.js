@@ -1,6 +1,5 @@
 //This is the name of our controller for changing the view when user searches for person
 app.controller("SearchProfileController",['$scope', '$http', '$location', function($scope, $http, $location) {
-    console.log("This is the Search Profile Controller Working");
 
     $scope.changeRoute = function (/*"name of routeChange parameter on html view"*/){
         $location.path(/*"name of routeChange parameter on html view"*/);
