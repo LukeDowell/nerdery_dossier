@@ -14,7 +14,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', 'Prope
             gender: ""
         },
         contact: {
-            physicalAddress: [{street: "",city:"", state:"", zipCode: "", current: true}],
+            physicalAddresses: [{street: "", city:"", state:"", zipCode: "", current: true}],
             socialMedia: {
                 twitter: {handle:"", url: ""},
                 linkedIn: {id: "", url: ""},
@@ -118,6 +118,52 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', 'Prope
             file: file
         });
         console.log(file.name);
-    }
+    };
+
+    $scope.addAff = function() {
+        $scope.newAffiliation = {};
+        console.log($scope.profile.affiliation);
+        $scope.profile.affiliation.push($scope.newAffiliation);
+    };
+    $scope.removeAff = function(index) {
+        $scope.profile.affiliation.splice(index,1);
+        console.log($scope.profile.affiliation);
+    };
+    $scope.addEdu = function() {
+        $scope.newEducation = {};
+        console.log($scope.profile.education);
+        $scope.profile.education.push($scope.newEducation);
+    };
+    $scope.removeEdu = function(index) {
+        $scope.profile.education.splice(index,1);
+        console.log($scope.profile.education);
+    };
+    $scope.addRel = function() {
+        $scope.newRelationship = {};
+        console.log($scope.profile.relationships);
+        $scope.profile.relationships.push($scope.newRelationship);
+    };
+    $scope.removeRel = function(index) {
+        $scope.profile.relationships.splice(index,1);
+        console.log($scope.profile.relationships);
+    };
+    $scope.addNews = function() {
+        $scope.newNews = {};
+        console.log($scope.profile.newsCoverage);
+        $scope.profile.newsCoverage.push($scope.newNews);
+    };
+    $scope.removeNews = function(index) {
+        $scope.profile.newsCoverage.splice(index,1);
+        console.log($scope.profile.newsCoverage);
+    };
+    $scope.addWork = function() {
+        $scope.newWork = {};
+        console.log($scope.profile.workHistory);
+        $scope.profile.workHistory.push($scope.newWork);
+    };
+    $scope.removeWork = function(index) {
+        $scope.profile.workHistory.splice(index,1);
+        console.log($scope.profile.workHistory);
+    };
 }]);
 

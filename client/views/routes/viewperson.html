@@ -118,7 +118,7 @@
             <p class="displayInline" editable-text="Person.contact.age" e-placeholder="Age">{{Person.bio.age || "Age"}} years old, </p>
             <p class="displayInline" editable-text="Person.contact.gender" e-placeholder="Gender">{{Person.bio.gender || "Gender"}}</p>
         </div>
-        <div ng-repeat="address in Person.contact.physicalAddress">
+        <div ng-repeat="address in Person.contact.physicalAddresses">
             <p class="displayInline" editable-text="address.street" e-form="streetForm" shown="true" e-placeholder="Enter Street" ng-click="streetForm.$show()" ng-show="!streetForm.$visible">{{address.street || "Street"}} </p>
             <form editable-form name="streetForm" shown="$last && address.isNew" ng-show="streetForm.$visible">
                 <button type="submit">save</button>
