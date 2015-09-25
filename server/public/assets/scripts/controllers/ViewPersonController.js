@@ -61,7 +61,7 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', 'Propert
         var r = $scope.cityForm;
         var s = $scope.stateForm;
         var t = $scope.zipCodeForm;
-        $scope.Person.contact.physicalAddress.push({ street: q, city: r, state: s, zipCode: t, isNew: true })
+        $scope.Person.contact.physicalAddresses.push({ street: q, city: r, state: s, zipCode: t, current: false, isNew: true })
     };
     $scope.addEmployer = function() {
         var u = $scope.empTitleForm;

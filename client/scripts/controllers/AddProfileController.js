@@ -1,4 +1,4 @@
-app.controller("AddProfileController", ['$scope','$http', 'FileUploader', 'PropertiesService', function($scope, $http, FileUploader, PropertiesService) {
+app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDialog', 'PropertiesService', function($scope, $http, FileUploader, $mdDialog, PropertiesService) {
     //Empty profile for clearing form
     $scope.cleanProfile = {};
 
@@ -14,7 +14,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', 'Prope
             gender: ""
         },
         contact: {
-            physicalAddress: [{street: "",city:"", state:"", zipCode: "", current: true}],
+            physicalAddresses: [{street: "", city:"", state:"", zipCode: "", current: true}],
             socialMedia: {
                 twitter: {handle:"", url: ""},
                 linkedIn: {id: "", url: ""},
@@ -51,7 +51,8 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', 'Prope
         newsCoverage: [
             { summary: "", url:"" }
         ],
-        medical: ""
+        medical: "",
+        notes: ""
 
     };
 
@@ -79,26 +80,37 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', 'Prope
     };
 
 //SUBMIT FORM TO SERVER
-    $scope.submit = function() {
+    $scope.showAlert = function(ev) {
         if (PropertiesService.get('addedProfileStartTime').length > 2) {
             $scope.profile.meeting.time = PropertiesService.get('addedProfileStartTime');
         }
         console.log("date/time just before the POST" + $scope.profile.meeting.time);
-        $http({
-            method: 'POST',
-            url: '/profiles/create',
-            data: {profile: $scope.profile}
-        }).then(function (response) {
-            console.log(response);
 
-            //ngDialog.open({template: '<div class="ngdialog-message"> \
-                //Your profile has successfully been saved.</div>',
-            //        plain: 'true'
-            //});
+        if ($scope.profile.contact.emailAddress.length > 4){
+            $http({
+                method: 'POST',
+                url: '/profiles/create',
+                data: {profile: $scope.profile}
+            }).then(function (response) {
+                console.log(response);
+
+                $scope.status = '  ';
+
+                $mdDialog.show(
+                    $mdDialog.alert()
+                        .parent(angular.element(document.querySelector('#popupContainer')))
+                        .clickOutsideToClose(true)
+                        .title('Your Profile Has Been Successfully Saved!')
+                        .content('Your New Profile Has Successfully Been Saved')
+                        .ariaLabel('Alert Dialog')
+                        .ok('Submit')
+                        .targetEvent(ev)
+                );
+            });
+        }
 
             PropertiesService.set('addedProfileStartTime', "");
             console.log(PropertiesService.get('addedProfileStartTime'));
-        });
     };
 
 //CLEAR FORM DATA FUNCTION
@@ -118,6 +130,56 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader', 'Prope
             file: file
         });
         console.log(file.name);
-    }
+    };
+
+    $scope.addAff = function() {
+        $scope.newAffiliation = {};
+        console.log($scope.profile.affiliation);
+        $scope.profile.affiliation.push($scope.newAffiliation);
+    };
+    $scope.removeAff = function(index) {
+        $scope.profile.affiliation.splice(index,1);
+        console.log($scope.profile.affiliation);
+    };
+
+    $scope.addEdu = function() {
+        $scope.newEducation = {};
+        console.log($scope.profile.education);
+        $scope.profile.education.push($scope.newEducation);
+    };
+    $scope.removeEdu = function(index) {
+        $scope.profile.education.splice(index,1);
+        console.log($scope.profile.education);
+    };
+
+    $scope.addRel = function() {
+        $scope.newRelationship = {};
+        console.log($scope.profile.relationships);
+        $scope.profile.relationships.push($scope.newRelationship);
+    };
+    $scope.removeRel = function(index) {
+        $scope.profile.relationships.splice(index,1);
+        console.log($scope.profile.relationships);
+    };
+
+    $scope.addNews = function() {
+        $scope.newNews = {};
+        console.log($scope.profile.newsCoverage);
+        $scope.profile.newsCoverage.push($scope.newNews);
+    };
+    $scope.removeNews = function(index) {
+        $scope.profile.newsCoverage.splice(index,1);
+        console.log($scope.profile.newsCoverage);
+    };
+
+    $scope.addWork = function() {
+        $scope.newWork = {};
+        console.log($scope.profile.workHistory);
+        $scope.profile.workHistory.push($scope.newWork);
+    };
+    $scope.removeWork = function(index) {
+        $scope.profile.workHistory.splice(index,1);
+        console.log($scope.profile.workHistory);
+    };
 }]);
 

@@ -1,5 +1,5 @@
 <form name="addProfileForm">
-    <md-content flex-sm="100" flex-gt-sm="90" flex-gt-md="70" flex-gt-lg="50" >
+    <div flex-sm="100" flex-gt-sm="90" flex-gt-md="70" flex-gt-lg="50">
         <div layout="row" layout-align="center">
             <!-- FILE UPLOAD -->
             <md-card class="forminputs" flex>
@@ -98,59 +98,73 @@
 
         <!--This is the organizations (title, name, startDate, endDate, isPrimary, current) section -->
 
-        <md-card class="forminputs">
-            <h4>WORK HISTORY AND ORGANIZATIONS:</h4>
-            <md-input-container>
-                <label>Title</label>
-                <input ng-model="profile.workHistory.title"/>
-            </md-input-container>
-
-            <md-input-container>
-                <label>Organization Name</label>
-                <input ng-model="profile.workHistory.name"/>
-            </md-input-container>
-            <div layout="row">
+        <div layout="row" layout-align="center">
+            <md-card class="forminputs" flex>
+                <h4>WORK HISTORY AND ORGANIZATIONS:</h4>
                 <md-input-container>
-                    <label>Start Date</label>
-                    <input ng-model="profile.workHistory.startDate"/>
+                    <label>Title</label>
+                    <input ng-model="newWork.title"/>
                 </md-input-container>
 
                 <md-input-container>
-                    <label>End Date</label>
-                    <input ng-model="profile.workHistory.endDate"/>
+                    <label>Organization Name</label>
+                    <input ng-model="newWork.name"/>
                 </md-input-container>
-            </div>
+                <div layout="row">
+                    <md-input-container>
+                        <label>Start Date</label>
+                        <input ng-model="newWork.startDate"/>
+                    </md-input-container>
 
-
-            <h4>Current Occupation?</h4>
-            <md-radio-group ng-model="profile.organizations.isCurrent" layout="row">
-                <md-radio-button value="Yes" aria-label="yes">Yes</md-radio-button>
-                <md-radio-button value="No" aria-label="no">No</md-radio-button>
-            </md-radio-group>
-            </div>
-        </md-card>
+                    <md-input-container>
+                        <label>End Date</label>
+                        <input ng-model="newWork.endDate"/>
+                    </md-input-container>
+                </div>
+                <h4>Current Occupation?</h4>
+                <md-radio-group ng-model="newWork.isCurrent" layout="row">
+                    <md-radio-button value="Yes" aria-label="yes">Yes</md-radio-button>
+                    <md-radio-button value="No" aria-label="no">No</md-radio-button>
+                </md-radio-group>
+            </md-card>
+            <md-card class="forminputs" flex="30">
+                <div ng-repeat="work in profile.workHistory">
+                    <h5>{{work.name}}</h5>
+                    <md-button class="md-primary addInfoButton" ng-click="removeWork($index)">remove</md-button>
+                </div>
+                <md-button class="md-primary addInfoButton" ng-click="addWork()">Add Job</md-button>
+            </md-card>
+        </div>
 
 
         <!--This is the affiliations section -->
 
+        <div layout="row" layout-align="center">
+            <md-card class="forminputs" flex>
+                <h4>AFFILIATIONS, NON-PROFIT AND VOLUNTEER WORK</h4>
+                <md-input-container>
+                    <label>Name of Organization</label>
+                    <input ng-model="newAffiliation.name"/>
+                </md-input-container>
 
-        <md-card class="forminputs">
-            <h4>AFFILIATIONS, NON-PROFIT AND VOLUNTEER WORK</h4>
-            <md-input-container>
-                <label>Name of Organization</label>
-                <input ng-model="profile.affiliation.name"/>
-            </md-input-container>
+                <md-input-container>
+                    <label>Role within the Organization</label>
+                    <input ng-model="newAffiliation.title"/>
+                </md-input-container>
 
-            <md-input-container>
-                <label>Role within the Organization</label>
-                <input ng-model="profile.affiliation.title"/>
-            </md-input-container>
-
-            <md-input-container>
-                <label>Summary:</label>
-                <input ng-model="profile.affiliation.summary"/>
-            </md-input-container>
-        </md-card>
+                <md-input-container>
+                    <label>Summary:</label>
+                    <input ng-model="newAffiliation.summary"/>
+                </md-input-container>
+            </md-card>
+            <md-card class="forminputs" flex="30">
+                <div ng-repeat="affiliated in profile.affiliation">
+                    <h5>{{affiliated.name}}</h5>
+                    <md-button class="md-primary addInfoButton" ng-click="removeAff($index)">remove</md-button>
+                </div>
+                <md-button class="md-primary addInfoButton" ng-click="addAff()">Add Aff.</md-button>
+            </md-card>
+        </div>
 
 
 
@@ -164,67 +178,94 @@
 
         <!--This is the education section -->
 
-
-        <md-card class="forminputs">
-            <h4>EDUCATIONAL BACKGROUND</h4>
-            <md-input-container>
-                <label>Institution</label>
-                <input ng-model="profile.education.institution"/>
-            </md-input-container>
-            <div layout="row">
+        <div layout="row" layout-align="center">
+            <md-card class="forminputs" flex>
+                <h4>EDUCATIONAL BACKGROUND</h4>
                 <md-input-container>
-                    <label>Start Date</label>
-                    <input ng-model="profile.education.startDate"/>
+                    <label>Institution</label>
+                    <input ng-model="newEducation.institution"/>
                 </md-input-container>
+                <div layout="row">
+                    <md-input-container>
+                        <label>Start Date</label>
+                        <input ng-model="newEducation.startDate"/>
+                    </md-input-container>
 
+                    <md-input-container>
+                        <label>End Date</label>
+                        <input ng-model="newEducation.endDate"/>
+                    </md-input-container>
+                </div>
                 <md-input-container>
-                    <label>End Date</label>
-                    <input ng-model="profile.education.endDate"/>
+                    <label>Summary</label>
+                    <input ng-model="newEducation.summary"/>
                 </md-input-container>
-            </div>
-
-            <md-input-container>
-                <label>Summary</label>
-                <input ng-model="profile.education.summary"/>
-            </md-input-container>
-
-
-
-        </md-card>
+            </md-card>
+            <md-card class="forminputs" flex="30">
+                <div ng-repeat="institute in profile.education">
+                    <h5>{{institute.institution}}</h5>
+                    <md-button class="md-primary addInfoButton" ng-click="removeEdu($index)">remove</md-button>
+                </div>
+                <md-button class="md-primary addInfoButton" ng-click="addEdu()">Add Edu.</md-button>
+            </md-card>
+        </div>
 
         <!--This is the relationships section -->
-        <md-card class="forminputs">
-            <h4>RELATIONSHIPS </h4>
-            <md-input-container>
-                <label>Name of Significant Other</label>
-                <input ng-model="profile.relationships.name"/>
-            </md-input-container>
+        <div layout="row" layout-align="center">
+            <md-card class="forminputs" flex>
+                <h4>RELATIONSHIPS </h4>
+                <md-input-container>
+                    <label>Name of Significant Other</label>
+                    <input ng-model="newRelationship.name"/>
+                </md-input-container>
 
-            <md-input-container>
-                <label>Relationship</label>
-                <input ng-model="profile.relationship.relationship"/>
-            </md-input-container>
-
-
-            <md-input-container>
-                <label>Details Regarding Significant Other </label>
-                <input ng-model="profile.relationship.summary"/>
-            </md-input-container>
-        </md-card>
+                <md-input-container>
+                    <label>Relationship</label>
+                    <input ng-model="newRelationship.relationship"/>
+                </md-input-container>
+                <md-input-container>
+                    <label>Details Regarding Significant Other </label>
+                    <input ng-model="newRelationship.summary"/>
+                </md-input-container>
+            </md-card>
+            <md-card class="forminputs" flex="30">
+                <div ng-repeat="relationship in profile.relationships">
+                    <h5>{{relationship.name}}</h5>
+                    <md-button class="md-primary addInfoButton" ng-click="removeRel($index)">remove</md-button>
+                </div>
+                <md-button class="md-primary addInfoButton" ng-click="addRel()">Add Rel.</md-button>
+            </md-card>
+        </div>
 
 
         <!--This is the newsCoveragesection -->
+        <div layout="row" layout-align="center">
+            <md-card class="forminputs" flex>
+                <h4>NEWS COVERAGE </h4>
+                <md-input-container>
+                    <label>Summary</label>
+                    <input ng-model="newNews.summary"/>
+                </md-input-container>
+                <md-input-container>
+                    <label>Type of Organization</label>
+                    <input ng-model="newNews.url"/>
+                </md-input-container>
+            </md-card>
+            <md-card class="forminputs" flex="30">
+                <div ng-repeat="news in profile.newsCoverage">
+                    <h5>{{news.summary}}</h5>
+                    <md-button class="md-primary addInfoButton" ng-click="removeNews($index)">remove</md-button>
+                </div>
+                <md-button class="md-primary addInfoButton" ng-click="addNews()">Add News</md-button>
+            </md-card>
+        </div>
+
+        <!--This is the notes section-->
         <md-card class="forminputs">
-            <h4>NEWS COVERAGE </h4>
-
+            <h4>NOTES:</h4>
             <md-input-container>
-                <label>Summary</label>
-                <input ng-model="profile.newsCoverage.summary"/>
-            </md-input-container>
-
-            <md-input-container>
-                <label>Type of Organization</label>
-                <input ng-model="profile.newsCoverage.url"/>
+                <label>Note</label>
+                <input ng-model="profile.notes"/>
             </md-input-container>
         </md-card>
 
@@ -235,9 +276,17 @@
             <md-input-container>
                 <label>Medical Summary</label>
                 <input ng-model="profile.medical"/>
-            </md-input-container>
-        </md-card>
-        <md-button class="md-primary navButton" ng-click="submit()"> Submit New Person</md-button>
-        <md-button class="md-primary navButton" ng-click="resetForm()"> Clear Form Data</md-button>
-    </md-content>
-</form>
+
+                </md-input-container>
+             </md-card>
+            <md-button id="dialogButton" class="md-primary navButton  md-raised" ng-click="showAlert($event)" flex="" flex-md="100">
+               Submit Profile
+            </md-button>
+            <md-button id="dialogButton"  class="md-primary navButton md-raised" ng-click="resetForm()"> Clear Form Data</md-button>
+
+                </div>
+            </md-toolbar>
+
+        </md-content>
+    </form>
+

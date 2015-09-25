@@ -61,7 +61,7 @@ html {
 
 .navButton {
     background-color: #8a9b92;
-    color: #FFFFFF;
+    color: #FFFFFF !important;
 }
 
 .md-fab {
@@ -203,7 +203,12 @@ h3.editable-click, h4.editable-click, h5.editable-click, p.editable-click, li.ed
     text-align: left;
     padding-left: 10px;
 }
-
+.md-button.md-primary {
+    color: #423E34;
+}
+.forminputs h4 {
+    margin-bottom: 0;
+}
 .forminputs label{
    color:#000000;
 }
@@ -256,4 +261,24 @@ md-content {
 
 .datePicker {
     margin: auto;
+}
+
+.addInfoButton {
+    color: #FFFFFF !important;
+    background-color: #423e34;
+}
+
+.addInfoButton:hover {
+    color: #FFFFFF !important;
+    border: 1px solid #FFFFFF;
+}
+
+h5 {
+    font-size: 16px;
+    margin: 5px 0 0 0;
+}
+
+#dialogButton{
+    background-color: #8a9b92;
+    color: #423e34;
 }

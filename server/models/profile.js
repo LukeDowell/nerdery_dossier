@@ -65,7 +65,8 @@ var ProfileSchema = new Schema({
         summary: String,
         url: String
     }],
-    medical: String
+    medical: String,
+    notes: String
 });
 
 /**
