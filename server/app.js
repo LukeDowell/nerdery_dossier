@@ -15,7 +15,7 @@ var User = require('./models/user');
 // SETUP MONGO //
 /////////////////
 
-var MONGOOSE_URI = "mongodb://localhost/gabbys_salvation";
+var MONGOOSE_URI = "mongodb://admin:cribbage@ds051543.mongolab.com:51543/nerderydossier";
 mongoose.connect(MONGOOSE_URI);
 var database = mongoose.connection;
 database.on('error', console.error.bind(console, 'mongo error:'));
