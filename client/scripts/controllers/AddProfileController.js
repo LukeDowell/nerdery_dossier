@@ -76,9 +76,9 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
         $mdDialog.show({
             controller: DateTimeController,
             templateUrl: 'assets/views/template/dateTime.html',
-            parent: angular.element(document.body),
+            parent: angular.element(document.body)
         }).then(function(time) {
-            $scope.newMeeting.dateTime = time;
+            $scope.newMeeting.startDate = time;
         },
         function() {
             console.log("Dialog was cancelled");
@@ -86,7 +86,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
     };
 
     if(PropertiesService.get('addedProfileStartTime')) {
-        $scope.newMeeting.dateTime = PropertiesService.get('addedProfileStartTime');
+        $scope.newMeeting.startDate = PropertiesService.get('addedProfileStartTime');
         PropertiesService.remove('addedProfileStartTime');
     }
 

@@ -67,8 +67,6 @@ router.post('/create', function(req, res) {
             var length = profile.meeting.length;
             for(var i = 0; i < length; i++) {
                 Event.findOrCreateFromMeeting(profile.meeting[i], function(err, event) {
-                    console.log("Profile meeting time: " + profile.meeting[i].dateTime);
-                    console.log("Event meeting time: " + event.startDate);
                     event.attendees.push({
                         displayName: profile.contact.fullName,
                         email: profile.contact.emailAddress,
