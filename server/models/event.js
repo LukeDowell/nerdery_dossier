@@ -65,15 +65,6 @@ EventSchema.statics.findOrCreateFromGoogle = function(googleEvent, callback) {
                 }
             };
             Profile.findOrCreate(profile, function(err, profile) {
-                if(profile.bio.imageUrl) {
-                    attendee.imageUrl = profile.bio.imageUrl;
-                } else {
-                    attendee.imageUrl = 'assets/images/profile.jpg';
-                }
-
-                if(profile.contact.fullName) {
-                    attendee.displayName = profile.contact.fullName;
-                }
                 attendee.profileId = profile._id;
                 callback();
             })
@@ -86,8 +77,8 @@ EventSchema.statics.findOrCreateFromGoogle = function(googleEvent, callback) {
 
 EventSchema.statics.findOrCreateFromMeeting = function(meeting, callback) {
     this.findOne({startTime : meeting.dateTime}, function(err, event) {
+        console.log(event);
         if(err) console.log(err);
-
         if(!event) {
             event = new Event({startDate:meeting.time, id:meeting.time});
         }

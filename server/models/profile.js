@@ -84,8 +84,10 @@ ProfileSchema.statics.findOrCreate = function(profileData, callback) {
         if(!profile) {
             //Profile does not exist
             profile = new Profile(profileData);
+            console.log(profile);
         }
         profile.save(function(err) {
+            if(err) console.log(err);
             callback(err, profile);
         })
     })

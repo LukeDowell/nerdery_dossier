@@ -61,7 +61,6 @@ router.post('/create', function(req, res) {
     var newProfile = req.body;
     Profile.findOrCreate(newProfile, function(err, profile) {
         if(err) console.log(err);
-
         if(profile.meeting.length != 0) {
             var length = profile.meeting.length;
             for(var i = 0; i < length; i++) {
@@ -70,7 +69,7 @@ router.post('/create', function(req, res) {
                         displayName: profile.contact.fullName,
                         email: profile.contact.emailAddress,
                         profileId: profile._id});
-                    event.save(function(err) {
+                    event.save(function(err, event) {
                         if(err) {
                             console.log(err);
                             res.send(err);
