@@ -9,14 +9,10 @@ var router = require('express').Router(),
 var Event = require('../models/event'),
     Profile = require('../models/profile');
 
-router.get('/populate', function(req, res) {
-    if(req.isAuthenticated()) {
 
-    } else {
-        res.redirect('auth');
-    }
-});
-
+/**
+ * Returns all events
+ */
 router.get('/all', function(req, res) {
     if(req.isAuthenticated()) {
         Event.find({})

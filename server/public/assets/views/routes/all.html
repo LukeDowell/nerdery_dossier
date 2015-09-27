@@ -4,8 +4,6 @@
 </md-input-container>
 
 <div layout="row" flex layout-align="space-around center" layout-wrap>
-    <!--search for profile within all profiles-->
-
     <md-card class="personCards" ng-repeat="profile in allProfiles | filter:searchProfile" ng-click="editPerson(profile.contact.emailAddress)">
         <md-card-content>
             <img ng-src="{{profile.bio.imageUrl}}" height="250" width="220"/>

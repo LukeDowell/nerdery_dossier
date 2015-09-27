@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Template Page</title>
+    <title>Nerdery Dossier</title>
 
     <!-- Begin Styles -->
     <link rel="stylesheet" href="vendors/angular-material/angular-material.min.css"/>
@@ -36,11 +36,7 @@
                 </md-button>
                 <!--end nav buttons-->
             </md-toolbar>
-            <!--<md-content layout-padding hide-md>-->
-                <!--<md-button ng-click="close()" class="md-primary">-->
-                    <!--Close Sidenav Left-->
-                <!--</md-button>-->
-            <!--</md-content>-->
+
         </md-sidenav>
         <div>
             <md-button ng-click="toggleLeft()"
@@ -49,22 +45,13 @@
             </md-button>
         </div>
         <md-content flex layout-padding class="ngviewbackground">
-            <!--<header>-->
-                <!--<h1>Anything but Gabby's Salvation</h1>-->
-            <!--</header>-->
             <div>
                 <main ng-view></main>
             </div>
         </md-content>
     </section>
 
-
-    <!--<footer>-->
-        <!--<p>Footer Content</p>-->
-    <!--</footer>-->
-
     <!-- Begin Scripts -->
-
     <script type="text/javascript" src="vendors/angular/angular.min.js"></script>
     <script type="text/javascript" src="vendors/angular-animate/angular-animate.min.js"></script>
     <script type="text/javascript" src="vendors/angular-aria/angular-aria.min.js"></script>
