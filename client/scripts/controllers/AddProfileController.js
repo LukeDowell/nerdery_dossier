@@ -10,36 +10,17 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
     //Profile Model
     $scope.profile = {
         bio : {
-            imageUrl: '',
-            interests: [],
-            summary: "",
-            demographics: "",
-            age: "",
-            birthday: "",
-            gender: ""
+            interests: []
         },
         contact: {
-            physicalAddresses: [{street: "", city:"", state:"", zipCode: "", current: true}],
-            socialMedia: {
-                twitter: {handle:"", url: ""},
-                linkedIn: {id: "", url: ""},
-                facebook: {id:"", url: ""},
-                instagram: {id:"", url:""}
-            },
-            emailAddress: "",
-            phoneNumber: "",
-            fullName: "",
-            website: ""
+            physicalAddresses: [{street: "", city:"", state:"", zipCode: "", current: true}]
         },
         workHistory: [],
         affiliation: [],
         meeting: [],
         education: [],
         relationships: [],
-        newsCoverage: [],
-        medical: "",
-        notes: ""
-
+        newsCoverage: []
     };
 
     ////////////////////
@@ -71,7 +52,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
     $scope.submit = function() {
         $http({
             method: 'POST',
-            url: 'profiles/create',
+            url: '/profiles/create',
             data: $scope.profile
         }).then(function(response) {
             console.log(response);

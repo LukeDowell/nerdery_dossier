@@ -89,12 +89,9 @@ EventSchema.statics.findOrCreateFromMeeting = function(meeting, callback) {
         if(err) console.log(err);
 
         if(!event) {
-            event = new Event({startDate:meeting.time, id:meeting.time});
+            event = new Event({startDate:meeting.dateTime, id:meeting.dateTime});
         }
-        event.save(function(err) {
-            if(err) console.log(err);
-            callback(err, event);
-        })
+        callback(err, event);
     });
 };
 

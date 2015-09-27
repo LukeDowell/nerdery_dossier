@@ -63,13 +63,18 @@ router.post('/create', function(req, res) {
         if(err) console.log(err);
 
         if(profile.meeting.length != 0) {
+            console.log("Adding to event...");
             var length = profile.meeting.length;
             for(var i = 0; i < length; i++) {
                 Event.findOrCreateFromMeeting(profile.meeting[i], function(err, event) {
+                    console.log("Profile meeting time: " + profile.meeting[i].dateTime);
+                    console.log("Event meeting time: " + event.startDate);
                     event.attendees.push({
                         displayName: profile.contact.fullName,
                         email: profile.contact.emailAddress,
-                        profileId: profile._id});
+                        profileId: profile._id,
+                        imageUrl: profile.bio.imageUrl
+                    });
                     event.save(function(err) {
                         if(err) {
                             console.log(err);
