@@ -58,18 +58,28 @@ router.post('/image', multiparty, function(req, res){
 
 //Creates a profile req.body.user.contact.emailAddress is required
 router.post('/create', function(req, res) {
-    var newProfile = req.body.profile;
+    var newProfile = req.body;
     Profile.findOrCreate(newProfile, function(err, profile) {
         if(err) console.log(err);
-        else if(newProfile.meeting) {
-            Event.findOrCreateFromMeeting(newProfile.meeting, function(err, event) {
-                event.attendees.push({
-                    displayName: newProfile.contact.fullName,
-                    email: newProfile.contact.emailAddress,
-                    profileId: newProfile._id});
-                event.save();
-                res.send(profile);
-            });
+
+        if(profile.meeting.length != 0) {
+            var length = profile.meeting.length;
+            for(var i = 0; i < length; i++) {
+                Event.findOrCreateFromMeeting(profile.meeting[i], function(err, event) {
+                    event.attendees.push({
+                        displayName: profile.contact.fullName,
+                        email: profile.contact.emailAddress,
+                        profileId: profile._id});
+                    event.save(function(err) {
+                        if(err) {
+                            console.log(err);
+                            res.send(err);
+                        } else {
+                            res.send(event);
+                        }
+                    });
+                });
+            }
         }
         else {
             res.send(profile);

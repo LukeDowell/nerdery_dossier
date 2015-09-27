@@ -45,8 +45,7 @@ var ProfileSchema = new Schema({
         summary: String
     }],
     meeting: [{
-        date:  String,
-        time:  String,
+        startDate:  Date,
         note: String
     }],
     events: [{type: Schema.Types.ObjectId, ref: 'Event'}],

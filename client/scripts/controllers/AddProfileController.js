@@ -1,4 +1,9 @@
 app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDialog', 'PropertiesService', function($scope, $http, FileUploader, $mdDialog, PropertiesService) {
+
+    ////////////////////
+    // PROFILE MODELS //
+    ////////////////////
+
     //Empty profile for clearing form
     $scope.cleanProfile = {};
 
@@ -28,7 +33,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
         },
         workHistory: [],
         affiliation: [],
-        meeting: {time: ""},
+        meeting: [],
         education: [],
         relationships: [],
         newsCoverage: [],
@@ -37,14 +42,14 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
 
     };
 
-    /**
-     * ====================
-     * == FILE UPLOADING ==
-     * ====================
-     */
+    ////////////////////
+    // FILE UPLOADING //
+    ////////////////////
+
     $scope.uploader = new FileUploader();
     $scope.uploader.url = "/profiles/image";
     $scope.uploader.onAfterAddingFile = function(item) {
+        item.upload();
         item.onSuccess = function(response, status, headers) {
             console.log("Item upload success!");
             console.log(response);
@@ -57,68 +62,59 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
             console.log("Status: " , status);
             console.log("Headers: " , headers);
         };
-        item.upload();
     };
 
-//SUBMIT FORM TO SERVER
-    $scope.showAlert = function(ev) {
-        if (PropertiesService.get('addedProfileStartTime').length > 2) {
-            $scope.profile.meeting.time = PropertiesService.get('addedProfileStartTime');
-        }
+    //////////////////////
+    /// SUBMIT PROFILE ///
+    //////////////////////
 
-        if ($scope.profile.contact.emailAddress.length > 4){
-            $http({
-                method: 'POST',
-                url: '/profiles/create',
-                data: {profile: $scope.profile}
-            }).then(function (response) {
-
-                $scope.status = '  ';
-
-                $mdDialog.show(
-                    $mdDialog.alert()
-                        .parent(angular.element(document.querySelector('#popupContainer')))
-                        .clickOutsideToClose(true)
-                        .title('Your Profile Has Been Successfully Saved!')
-                        .content('Your New Profile Has Successfully Been Saved')
-                        .ariaLabel('Alert Dialog')
-                        .ok('Submit')
-                        .targetEvent(ev)
-                );
-            });
-        } else {
-            $mdDialog.show(
-                $mdDialog.alert()
-                    .parent(angular.element(document.querySelector('#popupContainer')))
-                    .clickOutsideToClose(true)
-                    .title('Email Address is required!')
-                    .content('Email Address is required!')
-                    .ariaLabel('Alert Dialog')
-                    .ok('Fiiiine...')
-                    .targetEvent(ev)
-            );
-        }
-
-        PropertiesService.set('addedProfileStartTime', "");
-    };
-
-//CLEAR FORM DATA FUNCTION
-//    var cleanProfile = angular.copy($scope.cleanProfile);
-//
-//    $scope.resetForm = function () {
-//        $scope.profile = angular.copy(cleanProfile);
-//        $scope.addProfileForm.$setPristine();
-//    };
-
-//PHOTO UPLOAD SECTION
-
-    $scope.uploadFiles = function(file) {
-        file.upload = Upload.upload({
-            url: '/profiles/image',
+    $scope.submit = function() {
+        $http({
             method: 'POST',
-            file: file
+            url: 'profiles/create',
+            data: $scope.profile
+        }).then(function(response) {
+            console.log(response);
         });
     };
+
+    //////////////////////
+    //// PROFILE DATA ////
+    //////////////////////
+
+    //Meeting array functions
+    $scope.newMeeting = {};
+    $scope.addMeeting = function(meeting) {
+        $scope.profile.meeting.push(meeting);
+        $scope.newMeeting = {};
+    };
+    $scope.removeMeeting = function(index) {
+        $scope.newMeeting.splice(index, 1);
+    };
+    $scope.openMeetingDialog = function() {
+        $mdDialog.show({
+            controller: DateTimeController,
+            templateUrl: 'assets/views/template/dateTime.html',
+            parent: angular.element(document.body),
+        }).then(function(time) {
+            $scope.newMeeting.dateTime = time;
+        },
+        function() {
+            console.log("Dialog was cancelled");
+        });
+    };
+
+    if(PropertiesService.get('addedProfileStartTime')) {
+        $scope.newMeeting.dateTime = PropertiesService.get('addedProfileStartTime');
+        PropertiesService.remove('addedProfileStartTime');
+    }
+
+    //DATE TIME CONTROLLER
+    function DateTimeController($scope, $mdDialog) {
+        $scope.submit = function(time) {
+            $mdDialog.hide(time);
+        }
+    }
 
     //Affiliation Array Functions
     $scope.newAffiliation = {};
