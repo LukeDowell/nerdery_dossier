@@ -309,3 +309,7 @@ h5 {
     color: #FFFFFF !important;
     border: 1px solid #FFFFFF;
 }
+
+h1.md-title {
+    margin-bottom: 0;
+}
