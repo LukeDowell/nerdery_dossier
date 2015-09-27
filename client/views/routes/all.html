@@ -7,8 +7,8 @@
     <md-card class="personCards" ng-repeat="profile in allProfiles | filter:searchProfile" ng-click="editPerson(profile.contact.emailAddress)">
         <md-card-content>
             <img ng-src="{{profile.bio.imageUrl}}" height="250" width="220"/>
-            <h2>{{profile.profileId.contact.fullName}}</h2>
-            <p>{{profile.profileId.contact.emailAddress}}</p>
+            <h2>{{profile.contact.fullName}}</h2>
+            <p>{{profile.contact.emailAddress}}</p>
         </md-card-content>
     </md-card>
 </div>
