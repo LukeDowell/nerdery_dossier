@@ -16,7 +16,7 @@ var Event = require('../models/event'),
 router.get('/all', function(req, res) {
     if(req.isAuthenticated()) {
         Event.find({})
-            .populate('profiles.profileId')
+            .populate('attendees.profileId')
             .exec(function(err, events) {
                 res.send(events);
             }
@@ -39,7 +39,7 @@ router.get('/today', function(req, res) {
                 },
                 "parentCalendar" : req.user.managingCalendar
             }
-        ).populate('profile.profileId')
+        ).populate('attendees.profileId')
             .exec(function(err, events) {
                 if(err) console.log(err);
                 res.send(events);

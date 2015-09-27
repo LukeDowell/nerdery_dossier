@@ -77,7 +77,7 @@ var ProfileSchema = new Schema({
  *      The response callback
  */
 ProfileSchema.statics.findOrCreate = function(profileData, callback) {
-    this.findOne({"contact.emailAddress": profileData.contact.email}, function(err, profile) {
+    this.findOne({"contact.emailAddress": profileData.contact.emailAddress}, function(err, profile) {
         if(err) {
             //o shit
             console.log(err);

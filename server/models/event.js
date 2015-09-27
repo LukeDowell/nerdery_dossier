@@ -42,7 +42,7 @@ var EventSchema = new Schema({
         comment: String,
         additionalGuests: Number,
         imageUrl: String,
-        profileId: String
+        profileId: {type: Schema.Types.ObjectId, ref: 'Profile'}
     }]
 });
 
