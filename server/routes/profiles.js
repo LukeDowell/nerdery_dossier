@@ -75,7 +75,7 @@ router.post('/create', function(req, res) {
                             console.log(err);
                             res.send(err);
                         } else {
-                            res.send(profile);
+                            res.send(event);
                         }
                     });
                 });

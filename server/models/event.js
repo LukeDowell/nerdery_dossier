@@ -85,7 +85,7 @@ EventSchema.statics.findOrCreateFromGoogle = function(googleEvent, callback) {
 };
 
 EventSchema.statics.findOrCreateFromMeeting = function(meeting, callback) {
-    this.findOne({startTime : new Date(meeting.time)}, function(err, event) {
+    this.findOne({startTime : meeting.dateTime}, function(err, event) {
         if(err) console.log(err);
 
         if(!event) {
