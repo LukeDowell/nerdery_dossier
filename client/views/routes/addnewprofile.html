@@ -57,6 +57,8 @@
                 </md-input-container>
             </div>
         </md-card>
+
+        <!-- FILE UPLOADING -->
         <md-card class="forminputs" flex="25">
             <img ng-src="{{uploadedUrl}}"/>
             <input type="file" name="photo" nv-file-select uploader="uploader"/><br/>
@@ -186,10 +188,34 @@
     </div>
 
     <!--Meeting-->
-    <md-card class="forminputs">
-        <h4>UPCOMING MEETINGS:</h4>
-        <time-date-picker class="datePicker" ng-model="profile.meeting.time"></time-date-picker>
-    </md-card>
+    <div layout="row" layout-align="center">
+        <md-card class="forminputs" flex>
+            <h4>Meetings</h4>
+            <div layout="column">
+                <div layout="row">
+                    <md-input-container>
+                        <label>Date:</label>
+                        <input ng-model="newMeeting.dateTime">
+                    </md-input-container>
+                    <md-button class="md-raised" ng-click="openMeetingDialog()">Select Time</md-button>
+                </div>
+                <md-input-container>
+                    <label>Notes:</label>
+                    <input ng-model="newMeeting.notes">
+                </md-input-container>
+            </div>
+        </md-card>
+        <md-card class="forminputs" flex="30">
+            <md-button class="md-primary addInfoButton" ng-click="addMeeting(newMeeting)">Add Meeting</md-button>
+            <div layout="row" layout-align="center" ng-repeat="meeting in profile.meeting">
+                <md-card class="forminputs" flex>
+                    <h5>{{meeting.dateTime}}</h5>
+                </md-card>
+                <md-card class="forminputs removeButton" flex="10" ng-click="removeMeeting($index)">
+                </md-card>
+            </div>
+        </md-card>
+    </div>
 
     <!--Education-->
     <div layout="row" layout-align="center">
@@ -304,7 +330,7 @@
         </md-card>
     </div>
 
-    <md-button id="dialogButton" class="md-primary navButton  md-raised" ng-click="showAlert($event)" flex="" flex-md="100">
+    <md-button id="dialogButton" class="md-primary navButton  md-raised" ng-click="submit()" flex="" flex-md="100">
         Submit Profile
     </md-button>
     <md-button id="dialogButton"  class="md-primary navButton md-raised" ng-click="resetForm()">

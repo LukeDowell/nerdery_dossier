@@ -37,6 +37,7 @@ var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages','angularF
 app.factory('PropertiesService', function() {
 
     var props = {
+        //TODO: these do not need to be here
         currentProfile : {
             //currentProfile Object always set to the currently selected profile
         },
