@@ -1,8 +1,8 @@
 <div flex-sm="100" flex-gt-sm="90" flex-gt-md="70" flex-gt-lg="50">
-    <div layout-gt-md="row" layout-md="column" layout-align="center">
-
-        <!-- CONTACT INFORMATION -->
+    <div layout="row" layout-align="center">
         <md-card class="forminputs" flex>
+
+            <!-- CONTACT INFORMATION -->
             <h4>Contact Information:</h4>
             <div layout="row">
                 <md-input-container flex="40">
@@ -14,38 +14,6 @@
                     <input ng-model="profile.contact.emailAddress">
                 </md-input-container>
             </div>
-                <h4>Address:</h4>
-                <div layout="row">
-                    <md-input-container flex="50">
-                        <label>Street</label>
-                        <input type="text" ng-model="profile.physicalAddress.street"/>
-                    </md-input-container>
-                    <md-input-container flex="25">
-                        <label>City</label>
-                        <input ng-model="profile.physicalAddress.city"/>
-                    </md-input-container>
-                    <md-input-container flex="15">
-                        <label>State</label>
-                        <input ng-model="profile.physicalAddress.state"/>
-                    </md-input-container>
-                    <md-input-container flex="10">
-                        <label>Zip Code</label>
-                        <input type="number" ng-model="profile.physicalAddress.zipCode"/>
-                    </md-input-container>
-                </div>
-            </md-card>
-            <md-card class="forminputs" flex="25">
-                <img id="addPersonImage" ng-src="{{profile.bio.imageUrl}}"/>
-                <label> Add An Image From The Web:</label>
-                <input id="photoInput" type="text" ng-model="profile.bio.imageUrl"/>
-                <input type="file" name="photo" nv-file-select uploader="uploader"/><br/>
-            </md-card>
-        </div>
-
-        <!--This is the bio (interests, summary, demographics, age, birthday, gender) section-->
-
-        <md-card class="forminputs">
-            <h4>CONNECTING POINTS</h4>
             <md-input-container>
                 <label>Phone Number</label>
                 <input ng-model="profile.contact.phoneNumber">
@@ -71,44 +39,32 @@
             </md-input-container>
             <h4>Address:</h4>
             <div layout="row">
-                <md-input-container flex="45">
+                <md-input-container flex="50">
                     <label>Street</label>
                     <input type="text" ng-model="profile.physicalAddress.street"/>
                 </md-input-container>
                 <md-input-container flex="25">
                     <label>City</label>
                     <input ng-model="profile.physicalAddress.city"/>
-            </md-card>
-            <md-card class="forminputs" flex="30">
-                <md-button class="md-primary addInfoButton" ng-click="addInt()">Add Int.</md-button>
-                <div layout="row" layout-align="center" ng-repeat="activity in profile.bio.interests">
-                    <md-card class="forminputs" flex>
-                        <h5>{{activity.name}}</h5>
-                    </md-card>
-                    <md-card class="forminputs removeButton" flex="10" ng-click="removeInt($index)">
-                    </md-card>
-                </div>
-            </md-card>
-        </div>
-
-        <!--This is the organizations (title, name, startDate, endDate, isPrimary, current) section -->
-
-        <div layout="row" layout-align="center">
-            <md-card class="forminputs" flex>
-                <h4>WORK HISTORY AND ORGANIZATIONS</h4>
-                <md-input-container>
-                    <label>Title</label>
-                    <input ng-model="newWork.title"/>
                 </md-input-container>
                 <md-input-container flex="15">
                     <label>State</label>
                     <input ng-model="profile.physicalAddress.state"/>
                 </md-input-container>
-                <md-input-container flex="15">
+                <md-input-container flex="10">
                     <label>Zip Code</label>
                     <input type="number" ng-model="profile.physicalAddress.zipCode"/>
                 </md-input-container>
             </div>
+        </md-card>
+
+        <!-- FILE UPLOADING -->
+        <md-card class="forminputs" flex="25">
+            <img id="addPersonImage" ng-src="{{profile.bio.imageUrl}}"/>
+            <!--<img id="addPersonImage" ng-src="{{uploadedUrl}}"/>-->
+            <label> Add An Image From The Web:</label>
+            <input id="photoInput" type="text" ng-model="profile.bio.imageUrl"/>
+            <input type="file" name="photo" nv-file-select Uploader="FileUploader"/><br/>
         </md-card>
     </div>
 
@@ -216,6 +172,7 @@
                 <label>Role within the Organization</label>
                 <input ng-model="newAffiliation.title"/>
             </md-input-container>
+
             <md-input-container>
                 <label>Summary:</label>
                 <input ng-model="newAffiliation.summary"/>

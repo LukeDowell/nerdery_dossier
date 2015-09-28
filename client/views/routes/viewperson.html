@@ -2,10 +2,10 @@
     <div class="viewPersonContainer">
         <div class="paddingContainer" layout-sm="column" layout-gt-sm="row">
             <div layout="column">
-                    <img ng-src="{{uploadedUrl}}" height="200" width="200" />
+                    <img ng-src="{{Profile.bio.imageUrl}}" height="200" width="200" />
                     <label id="imageUrlViewPerson"> Add An Image From The Web</label>
-                    <input id="imageInput" type="text" ng-model="profile.bio.imageUrl"/>
-                    <a href="{{profile.bio.imageUrl}}"></a>
+                    <input id="imageInput" type="text" ng-model="Profile.bio.imageUrl"/>
+                    <a href="{{Profile.bio.imageUrl}}"></a>
                     <input id="inputTextColor" type="file" name="photo" nv-file-select uploader="uploader"/><br/>
             </div>
             <div flex="70" class="contact">
