@@ -51,17 +51,13 @@
         </div>
     </div>
 
-
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Events</h2>
         <hr>
         <div ng-repeat="event in Person.events | orderBy: 'startDate' track by $index">
-            <p>{{event.startDate | date}} - {{event.summary}}</p>
+            <p><a ng-href="{{event.htmlLink}}">{{event.startDate | date}} - {{event.summary}}</a></p>
         </div>
     </div>
-
-
-
 
     <div class="viewPersonContainer paddingContainer">
         <h2 class="sectionLabel">Meetings</h2>

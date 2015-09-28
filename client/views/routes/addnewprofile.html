@@ -1,8 +1,13 @@
 <div flex-sm="100" flex-gt-sm="90" flex-gt-md="70" flex-gt-lg="50">
-    <div layout="row" layout-align="center">
-        <md-card class="forminputs" flex>
+    <div layout-gt-md="row" layout-md="column" layout-align="center">
+        <!-- FILE UPLOADING -->
+        <md-card class="forminputs" flex="25">
+            <img ng-src="{{uploadedUrl}}"/>
+            <input type="file" name="photo" nv-file-select uploader="uploader"/><br/>
+        </md-card>
 
-            <!-- CONTACT INFORMATION -->
+        <!-- CONTACT INFORMATION -->
+        <md-card class="forminputs" flex>
             <h4>Contact Information:</h4>
             <div layout="row">
                 <md-input-container flex="40">
@@ -39,7 +44,7 @@
             </md-input-container>
             <h4>Address:</h4>
             <div layout="row">
-                <md-input-container flex="50">
+                <md-input-container flex="45">
                     <label>Street</label>
                     <input type="text" ng-model="profile.physicalAddress.street"/>
                 </md-input-container>
@@ -51,17 +56,11 @@
                     <label>State</label>
                     <input ng-model="profile.physicalAddress.state"/>
                 </md-input-container>
-                <md-input-container flex="10">
+                <md-input-container flex="15">
                     <label>Zip Code</label>
                     <input type="number" ng-model="profile.physicalAddress.zipCode"/>
                 </md-input-container>
             </div>
-        </md-card>
-
-        <!-- FILE UPLOADING -->
-        <md-card class="forminputs" flex="25">
-            <img ng-src="{{uploadedUrl}}"/>
-            <input type="file" name="photo" nv-file-select uploader="uploader"/><br/>
         </md-card>
     </div>
 
