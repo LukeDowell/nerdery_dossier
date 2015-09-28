@@ -26,6 +26,16 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', 'FileUpl
 
 
     $scope.Person = PropertiesService.get('editProfile');
+    $http({
+        method: "GET",
+        url: "/profiles/find/" + $scope.Person.contact.emailAddress
+    }).then(function(response) {
+            $scope.Person = response.data;
+        },
+        function(response) {
+            console.log("error: " + response);
+        }
+    );
     $scope.changeRoute = function (/*"name of routeChange parameter on html view"*/) {
         $location.path(/*"name of routeChange parameter on html view"*/);
     };
