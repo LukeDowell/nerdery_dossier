@@ -195,7 +195,13 @@ h3.editable-click, h4.editable-click, h5.editable-click, p.editable-click, li.ed
 
 .centeredViewButton {
     background-color: #8a9b92;
+    border: 1px solid #8a9b92;
     color: #FFFFFF;
+}
+
+.centeredViewButton {
+    color: #FFFFFF;
+    border: 1px solid #ffffff;
 }
 
 .centerAllTheButtons {
@@ -312,4 +318,40 @@ h5 {
     background-color: #423e34;
     color: #FFFFFF !important;
     border: 1px solid #FFFFFF;
+}
+
+#imageInputAddPerson{
+    margin-right: 10px;
+}
+
+#imageUrlViewPerson{
+    float: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #FFFFFF;
+
+}
+
+#photoInput{
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+}
+
+#inputTextColor{
+    color: #FFFFFF;
+}
+
+#addPersonImage{
+    margin-right: 20px;
+    margin-bottom: 10px;
+    height: 265px;
+    width:265px;
+}
+
+#imageInput{
+    margin-bottom:10px;
+    border-radius:3px;
+    width:200px;
 }

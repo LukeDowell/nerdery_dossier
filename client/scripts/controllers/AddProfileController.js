@@ -37,6 +37,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
             $scope.uploadedUrl = response;
         };
 
+
         item.onError = function(response, status, headers) {
             console.log("Item upload failed...");
             console.log("Response:" , response);
@@ -84,7 +85,6 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
             console.log("Dialog was cancelled");
         });
     };
-
     if(PropertiesService.get('addedProfileStartTime')) {
         $scope.newMeeting.startDate = PropertiesService.get('addedProfileStartTime');
         PropertiesService.remove('addedProfileStartTime');
@@ -156,5 +156,4 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
     $scope.removeInt = function(index) {
         $scope.profile.bio.interests.splice(index,1);
     };
-
 }]);

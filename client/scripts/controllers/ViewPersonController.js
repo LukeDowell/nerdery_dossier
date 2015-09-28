@@ -1,5 +1,5 @@
 //This is the name of our controller for changing the view when user clicks on a person and getting data for person
-app.controller("ViewPersonController", ['$scope', '$http', '$location', 'PropertiesService', '$mdDialog', function($scope, $http, $location, PropertiesService, $mdDialog){
+app.controller("ViewPersonController", ['$scope', '$http', '$location', 'FileUploader', 'PropertiesService', '$mdDialog', function($scope, $http, $location, FileUploader, PropertiesService, $mdDialog){
 
     $scope.Person = PropertiesService.get('currentProfile');
     console.log($scope.Person);
@@ -108,4 +108,7 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', 'Propert
             console.log(error);
         });
     };
+
+
+
 }]);
