@@ -53,7 +53,9 @@ router.post('/image', multiparty, function(req, res){
 
     is.on('end', function() {
         fs.unlink(file.path, function(err) {
-            console.log(err);
+            if(err) {
+                console.log(err);
+            }
         });
         res.send("assets/images/uploads/" + file.name);
     });

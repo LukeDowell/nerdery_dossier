@@ -61,10 +61,9 @@
         <!-- FILE UPLOADING -->
         <md-card class="forminputs" flex="25">
             <img id="addPersonImage" ng-src="{{profile.bio.imageUrl}}"/>
-            <!--<img id="addPersonImage" ng-src="{{uploadedUrl}}"/>-->
             <label> Add An Image From The Web:</label>
             <input id="photoInput" type="text" ng-model="profile.bio.imageUrl"/>
-            <input type="file" name="photo" nv-file-select Uploader="FileUploader"/><br/>
+            <input type="file" name="photo" nv-file-select Uploader="uploader"/><br/>
         </md-card>
     </div>
 

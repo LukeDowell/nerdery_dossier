@@ -34,7 +34,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
         item.onSuccess = function(response, status, headers) {
             console.log("Item upload success!");
             console.log(response);
-            $scope.uploadedUrl = response;
+            $scope.profile.bio.imageUrl = response;
         };
 
 
