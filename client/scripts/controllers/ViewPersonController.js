@@ -1,6 +1,30 @@
 //This is the name of our controller for changing the view when user clicks on a person and getting data for person
 app.controller("ViewPersonController", ['$scope', '$http', '$location', 'FileUploader', 'PropertiesService', '$mdDialog', function($scope, $http, $location, FileUploader, PropertiesService, $mdDialog){
 
+    ////////////////////
+    // FILE UPLOADING //
+    ////////////////////
+
+    $scope.uploader = new FileUploader();
+    $scope.uploader.url = "/profiles/image";
+    $scope.uploader.onAfterAddingFile = function(item) {
+        item.upload();
+        item.onSuccess = function(response, status, headers) {
+            console.log("Item upload success!");
+            console.log(response);
+            $scope.uploadedUrl = response;
+        };
+
+
+        item.onError = function(response, status, headers) {
+            console.log("Item upload failed...");
+            console.log("Response:" , response);
+            console.log("Status: " , status);
+            console.log("Headers: " , headers);
+        };
+    };
+
+
     $scope.Person = PropertiesService.get('currentProfile');
     console.log($scope.Person);
     $scope.changeRoute = function (/*"name of routeChange parameter on html view"*/) {
