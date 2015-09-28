@@ -12,7 +12,6 @@ app.controller("HomeController", ['$scope', '$http', '$location', 'PropertiesSer
 
     $http.get('/events/today')
         .then(function(response) {
-            console.log(response);
             PropertiesService.set('events', response.data);
             $scope.events = PropertiesService.get('events');
         }, function(response) {
