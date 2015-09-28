@@ -24,6 +24,10 @@ p {
 ----------------
 */
 
+h1.md-title {
+    margin-bottom: 0;
+}
+
 .eventCard h1 {
     -webkit-text-stroke: 1px black;
     color: white;
@@ -191,7 +195,13 @@ h3.editable-click, h4.editable-click, h5.editable-click, p.editable-click, li.ed
 
 .centeredViewButton {
     background-color: #8a9b92;
+    border: 1px solid #8a9b92;
     color: #FFFFFF;
+}
+
+.centeredViewButton {
+    color: #FFFFFF;
+    border: 1px solid #ffffff;
 }
 
 .centerAllTheButtons {

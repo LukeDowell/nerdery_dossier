@@ -24,6 +24,10 @@ p {
 ----------------
 */
 
+h1.md-title {
+    margin-bottom: 0;
+}
+
 .eventCard h1 {
     -webkit-text-stroke: 1px black;
     color: white;
