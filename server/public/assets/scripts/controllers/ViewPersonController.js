@@ -25,8 +25,7 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', 'FileUpl
     };
 
 
-    $scope.Person = PropertiesService.get('currentProfile');
-    console.log($scope.Person);
+    $scope.Person = PropertiesService.get('editProfile');
     $scope.changeRoute = function (/*"name of routeChange parameter on html view"*/) {
         $location.path(/*"name of routeChange parameter on html view"*/);
     };
