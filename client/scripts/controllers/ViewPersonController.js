@@ -98,11 +98,12 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', 'FileUpl
     var findCurrentEmployer = function(array){
         for (var i = 0; i < array.length; i++){
             if (array[i].current === true){
-                $scope.currentEmployer = array[i];
+                return array[i];
             }
         }
+        return null;
     };
-    findCurrentEmployer($scope.Person.workHistory);
+    $scope.currentEmployer = findCurrentEmployer($scope.Person.workHistory);
 
     ////start submit changes function
     $scope.submitProfileChanges = function(ev){
@@ -133,6 +134,15 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', 'FileUpl
         });
     };
 
-
+    $scope.resetCurrentFalse = function(employerName){
+        for (var i = 0; i < $scope.Person.workHistory.length; i++){
+            if ($scope.Person.workHistory[i].name != employerName) {
+                $scope.Person.workHistory[i].current = false;
+            } else {
+                $scope.Person.workHistory[i].current = true;
+            }
+        }
+        $scope.currentEmployer = findCurrentEmployer($scope.Person.workHistory);
+    };
 
 }]);
