@@ -1,4 +1,4 @@
-app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDialog', 'PropertiesService', function($scope, $http, FileUploader, $mdDialog, PropertiesService) {
+app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDialog', 'PropertiesService','$location', function($scope, $http, FileUploader, $mdDialog, PropertiesService, $location) {
 
     ////////////////////
     // PROFILE MODELS //
@@ -50,13 +50,24 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
     /// SUBMIT PROFILE ///
     //////////////////////
 
-    $scope.submit = function() {
+    $scope.submit = function(ev) {
         $http({
             method: 'POST',
             url: '/profiles/create',
             data: $scope.profile
         }).then(function(response) {
             console.log(response);
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                .title('Are You Sure You Would Like to Submit Your New Profile')
+                .content('Are You Sure You Would Like to Submit Your New Profile')
+                .ariaLabel('Are you sure you would like to submit the profile you created')
+                .targetEvent(ev)
+                .ok('Ok')
+                .cancel('Cancel');
+            $mdDialog.show(confirm).then(function() {
+                $location.path('/addprofile');
+            });
         });
     };
 
