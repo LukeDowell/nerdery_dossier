@@ -3,10 +3,9 @@
         <div class="paddingContainer" layout-sm="column" layout-gt-sm="row">
             <div layout="column">
                 <img id="addPersonImage" ng-src="{{Person.bio.imageUrl}}"/>
-                <!--<img id="addPersonImage" ng-src="{{uploadedUrl}}"/>-->
                 <label> Add An Image From The Web:</label>
                 <input id="photoInput" type="text" ng-model="Person.bio.imageUrl"/>
-                <input type="file" name="photo" nv-file-select Uploader="FileUploader"/><br/>
+                <input type="file" name="photo" nv-file-select Uploader="uploader"/><br/>
 
             </div>
             <div flex="70" class="contact">

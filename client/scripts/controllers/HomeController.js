@@ -6,13 +6,17 @@ app.controller("HomeController", ['$scope', '$http', '$location', 'PropertiesSer
     $scope.isLoading = true;
 
     $scope.events = {};
+    if(PropertiesService.get('events')) {
+        $scope.events = PropertiesService.get('events');
+    }
 
     $http.get('/events/today')
         .then(function(response) {
-            console.log(response);
-            $scope.events = response.data;
+            PropertiesService.set('events', response);
+            $scope.events = PropertiesService.get('events');
         }, function(response) {
            //Error
+            console.log("Error retrieving events!");
             console.log(response);
         }
     );
@@ -24,6 +28,7 @@ app.controller("HomeController", ['$scope', '$http', '$location', 'PropertiesSer
             },
             function(response) {
                 console.log("Error setting user profile. Line ~26 HomeController.js");
+                console.log(response);
             }
         );
 
@@ -39,16 +44,21 @@ app.controller("HomeController", ['$scope', '$http', '$location', 'PropertiesSer
         PropertiesService.set('addedProfileStartTime', startTime);
     };
 
-    //begin play time with getting a specific profile, setting it to the current profile
-    //in the service, and redirecting to the view/edit module
-
+    function findProfileFromEmail(email) {
+        if(PropertiesService.get('events')) {
+            var attendees = [];
+            var events = PropertiesService.get('events');
+            for(var i = 0; i < events.length; i++) {
+                var attendeeLength =
+            }
+        }
+    }
     $scope.editPerson = function(email){
         //console.log("Clicked", email);
 
         $http({ url: '/profiles/find/' + email,
                 method: 'GET',
-                data: email,
-                headers: {"Content-Type": "application/json;charset=utf-8"}
+                data: email
             }).then(function(res) {
                 //console.log($scope.profilies);
                 PropertiesService.set('currentProfile', res.data);  //setting the currentProfile in service equal to the clicked Profile
