@@ -134,20 +134,15 @@ app.controller("ViewPersonController", ['$scope', '$http', '$location', 'FileUpl
         });
     };
 
-    //experiments
-
     $scope.resetCurrentFalse = function(employerName){
         for (var i = 0; i < $scope.Person.workHistory.length; i++){
             if ($scope.Person.workHistory[i].name != employerName) {
-                console.log($scope.Person.workHistory);
                 $scope.Person.workHistory[i].current = false;
             } else {
                 $scope.Person.workHistory[i].current = true;
             }
         }
-
         $scope.currentEmployer = findCurrentEmployer($scope.Person.workHistory);
-
     };
 
 }]);
