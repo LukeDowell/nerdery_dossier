@@ -70,8 +70,8 @@ var ProfileSchema = new Schema({
 
 /**
  * Finds or creates a profile based on a given email address
- * @param email
- *      The email address
+ * @param profileData
+ *      The array of profile data
  * @param callback
  *      The response callback
  */

@@ -8,8 +8,6 @@ var router = require('express').Router(),
  */
 var Event = require('../models/event'),
     Profile = require('../models/profile');
-
-
 /**
  * Returns all events
  */
@@ -25,7 +23,6 @@ router.get('/all', function(req, res) {
         res.redirect('/auth')
     }
 });
-
 /**
  * Returns all events occuring today
  */

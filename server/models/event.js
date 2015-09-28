@@ -51,12 +51,11 @@ EventSchema.statics.findOrCreateFromGoogle = function(googleEvent, callback) {
     //Remove any events have have changes
     this.findOne({id : googleEvent.id}, function(err, event) {
         if(err) console.log(err);
-        if(!event) {
-            //Event does not exist
+        if(!event) { //Event does not exist
             event = new Event(googleEvent);
         }
 
-        //Check to see if there are additions to the event
+        //Build or Associate profiles for every attendee
         async.eachSeries(event.attendees, function(attendee, callback) {
             var profile = {
                 contact : {
@@ -66,7 +65,12 @@ EventSchema.statics.findOrCreateFromGoogle = function(googleEvent, callback) {
             };
             Profile.findOrCreate(profile, function(err, profile) {
                 attendee.profileId = profile._id;
-                callback();
+                Profile.update(
+                    { _id: profile._id },
+                    { $addToSet: { events: event._id } }, function() {
+                        callback();
+                    }
+                );
             })
         }, function(err) {
             if(err) console.log(err);
@@ -76,16 +80,13 @@ EventSchema.statics.findOrCreateFromGoogle = function(googleEvent, callback) {
 };
 
 EventSchema.statics.findOrCreateFromMeeting = function(meeting, callback) {
-    this.findOne({startTime : meeting.dateTime}, function(err, event) {
-        console.log(event);
+    this.findOne({startDate : meeting.startDate}, function(err, event) {
         if(err) console.log(err);
         if(!event) {
-            event = new Event({startDate:meeting.time, id:meeting.time});
+            console.log("Creating new event at time: " + meeting.startDate);
+            event = new Event({startDate:meeting.startDate, id:meeting.startDate});
         }
-        event.save(function(err) {
-            if(err) console.log(err);
-            callback(err, event);
-        })
+        callback(err, event);
     });
 };
 

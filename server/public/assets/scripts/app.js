@@ -36,18 +36,9 @@ var app = angular.module('app', ['ngMaterial', 'ngRoute', 'ngMessages','angularF
 
 app.factory('PropertiesService', function() {
 
-    var props = {
-        //TODO: these do not need to be here
-        currentProfile : {
-            //currentProfile Object always set to the currently selected profile
-        },
-        addedProfileStartTime : {
-            //placeholder for dateTime object inserted into an addedProfile
-        }
-    };
+    var props = {};
     return {
         get: function(key) {
-            //console.log(" GET props hit, sending " + key);
             return props[key];
         },
         set: function(key, value) {

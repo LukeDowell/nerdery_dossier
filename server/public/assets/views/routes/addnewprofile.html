@@ -195,7 +195,7 @@
                 <div layout="row">
                     <md-input-container>
                         <label>Date:</label>
-                        <input ng-model="newMeeting.dateTime">
+                        <input ng-model="newMeeting.startDate">
                     </md-input-container>
                     <md-button class="md-raised" ng-click="openMeetingDialog()">Select Time</md-button>
                 </div>
@@ -209,7 +209,7 @@
             <md-button class="md-primary addInfoButton" ng-click="addMeeting(newMeeting)">Add Meeting</md-button>
             <div layout="row" layout-align="center" ng-repeat="meeting in profile.meeting">
                 <md-card class="forminputs" flex>
-                    <h5>{{meeting.dateTime}}</h5>
+                    <h5>{{meeting.startDate}}</h5>
                 </md-card>
                 <md-card class="forminputs removeButton" flex="10" ng-click="removeMeeting($index)">
                 </md-card>

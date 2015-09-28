@@ -21,29 +21,15 @@ app.controller("SearchProfileController",['$scope', '$http', '$location', functi
     //Add logic for viewing and editing the person object//
     //**************NEED CODE HERE********************************
     $scope.people = [];
+    for(var i =0; i<response.data.length; i++) {
+        var person = {
+            imgurl: response.data[i].imgurl,
+            name: response.data[i].name
+        };
+    }
 
-
-    //
-        for(var i =0; i<response.data.length; i++) {
-            var person = {
-                imgurl: response.data[i].imgurl,
-                name: response.data[i].name
-            };
-        }
-
-
-        $scope.people.push(person);
-
-
-
-
-
-
+    $scope.people.push(person);
 
     //call function
     $scope.submit
-
-
-
-
 }]);

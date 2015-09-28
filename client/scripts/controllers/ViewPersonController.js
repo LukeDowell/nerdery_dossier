@@ -2,7 +2,7 @@
 app.controller("ViewPersonController", ['$scope', '$http', '$location', 'PropertiesService', '$mdDialog', function($scope, $http, $location, PropertiesService, $mdDialog){
 
     $scope.Person = PropertiesService.get('currentProfile');
-
+    console.log($scope.Person);
     $scope.changeRoute = function (/*"name of routeChange parameter on html view"*/) {
         $location.path(/*"name of routeChange parameter on html view"*/);
     };

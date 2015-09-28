@@ -10,13 +10,16 @@ var Event = require('../models/event'),
 //Returns profile associated to email
 router.get('/find/:email', function(req, res) {
     var email = req.params.email;
-    Profile.findOne({'contact.emailAddress': email}, function(err, profile) {
-        if(err) console.log(err);
-        if(profile) {
-            res.send(profile);
-        } else {
-            res.status('404').send("Profile not found");
-        }
+    Profile.findOne({'contact.emailAddress': email})
+        .populate('events')
+        .exec(function(err, profiles) {
+            if(err) console.log(err);
+            if(profiles) {
+                res.send(profiles);
+            } else {
+                res.status('404').send("Profile not found");
+            }
+
     })
 });
 
@@ -62,6 +65,7 @@ router.post('/create', function(req, res) {
     Profile.findOrCreate(newProfile, function(err, profile) {
         if(err) console.log(err);
         if(profile.meeting.length != 0) {
+            console.log("Adding to event...");
             var length = profile.meeting.length;
             for(var i = 0; i < length; i++) {
                 Event.findOrCreateFromMeeting(profile.meeting[i], function(err, event) {
@@ -69,6 +73,8 @@ router.post('/create', function(req, res) {
                         displayName: profile.contact.fullName,
                         email: profile.contact.emailAddress,
                         profileId: profile._id});
+                    profile.events.push(event);
+                    profile.save();
                     event.save(function(err, event) {
                         if(err) {
                             console.log(err);
