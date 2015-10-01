@@ -56,7 +56,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
             url: '/profiles/create',
             data: $scope.profile
         }).then(function(response) {
-            console.log(response);
+            alert("Person added!");
         });
     };
 
@@ -79,7 +79,11 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
             templateUrl: 'assets/views/template/dateTime.html',
             parent: angular.element(document.body)
         }).then(function(time) {
-            $scope.newMeeting.startDate = time;
+                if(time) {
+                    time.setSeconds(0);
+                    time.setMilliseconds(0);
+                    $scope.newMeeting.startDate = time;
+                }
         },
         function() {
             console.log("Dialog was cancelled");
@@ -94,7 +98,7 @@ app.controller("AddProfileController", ['$scope','$http', 'FileUploader','$mdDia
     function DateTimeController($scope, $mdDialog) {
         $scope.submit = function(time) {
             $mdDialog.hide(time);
-        }
+        };
     }
 
     //Affiliation Array Functions

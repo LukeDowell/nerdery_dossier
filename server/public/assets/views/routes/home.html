@@ -8,6 +8,7 @@
             <md-card-content>
                 <img ng-src="{{profile.profileId.bio.imageUrl}}" height="250" width="220"/>
                 <h2>{{profile.profileId.contact.fullName}}</h2>
+                <h2 ng-hide="profile.profileId.contact.fullName">{{profile.displayName}}</h2>
                 <p>{{profile.email}}</p>
             </md-card-content>
         </md-card>

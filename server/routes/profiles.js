@@ -67,23 +67,24 @@ router.post('/create', function(req, res) {
     Profile.findOrCreate(newProfile, function(err, profile) {
         if(err) console.log(err);
         if(profile.meeting.length != 0) {
-            console.log("Adding to event...");
             var length = profile.meeting.length;
             for(var i = 0; i < length; i++) {
+                console.log(profile.meeting[i].startDate);
                 Event.findOrCreateFromMeeting(profile.meeting[i], function(err, event) {
                     event.attendees.push({
                         displayName: profile.contact.fullName,
                         email: profile.contact.emailAddress,
                         profileId: profile._id});
                     profile.events.push(event);
-                    profile.save();
-                    event.save(function(err, event) {
-                        if(err) {
-                            console.log(err);
-                            res.send(err);
-                        } else {
-                            res.send(event);
-                        }
+                    profile.save(function(err) {
+                        event.save(function(err, event) {
+                            if(err) {
+                                console.log(err);
+                                res.send(err);
+                            } else {
+                                res.send(event);
+                            }
+                        });
                     });
                 });
             }
