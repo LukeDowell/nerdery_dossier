@@ -40,7 +40,7 @@ router.put('/update', function(req, res) {
 });
 
 //Handles saving an uploaded image
-router.post('/image', multiparty, function(req, res){
+router.post('/image', multiparty, function(req, res) {
     var file = req.files.file;
     var is = fs.createReadStream(file.path);
     var os = fs.createWriteStream(path.join(__dirname, "../public/assets/images/uploads/", file.name));
