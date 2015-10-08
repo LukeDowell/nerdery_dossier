@@ -3,7 +3,6 @@
         <div class="paddingContainer" layout-sm="column" layout-gt-sm="row">
             <div layout="column">
                 <img id="addPersonImage" ng-src="{{Person.bio.imageUrl}}"/>
-                <!--<img id="addPersonImage" ng-src="{{uploadedUrl}}"/>-->
                 <label> Add An Image From The Web:</label>
                 <input id="photoInput" type="text" ng-model="Person.bio.imageUrl"/>
                 <input type="file" name="photo" nv-file-select Uploader="uploader"/><br/>
@@ -117,6 +116,10 @@
                     <button type="submit">save</button>
                     <button type="button" ng-click="empEndDateForm.$cancel()">cancel</button>
                 </form>
+            </div>
+            <div layout="row">
+                <h3>Currently employed here: {{employer.current}}</h3>
+                <input type="radio" name="{{employer.current}}" ng-click="resetCurrentFalse(employer.name)" ng-model="employer.current" ng-value="true" />
                 <hr>
             </div>
         </div>

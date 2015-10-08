@@ -19,18 +19,20 @@ app.controller("AllController", ['$scope', '$http', '$location', 'PropertiesServ
 
     $scope.editPerson = function(email){
         //console.log("Clicked", email);
-
-        $http({ url: '/profiles/find/' + email,
-            method: 'GET',
-            data: email,
-            headers: {"Content-Type": "application/json;charset=utf-8"}
-        }).then(function(res) {
-            //console.log($scope.profilies);
-            PropertiesService.set('currentProfile', res.data); //setting the currentProfile in service equal to the clicked Profile
-            //console.log(PropertiesService.get('currentProfile'));
-            $location.path("view"); //Redirecting after data has been updated in ProfilesService
-        }, function(error) {
-            console.log(error);
-        });
+        var profile = findProfileFromEmail(email);
+        PropertiesService.set('editProfile', profile);
+        $location.path('/view');
     };
+
+    function findProfileFromEmail(email) {
+        var events = PropertiesService.get('events');
+        for(var i = 0; i < events.length; i++) {
+            var attendeeLength = events[i].attendees.length;
+            for(var j = 0; j < attendeeLength; j++) {
+                if(email === events[i].attendees[j].profileId.contact.emailAddress) {
+                    return events[i].attendees[j].profileId;
+                }
+            }
+        }
+    }
 }]);

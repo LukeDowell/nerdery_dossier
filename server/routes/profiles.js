@@ -19,7 +19,6 @@ router.get('/find/:email', function(req, res) {
             } else {
                 res.status('404').send("Profile not found");
             }
-
     })
 });
 
@@ -40,17 +39,29 @@ router.put('/update', function(req, res) {
 });
 
 //Handles saving an uploaded image
-router.post('/image', multiparty, function(req, res) {
+router.post('/image', multiparty, function(req, res){
+
+    //Check to see if our directory exists
+    try {
+        fs.mkdirSync(path.join(__dirname, "../public/assets/images/uploads/"));
+    } catch(e) {
+        if (e.code != 'EEXIST') {
+            res.send(e);
+            console.log("ERROR!" + e);
+            return;
+        }
+    }
     var file = req.files.file;
     var is = fs.createReadStream(file.path);
     var os = fs.createWriteStream(path.join(__dirname, "../public/assets/images/uploads/", file.name));
     is.pipe(os);
 
-    is.on('error', function(err) {
-        if(err) console.log(err);
+    os.on('error', function(err) {
+        if(err) {
+            console.log(err);
+        }
         res.send(err);
     });
-
     is.on('end', function() {
         fs.unlink(file.path, function(err) {
             if(err) {

@@ -6,13 +6,17 @@ app.controller("HomeController", ['$scope', '$http', '$location', 'PropertiesSer
     $scope.isLoading = true;
 
     $scope.events = {};
+    if(PropertiesService.get('events')) {
+        $scope.events = PropertiesService.get('events');
+    }
 
     $http.get('/events/today')
         .then(function(response) {
-            console.log(response);
-            $scope.events = response.data;
+            PropertiesService.set('events', response.data);
+            $scope.events = PropertiesService.get('events');
         }, function(response) {
            //Error
+            console.log("Error retrieving events!");
             console.log(response);
         }
     );
@@ -24,6 +28,7 @@ app.controller("HomeController", ['$scope', '$http', '$location', 'PropertiesSer
             },
             function(response) {
                 console.log("Error setting user profile. Line ~26 HomeController.js");
+                console.log(response);
             }
         );
 
@@ -34,28 +39,25 @@ app.controller("HomeController", ['$scope', '$http', '$location', 'PropertiesSer
      *  The start time
      */
     $scope.addPerson = function(startTime) {
-        console.log("Adding person at time: " + startTime);
         $location.path("addprofile");
         PropertiesService.set('addedProfileStartTime', startTime);
     };
 
-    //begin play time with getting a specific profile, setting it to the current profile
-    //in the service, and redirecting to the view/edit module
+    function findProfileFromEmail(email) {
+        var events = PropertiesService.get('events');
+        for(var i = 0; i < events.length; i++) {
+            var attendeeLength = events[i].attendees.length;
+            for(var j = 0; j < attendeeLength; j++) {
+                if(email === events[i].attendees[j].profileId.contact.emailAddress) {
+                    return events[i].attendees[j].profileId;
+                }
+            }
+        }
+    }
 
     $scope.editPerson = function(email){
-        //console.log("Clicked", email);
-
-        $http({ url: '/profiles/find/' + email,
-                method: 'GET',
-                data: email,
-                headers: {"Content-Type": "application/json;charset=utf-8"}
-            }).then(function(res) {
-                //console.log($scope.profilies);
-                PropertiesService.set('currentProfile', res.data);  //setting the currentProfile in service equal to the clicked Profile
-                //console.log(PropertiesService.get('currentProfile'));
-                $location.path("view");  //Redirecting after data has been updated in ProfilesService
-            }, function(error) {
-                console.log(error);
-        });
+        var profile = findProfileFromEmail(email);
+        PropertiesService.set('editProfile', profile);
+        $location.path('/view');
     };
 }]);
